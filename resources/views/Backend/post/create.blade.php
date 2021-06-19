@@ -1,0 +1,191 @@
+@extends('Backend.Partials.layouts.app')
+@section('title', 'Post Create')
+@section('headSection')
+<link href="{{ asset('Backend/plugins/fileuploads/css/dropify.min.css') }}" rel="stylesheet" type="text/css" />
+
+@endsection
+@section('main-content')
+<div class="content-page">
+  <!-- Start content -->
+  <div class="content">
+    <div class="container">
+
+      <div class="row">
+        <form class="form-horizontal" role="form">
+          <div class="col-sm-12">
+            <div class="card-box">
+              <div class="dropdown pull-right">
+                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
+                  <i class="zmdi zmdi-more-vert"></i>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">فعال</a></li>
+                  <li><a href="#">متن اول</a></li>
+                  <li><a href="#">متن دوم</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">متن پاورقی</a></li>
+                </ul>
+              </div>
+              <h4 class="header-title m-t-0 m-b-30">پیشفرض</h4>
+              <input type="file" class="dropify" data-height="300" />
+
+              <div class="col-lg-6 m-t-30">
+                <div class="form-group">
+                  <label class="col-md-2 control-label">متن</label>
+                  <div class="col-md-10">
+                    <input type="text" class="form-control" value="یک متن نومنه">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-2 control-label" for="example-email">ایمیل</label>
+                  <div class="col-md-10">
+                    <input type="email" id="example-email" name="example-email" class="form-control" placeholder="ایمیل">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-2 control-label">پسورد</label>
+                  <div class="col-md-10">
+                    <input type="password" class="form-control" value="پسورد">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-md-2 control-label">متن درون نوشته</label>
+                  <div class="col-md-10">
+                    <input type="text" class="form-control" placeholder="متن درون نوشته">
+                  </div>
+                </div>
+
+              </div><!-- end col -->
+
+              <div class="col-lg-6 m-t-30">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">متن ثابت</label>
+                  <div class="col-sm-10">
+                    <p class="form-control-static">email@example.com</p>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">متن کمکی</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="Helping text">
+                    <span class="help-block"><small>از این متن به عنوان یک راهنما استفادهکنید</small></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">انتخاب ورودی</label>
+                  <div class="col-sm-10">
+                    <select class="form-control">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+
+                  </div>
+                </div>
+              </div><!-- end col -->
+              <div class="col-lg-12">
+                <div class="card-box">
+                  <textarea id="elm1" name="area"></textarea>
+                </div>
+              </div>
+              <div class="form-group text-right m-r-5">
+                <button class="btn btn-primary waves-effect waves-light" type="submit">
+                  ورود
+                </button>
+                <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
+                  برگشت
+                </button>
+              </div>
+        </form>
+      </div>
+    </div><!-- end row -->
+  </div>
+</div><!-- end col -->
+</div>
+</div>
+</div><!-- end col -->
+</div>
+@endsection
+@section('footerSection')
+<script>
+  var resizefunc = [];
+</script>
+<script src="{{ asset('Backend/plugins/fileuploads/js/dropify.min.js') }}"></script>
+
+
+<script type="text/javascript">
+  $('.dropify').dropify({
+    messages: {
+      'default': 'فایل را به اینجا بکشید یا کلیک کنید',
+      'replace': 'برای جایگزینی فایل را به اینجا بکشید یا کلیک کنید',
+      'remove': 'پاک کردن',
+      'error': 'با پوزش فراوان، خطایی رخ داده'
+    },
+    error: {
+      'fileSize': 'حجم فایل بیشتر از حد مجاز است (1M).'
+    }
+  });
+</script>
+
+<script src="{{ asset('Backend/plugins/tinymce/tinymce.min.js') }}"></script>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    if ($("#elm1").length > 0) {
+      tinymce.init({
+        selector: "textarea#elm1",
+        theme: "modern",
+        height: 300,
+        plugins: [
+          "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+          "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+          "save table contextmenu directionality emoticons template paste textcolor"
+        ],
+        toolbar: "rtl insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+        style_formats: [{
+            title: 'Bold text',
+            inline: 'b'
+          },
+          {
+            title: 'Red text',
+            inline: 'span',
+            styles: {
+              color: '#ff0000'
+            }
+          },
+          {
+            title: 'Red header',
+            block: 'h1',
+            styles: {
+              color: '#ff0000'
+            }
+          },
+          {
+            title: 'Example 1',
+            inline: 'span',
+            classes: 'example1'
+          },
+          {
+            title: 'Example 2',
+            inline: 'span',
+            classes: 'example2'
+          },
+          {
+            title: 'Table styles'
+          },
+          {
+            title: 'Table row 1',
+            selector: 'tr',
+            classes: 'tablerow1'
+          }
+        ]
+      });
+    }
+  });
+</script>
+
+@endsection
