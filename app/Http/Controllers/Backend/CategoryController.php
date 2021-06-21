@@ -15,9 +15,9 @@ class CategoryController extends Controller
     */
     public function __construct()
     {
-        $this->middleware('auth:admin');
-        $this->middleware('can:posts.category');
-        $this->middleware('can:products.category');
+        // $this->middleware('auth:admin');
+        // $this->middleware('can:posts.category');
+        // $this->middleware('can:products.category');
     }
 
     /**
@@ -28,7 +28,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('admin.category.show', compact('categories'));
+        return view('Backend.category.index', compact('categories'));
     }
 
     /**
@@ -38,7 +38,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.category');
+        return view('Backend.category.create');
     }
 
     /**
@@ -49,6 +49,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
         'name'=>'required',
         'slug'=>'required',
@@ -57,7 +58,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->slug = $request->slug;
         $category->save();
-        return redirect(route('category.index'));
+        return redirect(route('category.index'))->with('message', 'کتگوری با موفقیت اضافه گردید');
     }
 
     /**
@@ -80,7 +81,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category=Category::where('id', $id)->first();
-        return view('admin.category.edit', compact('category'));
+        return view('Backend.category.edit', compact('category'));
     }
 
     /**

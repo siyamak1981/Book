@@ -16,10 +16,7 @@
 <script src="{{ asset('Backend/js/jquery.slimscroll.js') }}"></script>
 <script src="{{ asset('Backend/js/jquery.scrollTo.min.js') }}"></script>
 
-<!-- KNOB JS -->
-<!--[if IE]>
-        <script type="text/javascript" src="{{ asset('Backend/plugins/jquery-knob/excanvas.js') }}"></script>
-        <![endif]-->
+
 <script src="{{ asset('Backend/plugins/jquery-knob/jquery.knob.js') }}"></script>
 
 <!--Morris Chart-->
@@ -38,3 +35,6 @@
 
 
 
+
+     
+ 

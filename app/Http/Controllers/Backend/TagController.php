@@ -15,9 +15,9 @@ class TagController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
-        $this->middleware('can:posts.tag');
-        $this->middleware('can:products.tag');
+        // $this->middleware('auth:admin');
+        // $this->middleware('can:posts.tag');
+        // $this->middleware('can:products.tag');
     }
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class TagController extends Controller
     public function index()
     {
         $tags = Tag::all();
-        return view('admin.tag.show', compact('tags'));
+        return view('Backend.tag.index', compact('tags'));
     }
 
     /**
@@ -37,7 +37,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('admin.tag.tag');
+        return view('Backend.tag.create');
     }
 
     /**
@@ -79,7 +79,7 @@ class TagController extends Controller
     public function edit($id)
     {
         $tag = tag::where('id', $id)->first();
-        return view('admin.tag.edit', compact('tag'));
+        return view('Backend.tag.edit', compact('tag'));
     }
 
     /**

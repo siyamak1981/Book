@@ -17,7 +17,7 @@ class RoleController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        // $this->middleware('auth:admin');
     }
 
     /**
@@ -28,7 +28,7 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-        return view('admin.role.show', compact('roles'));
+        return view('Backend.role.index', compact('roles'));
     }
 
     /**
@@ -38,11 +38,11 @@ class RoleController extends Controller
      */
     public function create()
     {
-        if (Auth::user()->can('roles.create')) {
+        // if (Auth::user()->can('roles.create')) {
             $permissions = Permission::all();
-            return view('admin.role.create', compact('permissions'));
-        }
-        return redirect(route('admin.home'));
+            return view('Backend.role.create', compact('permissions'));
+        // }
+        // return redirect(route('admin.home'));
     }
 
     /**
@@ -60,7 +60,7 @@ class RoleController extends Controller
         $role->name = $request->name;
         $role->save();
         $role->permissions()->sync($request->permission);
-        return redirect(route('role.index'));
+        return redirect(route('role.index'))->with('message', 'نقش جدید با موفقیت ثبت شد');
     }
 
     /**
@@ -82,12 +82,12 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        if (Auth::user()->can('roles.update')) {
+        // if (Auth::user()->can('roles.update')) {
             $role = Role::where('id', $id)->first();
             $permissions =Permission::all();
-            return view('admin.role.edit', compact('role', 'permissions'));
-        }
-        return redirect(route('admin.home'));
+            return view('Backend.role.edit', compact('role', 'permissions'));
+        // }
+        // return redirect(route('admin.home'));
     }
 
     /**

@@ -38,7 +38,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    { 
         // if (Auth::user()->can('posts.create')) {
             $tags =Tag::all();
             $categories =Category::all();
@@ -56,6 +56,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+     
         $this->validate($request, [
             'title'=>'required',
             'subtitle' => 'required',
@@ -78,8 +79,8 @@ class PostController extends Controller
         $post->body = $request->body;
         $post->status = $request->status;
         $post->save();
-        $post->tags()->sync($request->tags);
-        $post->categories()->sync($request->categories);
+        // $post->tags()->sync($request->tags);
+        // $post->categories()->sync($request->categories);
 
         return redirect(route('post.index'))->with('message', 'Post Created successfully');
     }
