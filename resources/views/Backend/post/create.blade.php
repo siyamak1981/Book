@@ -2,8 +2,10 @@
 @section('title', 'Post Create')
 @section('headSection')
 <link href="{{ asset('Backend/plugins/fileuploads/css/dropify.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{asset('Backend/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}" rel="stylesheet" />
 
 @endsection
+
 @section('main-content')
 <div class="content-page">
   <!-- Start content -->
@@ -11,11 +13,11 @@
     <div class="container">
 
       <div class="row">
-      @include('includes.messages')
+        @include('includes.messages')
 
-<form role="form" action="{{ route('post.store') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
-  {{ csrf_field() }}
-    
+        <form role="form" action="{{ route('post.store') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+          {{ csrf_field() }}
+
           <div class="col-sm-12">
             <div class="card-box">
               <div class="dropdown pull-right">
@@ -37,7 +39,7 @@
                 <div class="form-group">
                   <label class="col-md-2 control-label">متن</label>
                   <div class="col-md-10">
-                    <input type="text"  name="title" class="form-control" placeholder="یک متن نومنه">
+                    <input type="text" name="title" class="form-control" placeholder="یک متن نومنه">
                   </div>
                 </div>
 
@@ -58,7 +60,30 @@
                   <label class="col-sm-2 control-label">متن کمکی</label>
                   <div class="col-sm-10">
                     <input type="text" name="slug" class="form-control" placeholder="Helping text">
-                    <span class="help-block"><small>از این متن به عنوان یک راهنما استفادهکنید</small></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-2 control-label"> افزودن تگ</label>
+                  <div class="col-md-10">
+                    <div class="m-b-0">
+                      <select multiple data-role="tagsinput" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
+                        @foreach($tags as $tag)
+                        <option value="{{ $tag->name }}">{{ $tag->name}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-2 control-label"> افزودن دسته بندی</label>
+                  <div class="col-md-10">
+                    <div class="m-b-0">
+                      <select multiple data-role="tagsinput" name="categories[]">
+                      @foreach($categories as $category)
+                        <option value="{{ $category->name }}">{{ $category->name }}</option>
+                        @endforeach
+                      </select>
+                    </div>
                   </div>
                 </div>
                 <div class="form-group">
@@ -66,10 +91,8 @@
                   <div class="col-sm-6">
                     <div class="checkbox checkbox-pink">
                       <input id="checkbox1" type="checkbox" name="status" value="1" data-parsley-multiple="groups" data-parsley-mincheck="2" data-parsley-id="69">
-                      <label for="checkbox1">  انتشار </label>
+                      <label for="checkbox1"> انتشار </label>
                     </div>
-            
-                
                   </div>
                 </div>
               </div>
@@ -85,7 +108,7 @@
               </button>
               <a type="submit" href="{{ route('post.index') }}" class="btn btn-default waves-effect waves-light m-l-5">
                 برگشت
-</a>
+              </a>
             </div>
         </form>
       </div>
@@ -98,6 +121,7 @@
 </div>
 @endsection
 @section('footerSection')
+<script src="{{ asset('Backend/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
 <script>
   var resizefunc = [];
 </script>
@@ -176,4 +200,6 @@
   });
 </script>
 
+@endsection
+@section('footerSection')
 @endsection

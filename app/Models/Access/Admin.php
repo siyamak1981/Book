@@ -2,11 +2,12 @@
 
 namespace App\Models\Access;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
 class Admin extends Model
 {
-
+    use Notifiable;
 
     public function roles()
     {
