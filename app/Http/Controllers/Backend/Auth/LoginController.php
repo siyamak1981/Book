@@ -41,7 +41,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('admin.login');
+        return view('Backend.auth.login');
     }
 
     /**
@@ -80,7 +80,7 @@ class LoginController extends Controller
 
     public function __construct()
     {
-        // $this->middleware('guest:admin')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
     }
 
     protected function guard()

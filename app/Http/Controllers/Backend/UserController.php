@@ -45,7 +45,7 @@ class UserController extends Controller
     {
         if (Auth::user()->can('users.create')) {
             $roles = Role::all();
-            return view('admin.user.create', compact('roles'));
+            return view('Backend.user.create', compact('roles'));
         }
         return redirect(route('admin.home'));
     }
@@ -109,7 +109,7 @@ class UserController extends Controller
         if (Auth::user()->can('users.update')) {
             $user = Admin::find($id);
             $roles = Role::all();
-            return view('admin.user.edit', compact('user', 'roles'));
+            return view('Backend.user.edit', compact('user', 'roles'));
         }
         return redirect(route('admin.home'));
     }

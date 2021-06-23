@@ -16,8 +16,8 @@ class PermissionController extends Controller
         */
     public function __construct()
     {
-        $this->middleware('auth:admin');
-        $this->middleware('can:roles.permission');
+        // $this->middleware('auth:admin');
+        // $this->middleware('can:roles.permission');
     }
     /**
      * Display a listing of the resource.
@@ -28,7 +28,7 @@ class PermissionController extends Controller
     {
         $permissions =Permission::latest()->paginate(5);
 
-        return view('admin.permission.show', compact('permissions'));
+        return view('Backend.permission.index', compact('permissions'));
     }
 
     /**
@@ -38,7 +38,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view('admin.permission.create');
+        return view('Backend.permission.create');
     }
 
     /**
@@ -81,7 +81,7 @@ class PermissionController extends Controller
     public function edit($id)
     {
         $permission = permission::find($id);
-        return view('admin.permission.edit', compact('permission'));
+        return view('Backend.permission.edit', compact('permission'));
     }
 
     /**
