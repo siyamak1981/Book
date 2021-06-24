@@ -1,71 +1,54 @@
-@extends('admin.layouts.app')
-@section('title', 'create')
+@extends('Backend.Partials.layouts.app')
+@section('title', 'Post Create')
+
 @section('main-content')
-	<!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper">
-	  <!-- Content Header (Page header) -->
-	  <section class="content-header">
-	    <h1>
-	      Text Editors
-	      <small>Advanced form element</small>
-	    </h1>
-	    <ol class="breadcrumb">
-	      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-	      <li><a href="#">Forms</a></li>
-	      <li class="active">Editors</li>
-	    </ol>
-	  </section>
+<div class="content-page">
+	<!-- Start content -->
+	<div class="content">
+		<div class="container">
+			<div class="row">
+				@include('includes.messages')
 
-	  <!-- Main content -->
-	  <section class="content">
-	    <div class="row">
-	      <div class="col-md-12">
-	        <!-- general form elements -->
-	        <div class="box box-primary">
-	          <div class="box-header with-border">
-	            <h3 class="box-title">Permissions</h3>
-	          </div>
-	          @include('includes.messages')
-	          <form role="form" action="{{ route('permission.store')}}" method="post">
-				@csrf
-	            <div class="box-body">
-	            <div class="col-lg-offset-3 col-lg-6">
-	              <div class="form-group">
-	                <label for="name">Permission</label>
-	                <input type="text" class="form-control" id="name" name="name" placeholder="Permission">
-	              </div>
-	              <div class="form-group">
-	              	<label for="for">Permission for</label>
-	              	<select name="for" id="for" class="form-control">
-	              		<option selected disable>Select Permission for</option>
-	              		<option value="user">User</option>
-	              		<option value="post">Post</option>
-	              		<option value="product">Product</option>
-	              		<option value="other">Other</option>
-	              	</select>
-	              </div>
+				<form role="form" action="{{ route('permission.store') }}" class="form-horizontal" method="post">
+					{{ csrf_field() }}
+					<div class="col-sm-12">
+						<div class="card-box m-t-30">
+							<div class="form-group m-t-30">
+								<label class="col-md-2 control-label">متن</label>
+								<div class="col-md-10">
+									<input type="text" name="name" class="form-control" placeholder="یک متن نومنه">
+								</div>
+							</div>
 
-	            <div class="form-group">
-	              <button type="submit" class="btn btn-shalishow">Submit</button>
-	              <a href='' class="btn btn-warning">Back</a>
-	            </div>
-
-	            </div>
-
-				</div>
-
-	          </form>
-	        </div>
-	        <!-- /.box -->
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="for"> دسترسی</label>
+								<div class="col-md-10">
+									<select name="for" id="for" class="form-control">
+										<option selected disable>انتخاب کن دسترسی برای</option>
+										<option value="user">کاربر</option>
+										<option value="post">پست</option>
+										<option value="product">محصول</option>
+										<option value="other">دیگر</option>
+									</select>
+								</div>
+							</div>
 
 
-	      </div>
-	      <!-- /.col-->
-	    </div>
-	    <!-- ./row -->
-	  </section>
-	  <!-- /.content -->
+
+							<div class="form-group text-right m-r-5">
+								<button class="btn btn-primary waves-effect waves-light" type="submit">
+									ورود
+								</button>
+								<button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
+									برگشت
+								</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div><!-- end row -->
 	</div>
-	<!-- /.content-wrapper -->
-@endsection
+</div><!-- end col -->
 
+@endsection

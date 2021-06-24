@@ -1,5 +1,5 @@
 @extends('Backend.Partials.layouts.app')
-@section('title', 'permissions')
+@section('title', 'posts')
 
 @section('main-content')
 <div class="content-page">
@@ -7,14 +7,14 @@
   <div class="content">
     <div class="container">
       <div class="row">
-      @include('includes.messages')
         <div class="col-sm-12">
           <div class="panel">
             <div class="panel-body">
               <div class="row">
+              @include('includes.messages')
                 <div class="col-sm-6">
                   <div class="m-b-30">
-                    <a href="{{ route('tag.create') }}" id="addToTable"  class="btn btn-primary waves-effect waves-light">افزودن <i class="fa fa-plus"></i></a>
+                    <a href="{{ route('permission.create') }}" id="addToTable" class="btn btn-primary waves-effect waves-light">افزودن <i class="fa fa-plus"></i></a>
                   </div>
                 </div>
               </div>
@@ -39,18 +39,19 @@
                       <table class="table table-striped dataTable no-footer" id="datatable-editable" role="grid" aria-describedby="datatable-editable_info">
                         <thead>
                           <tr role="row">
-                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="موتور جستجو: activate to sort column descending" style="width: 157px;">موتور جستجو</th>
-                            <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-label="مرورگر: activate to sort column ascending" style="width: 305px;">مرورگر</th>
-                            <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-label="سیستن عامل: activate to sort column ascending" style="width: 194px;">سیستن عامل</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="موتور جستجو: activate to sort column descending" style="width: 157px;">شماره</th>
+                            <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-label="مرورگر: activate to sort column ascending" style="width: 305px;">نام</th>
+                            <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-label="سیستن عامل: activate to sort column ascending" style="width: 194px;">تاریخ انتشار</th>
                             <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="فعالیت" style="width: 88px;">فعالیت</th>
                           </tr>
                         </thead>
                         <tbody>
+                        @foreach ($permissions as $permission)
                           <tr class="gradeX odd" role="row">
-                            <td class="sorting_1">نوع 1</td>
-                            <td>اینترنت اکسپلورر 4.0
-                            </td>
-                            <td>ویندوز 95+</td>
+                         
+                            <td class="sorting_1">{{ $permission->id }}</td>
+                            <td>{{ $permission->name }}</td>
+                            <td>{{ date("d F Y",strtotime($permission->created_at))}}</td>
                             <td class="actions">
                               <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                               <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
@@ -58,18 +59,7 @@
                               <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
                             </td>
                           </tr>
-                          <tr class="gradeC even" role="row">
-                            <td class="sorting_1">نوع 1</td>
-                            <td>اینترنت اکسپلورر 5.0
-                            </td>
-                            <td>ویندوز 95+</td>
-                            <td class="actions">
-                              <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                              <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                              <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                              <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                            </td>
-                          </tr>
+                     @endforeach
 
 
                         </tbody>
@@ -108,6 +98,3 @@
   </div> <!-- end col-->
 </div>
 @endsection
-
-
-
