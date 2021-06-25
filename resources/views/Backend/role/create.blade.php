@@ -21,70 +21,66 @@
 							</div>
 							<div class="col-lg-12">
 								<div class="form-group">
-									<label class="col-sm-2 control-label">کمترین انتخاب</label>
+									<label class="col-sm-2 control-label">دسترسی نوشته </label>
 									<div class="col-sm-4">
 										<div class="checkbox checkbox-pink">
-											<input id="checkbox1" type="checkbox" data-parsley-multiple="groups" data-parsley-mincheck="2">
-											<label for="checkbox1"> متن اول </label>
-										</div>
-										<div class="checkbox checkbox-pink">
-											<input id="checkbox2" type="checkbox" data-parsley-multiple="groups" data-parsley-mincheck="2">
-											<label for="checkbox2"> متن دوم </label>
-										</div>
-
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">کمترین انتخاب</label>
-									<div class="col-sm-4">
-										<div class="checkbox checkbox-pink">
-											<input id="checkbox4" type="checkbox" data-parsley-multiple="group1">
-											<label for="checkbox4"> متن اول </label>
-										</div>
-										<div class="checkbox checkbox-pink">
-											<input id="checkbox5" type="checkbox" data-parsley-multiple="group1">
-											<label for="checkbox5"> متن دوم </label>
+											@foreach($permissions as $permission)
+											@if($permission->for == 'post')
+											<input id="checkbox1" name="permission[]" value="{{ $permission->id }}" type="checkbox" data-parsley-multiple="groups" data-parsley-mincheck="2">
+											<label for="checkbox1"> {{ $permission->name }} </label>
+											@endif
+											@endforeach
 										</div>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label">کمترین انتخاب</label>
+									<label class="col-sm-2 control-label">دسترسی کاربر </label>
 									<div class="col-sm-4">
 										<div class="checkbox checkbox-pink">
-											<input id="checkbox1" type="checkbox" data-parsley-multiple="groups" data-parsley-mincheck="2">
-											<label for="checkbox1"> متن اول </label>
+											@foreach($permissions as $permission)
+											@if($permission->for == 'user')
+											<input id="checkbox1" name="permission[]" value="{{ $permission->id }}" type="checkbox" data-parsley-multiple="groups" data-parsley-mincheck="2">
+											<label for="checkbox1"> {{ $permission->name }} </label>
+											@endif
+											@endforeach
 										</div>
-										<div class="checkbox checkbox-pink">
-											<input id="checkbox2" type="checkbox" data-parsley-multiple="groups" data-parsley-mincheck="2">
-											<label for="checkbox2"> متن دوم </label>
-										</div>
-
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label">کمترین انتخاب</label>
+									<label class="col-sm-2 control-label">دسترسی محصول </label>
 									<div class="col-sm-4">
 										<div class="checkbox checkbox-pink">
-											<input id="checkbox4" type="checkbox" data-parsley-multiple="group1">
-											<label for="checkbox4"> متن اول </label>
-										</div>
-										<div class="checkbox checkbox-pink">
-											<input id="checkbox5" type="checkbox" data-parsley-multiple="group1">
-											<label for="checkbox5"> متن دوم </label>
+											@foreach($permissions as $permission)
+											@if($permission->for == 'product')
+											<input id="checkbox1" name="permission[]" value="{{ $permission->id }}" type="checkbox" data-parsley-multiple="groups" data-parsley-mincheck="2">
+											<label for="checkbox1"> {{ $permission->name }} </label>
+											@endif
+											@endforeach
 										</div>
 									</div>
 								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">دسترسی دیگر </label>
+									<div class="col-sm-4">
+										<div class="checkbox checkbox-pink">
+											@foreach($permissions as $permission)
+											@if($permission->for == 'other')
+											<input id="checkbox1" name="permission[]" value="{{ $permission->id }}" type="checkbox" data-parsley-multiple="groups" data-parsley-mincheck="2">
+											<label for="checkbox1"> {{ $permission->name }} </label>
+											@endif
+											@endforeach
+										</div>
+									</div>
+								</div>
+						
 							</div>
-
-
-
 							<div class="form-group text-right m-r-5">
 								<button class="btn btn-primary waves-effect waves-light" type="submit">
 									ورود
 								</button>
-								<button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
+								<a href="{{ route('role.index') }}" type="reset" class="btn btn-default waves-effect waves-light m-l-5">
 									برگشت
-								</button>
+								</a>
 							</div>
 						</div>
 					</div>
