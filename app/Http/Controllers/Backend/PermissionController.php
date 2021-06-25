@@ -49,6 +49,7 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
+      
         $this->validate($request, [
             'name' => 'required|max:50|unique:permissions',
             'for'  => 'required'
@@ -57,7 +58,8 @@ class PermissionController extends Controller
         $permissions->name = $request->name;
         $permissions->for = $request->for;
         $permissions->save();
-        return redirect(route('permission.index'))->with('message', 'Permission created successfully');
+        return redirect(route('permission.index'))
+        ->with('message', 'Permission created successfully');
         ;
     }
 

@@ -41,6 +41,7 @@
                           <tr role="row">
                             <th class="sorting_asc" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="موتور جستجو: activate to sort column descending" style="width: 157px;">شماره</th>
                             <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-label="مرورگر: activate to sort column ascending" style="width: 305px;">نام</th>
+                            <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-label="مرورگر: activate to sort column ascending" style="width: 305px;">دسترسی برای</th>
                             <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-label="سیستن عامل: activate to sort column ascending" style="width: 194px;">تاریخ انتشار</th>
                             <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="فعالیت" style="width: 88px;">فعالیت</th>
                           </tr>
@@ -51,6 +52,7 @@
                          
                             <td class="sorting_1">{{ $permission->id }}</td>
                             <td>{{ $permission->name }}</td>
+                            <td>{{ $permission->for }}</td>
                             <td>{{ date("d F Y",strtotime($permission->created_at))}}</td>
                             <td class="actions">
                               <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>

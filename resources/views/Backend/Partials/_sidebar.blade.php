@@ -35,16 +35,20 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('tag.index') }}" class="waves-effect bg-inverse text-white"><i class="zmdi zmdi-format-underlined text-info"></i> <span> تگها </span> </a>
+                    <a href="{{ route('tag.index') }}" class="waves-effect bg-inverse text-white"><i class="fa fa-comment-o text-info"></i> <span> تگها </span> </a>
                 </li>
                 <li>
-                    <a href="{{ route('role.index') }}" class="waves-effect bg-inverse text-white"><i class="zmdi zmdi-format-underlined text-pink"></i> <span> نقشها </span> </a>
+                    <a href="{{ route('role.index') }}" class="waves-effect bg-inverse text-white"><i class="fa fa-certificate text-pink"></i> <span> نقشها </span> </a>
                 </li>
                 <li>
-                    <a href="{{ route('category.index') }}" class="waves-effect bg-inverse text-white"><i class="zmdi zmdi-format-underlined text-primary"></i> <span> دسته بندیها </span> </a>
+                    <a href="{{ route('category.index') }}" class="waves-effect bg-inverse text-white"><i class="zmdi zmdi-format-underlined text-warning"></i> <span> دسته بندیها </span> </a>
+                </li>
+              
+                <li>
+                    <a href="{{ route('permission.index') }}" class="waves-effect bg-inverse text-white"><i class="fa fa-transgender-alt text-primary"></i> <span>دستر سی ها </span> </a>
                 </li>
                 <li>
-                    <a href="{{ route('post.index') }}" class="waves-effect bg-inverse text-white"><i class="zmdi zmdi-format-underlined text-danger"></i> <span> نوشته ها </span> </a>
+                    <a href="{{ route('post.index') }}" class="waves-effect bg-inverse text-white"><i class=" fa fa-sticky-note-o text-danger"></i> <span> نوشته ها </span> </a>
                 </li>
 
                 <li class="has_sub">

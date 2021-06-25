@@ -25,10 +25,10 @@
 								<div class="col-md-10">
 									<select name="for" id="for" class="form-control">
 										<option selected disable>انتخاب کن دسترسی برای</option>
-										<option value="user">کاربر</option>
-										<option value="post">پست</option>
-										<option value="product">محصول</option>
-										<option value="other">دیگر</option>
+										<option value="کاربر">کاربر</option>
+										<option value="نوشته">نوشته</option>
+										<option value="محصول">محصول</option>
+										<option value="دیگر">دیگر</option>
 									</select>
 								</div>
 							</div>
