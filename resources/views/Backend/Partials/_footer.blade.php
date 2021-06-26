@@ -1,5 +1,6 @@
 <footer class="footer">
-    آقای ادمین2016 ©.
+ {{ Carbon\carbon::now()}} ©.
+ 
 </footer>
 <script>
     var resizefunc = [];
