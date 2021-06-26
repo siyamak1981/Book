@@ -2,7 +2,9 @@
 
                 <!-- LOGO -->
                 <div class="topbar-left bg-purple">
-                    <a href="index.html" class="logo"><span>آقای<span>ادمین</span></span><i class="zmdi zmdi-layers"></i></a>
+                    <a href="index.html" class="logo"><span>خوش آمدید<span>
+   
+                 <small style="font-size:15px">{{ucfirst(Auth::user()->name)}}</small></span></span><i class="zmdi zmdi-layers"></i></a>
                 </div>
 
                 <!-- Button mobile view to collapse sidebar menu -->
