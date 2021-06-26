@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        // $this->middleware('auth:admin');
     }
     /**
      * Display a listing of the resource.
@@ -29,12 +29,14 @@ class UserController extends Controller
     public function index()
     {
         $users = Admin::latest()->paginate(5);
-        return view('admin.user.show', compact('users'));
+
+        return view('Backend.user.index', compact('users'));
     }
     public function showusers()
     {
         $users = User::latest()->paginate(5);
-        return view('admin.public.show', compact('users'));
+
+        return view('Backend.public.show', compact('users'));
     }
     /**
      * Show the form for creating a new resource.
@@ -43,12 +45,12 @@ class UserController extends Controller
      */
     public function create()
     {
-        if (Auth::user()->can('users.create')) {
+        // if (Auth::user()->can('users.create')) {
             $roles = Role::all();
             return view('Backend.user.create', compact('roles'));
         }
-        return redirect(route('admin.home'));
-    }
+        // return redirect(route('admin.home'));
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -58,6 +60,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+     
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:admins',
