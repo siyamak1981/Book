@@ -48,6 +48,9 @@
                     <a href="{{ route('permission.index') }}" class="waves-effect bg-inverse text-white"><i class="fa fa-transgender-alt text-primary"></i> <span>دستر سی ها </span> </a>
                 </li>
                 <li>
+                    <a href="{{ route('user.showusers') }}" class="waves-effect bg-inverse text-white"><i class="fa fa-user text-info"></i> <span>کاربر ها</span> </a>
+                </li>
+                <li>
                     <a href="{{ route('post.index') }}" class="waves-effect bg-inverse text-white"><i class=" fa fa-sticky-note-o text-danger"></i> <span> نوشته ها </span> </a>
                 </li>
 

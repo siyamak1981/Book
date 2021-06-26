@@ -13,13 +13,13 @@ class CreateCategoryProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_products', function (Blueprint $table) {
-            $table->id();
-            $table->integer('product_id')->unsigned()->index();
-            $table->integer('category_id')->unsigned()->index();
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->timestamps();
-        });
+        // Schema::create('category_products', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->integer('product_id')->unsigned()->index();
+        //     $table->integer('category_id')->unsigned()->index();
+        //     $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+        //     $table->timestamps();
+        // });
     }
 
     /**
