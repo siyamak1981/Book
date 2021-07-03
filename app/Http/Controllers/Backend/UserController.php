@@ -48,9 +48,9 @@ class UserController extends Controller
         // if (Auth::user()->can('users.create')) {
             $roles = Role::all();
             return view('Backend.user.create', compact('roles'));
-        }
-        // return redirect(route('admin.home'));
-    // }
+        // }
+        return redirect(route('admin.home'));
+    }
 
     /**
      * Store a newly created resource in storage.

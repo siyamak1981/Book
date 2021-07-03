@@ -17,7 +17,7 @@ class RoleController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth:admin');
+        $this->middleware('auth:admin');
     }
 
     /**
@@ -41,9 +41,9 @@ class RoleController extends Controller
         // if (Auth::user()->can('roles.create')) {
             $permissions = Permission::all();
             return view('Backend.role.create', compact('permissions'));
-        // }
+        }
         // return redirect(route('admin.home'));
-    }
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -82,12 +82,12 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        // if (Auth::user()->can('roles.update')) {
+        if (Auth::user()->can('roles.update')) {
             $role = Role::where('id', $id)->first();
             $permissions =Permission::all();
             return view('Backend.role.edit', compact('role', 'permissions'));
-        // }
-        // return redirect(route('admin.home'));
+        }
+        return redirect(route('admin.home'));
     }
 
     /**
