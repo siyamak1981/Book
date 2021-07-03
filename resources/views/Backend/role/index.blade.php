@@ -52,6 +52,7 @@
                             <td class="sorting_1">{{ $role->id }}</td>
                             <td>{{ $role->name }}</td>
                             <td>{{ date("d F Y",strtotime($role->created_at))}}</td>
+                  
                             <td class="actions">
                               <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                               <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
@@ -60,8 +61,6 @@
                             </td>
                           </tr>
                      @endforeach
-
-
                         </tbody>
                       </table>
                     </div>

@@ -14,7 +14,7 @@
 					<div class="col-sm-12">
 						<div class="card-box m-t-30">
 							<div class="form-group m-t-30">
-								<label class="col-md-2 control-label">متن</label>
+								<label class="col-md-2 control-label">نقش</label>
 								<div class="col-md-10">
 									<input type="text" name="name" class="form-control" placeholder="یک متن نومنه">
 								</div>
