@@ -23,8 +23,21 @@
 <script src="{{ asset('Backend/js/modernizr.min.js') }}"></script>
 
 
+<!-- Plugins css-->
+<link href="{{ asset('Backend/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}" rel="stylesheet" />
+   <link href="{{ asset('Backend/plugins/multiselect/css/multi-select.css') }}"  rel="stylesheet" type="text/css" />
+   <link href="{{ asset('Backend/plugins/select2/dist/css/select2.css') }}" rel="stylesheet" type="text/css">
+   <link href="{{ asset('Backend/plugins/select2/dist/css/select2-bootstrap.css') }}" rel="stylesheet" type="text/css">
+   <link href="{{ asset('Backend/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet" />
+   <link href="{{ asset('Backend/plugins/switchery/switchery.min.css') }}" rel="stylesheet" />
+   <link href="{{ asset('Backend/plugins/timepicker/bootstrap-timepicker.min.css') }}" rel="stylesheet">
+   <link href="{{ asset('Backend/plugins/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}" rel="stylesheet">
+   <link href="{{ asset('Backend/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+   <link href="{{ asset('Backend/plugins/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
 @section('headSection')
 @show
 
 
-     
+
+
+        

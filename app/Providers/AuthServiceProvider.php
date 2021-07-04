@@ -28,8 +28,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::resource('roles', 'App\Policies\RolePolicy');
         Gate::define('roles.permission', 'App\Policies\RolePolicy@permission');
         Gate::resource('posts', 'App\Policies\PostPolicy');
-        // Gate::define('posts.tag', 'App\Policies\PostPolicy@tag');
-        // Gate::define('posts.category', 'App\Policies\PostPolicy@category');
+        Gate::define('posts.tag', 'App\Policies\PostPolicy@tag');
+        Gate::define('posts.category', 'App\Policies\PostPolicy@category');
         Gate::resource('products', 'App\Policies\ProductPolicy');
         Gate::define('products.tag', 'App\Policies\ProductPolicy@tag');
         Gate::define('products.category', 'App\Policies\ProductPolicy@category');

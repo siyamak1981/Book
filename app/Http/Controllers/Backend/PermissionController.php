@@ -16,8 +16,8 @@ class PermissionController extends Controller
         */
     public function __construct()
     {
-        // $this->middleware('auth:admin');
-        // $this->middleware('can:roles.permission');
+        $this->middleware('auth:admin');
+        $this->middleware('can:roles.permission');
     }
     /**
      * Display a listing of the resource.

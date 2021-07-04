@@ -18,7 +18,7 @@ class RolePolicy
      */
     public function viewAny(Admin $user)
     {
-        return $this->getPermission($user, 14);
+        return $this->getPermission($user, 9);
     }
 
     /**
@@ -30,7 +30,7 @@ class RolePolicy
      */
     public function view(Admin $user)
     {
-        return $this->getPermission($user, 14);
+        return $this->getPermission($user, 9);
     }
 
     /**
@@ -41,7 +41,7 @@ class RolePolicy
      */
     public function create(Admin $user)
     {
-        return $this->getPermission($user, 14);
+        return $this->getPermission($user, 9);
     }
 
     /**
@@ -53,7 +53,7 @@ class RolePolicy
      */
     public function update(Admin $user)
     {
-        return $this->getPermission($user, 14);
+        return $this->getPermission($user, 9);
     }
 
     /**
@@ -65,7 +65,7 @@ class RolePolicy
      */
     public function delete(Admin $user)
     {
-        return $this->getPermission($user, 14);
+        return $this->getPermission($user, 9);
     }
 
     /**
@@ -93,7 +93,7 @@ class RolePolicy
     }
     public function permission(Admin $user)
     {
-        return $this->getPermission($user, 15);
+        return $this->getPermission($user, 10);
     }
     public function getPermission($user, $p_id)
     {

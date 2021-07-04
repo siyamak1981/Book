@@ -40,7 +40,7 @@ class UserPolicy
      */
     public function create(Admin $user)
     {
-        return $this->getPermission($user, 9);
+        return $this->getPermission($user, 6);
     }
 
     /**
@@ -52,7 +52,7 @@ class UserPolicy
      */
     public function update(Admin $user)
     {
-        return $this->getPermission($user, 10);
+        return $this->getPermission($user, 1);
     }
 
     /**
@@ -64,7 +64,7 @@ class UserPolicy
      */
     public function delete(Admin $user)
     {
-        return $this->getPermission($user, 11);
+        return $this->getPermission($user, 5);
         //
     }
 
