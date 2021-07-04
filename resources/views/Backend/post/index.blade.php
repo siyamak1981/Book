@@ -17,7 +17,9 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="m-b-30">
+                  @can('posts.create', Auth::user())
                     <a href="{{ route('post.create') }}" id="addToTable" class="btn btn-primary waves-effect waves-light">افزودن <i class="fa fa-plus"></i></a>
+                @endcan
                   </div>
                 </div>
               </div>

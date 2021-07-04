@@ -39,12 +39,12 @@ class PostController extends Controller
      */
     public function create()
     { 
-        // if (Auth::user()->can('posts.create')) {
+        if (Auth::user()->can('posts.create')) {
             $tags =Tag::all();
             $categories =Category::all();
             return view('Backend.post.create', compact('tags', 'categories'));
-        // }
-        // return redirect(route('admin.home'));
+        }
+        return redirect(route('admin.home'));
     }
 
 
