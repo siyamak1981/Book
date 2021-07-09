@@ -7,9 +7,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/home', 'HomeController@index')->name('home');
 
-// User Routes
 Route::group(['namespace' => 'Frontend'], function () {
     Auth::routes();
     //post page
@@ -19,9 +17,49 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('post/category/{category}', 'Post\HomeController@category')->name('post.category');
 
     // contact_us
-    Route::get('contact', 'Contact\ContactController@show')->name("contact.show");
-    Route::post('contact/send', 'Contact\ContactController@send')->name("contact.send");
+    // Route::get('contact', 'Contact\ContactController@show')->name("contact.show");
+    // Route::post('contact/send', 'Contact\ContactController@send')->name("contact.send");
+
+    // Route::get('add/to/cart/{id}', 'CartController@AddCart');
+    // Route::get('product/cart', 'CartController@ShowCart')->name('show.cart');
+    // Route::get('remove/cart/{rowId}', 'CartController@removeCart');
+    // Route::post('update/cart/item/', 'CartController@UpdateCart')->name('update.cartitem');
+    // Route::get('/cart/product/view/{id}', 'CartController@ViewProduct');
+    // Route::post('insert/into/cart/', 'CartController@insertCart')->name('insert.into.cart');
+    // Route::get('user/checkout/', 'CartController@Checkout')->name('user.checkout');
+    // Route::get('user/wishlist/', 'CartController@wishlist')->name('user.wishlist');
+    Route::post('user/apply/coupon/', 'CartController@Coupon')->name('apply.coupon');
+    Route::get('coupon/remove/', 'CartController@CouponRemove')->name('coupon.remove');
+    // Route::get('check', 'CartController@check');
+    // // Add to Product Route 
+    // Route::get('product/details/{id}/{product_name}', 'ProductController@ProductView');
+    // Route::post('/cart/product/add/{id}', 'ProductController@AddCart');
+    // Route::post('store/newslater', 'NewslaterController@StoreNewslater')
+    //     ->name('store.newslater');
+    // // Order Tracking Route
+    // Route::post('order/traking', 'NewslaterController@OrderTraking')->name('order.tracking');
+    // // ADD Wishlist
+    // Route::get('add/wishlist/{id}', 'WishlistController@addWishlist');
+
+    // // Pyment Step 
+    // Route::get('payment/page', 'CartController@PaymentPage')->name('payment.step');
+    // // Search Route
+    // Route::post('product/search', 'CartController@Search')->name('product.search');
+    // Route::post('user/payment/process/', 'PaymentController@Payment')->name('payment.process');
+    // Route::post('user/stripe/charge/', 'PaymentController@StripeCharge')->name('stripe.charge');
+    // Route::post('user/oncash/charge/', 'PaymentController@OnCash')->name('oncash.charge');
+    // Route::get('success/list/', 'PaymentController@SuccessList')->name('success.orderlist');
+    // Route::get('request/return/{id}', 'PaymentController@RequestReturn');
+    // Route::get('products/{id}', 'ProductController@ProductsView')->name('products.view.pag');
+    // Route::get('allcategory/{id}', 'ProductController@CategoryView');
+    // // Contact
+    // Route::get('contact/page', 'ContactController@Contact')->name('contact.page');
+    // Route::post('contact/form', 'ContactController@ContactForm')->name('contact.form');
+    // Route::get('admin/all/message', 'ContactController@AllMessage')->name('all.message');
 });
+
+
+
 
 //Admin Routes
 Route::group(['namespace' => 'Backend'], function () {
@@ -42,7 +80,11 @@ Route::group(['namespace' => 'Backend'], function () {
     Route::resource('admin/tag', 'TagController');
     // Category Routes
     Route::resource('admin/category', 'CategoryController');
+    Route::resource('admin/subcategory', 'SubCategoryController');
+
     Route::resource('admin/about', 'AboutController');
+    Route::resource('admin/coupon', 'CouponController');
+    
     Route::get('admin-login', 'Auth\LoginController@showLoginForm')->name('admin.login');
     Route::post('admin-login', 'Auth\LoginController@login');
 });

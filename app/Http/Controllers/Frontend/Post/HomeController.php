@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Frontend\Post;
 
 use App\Http\Controllers\Controller;
-use App\Model\User\category;
-use App\Model\User\Post;
-use App\Model\User\tag;
+use App\Models\category;
+use App\Models\Post;
+use App\Models\tag;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,18 +13,18 @@ class HomeController extends Controller
     public function index()
     {
         $posts = post::where('status', 1)->orderBy('created_at', 'DESC')->paginate(8);
-        return view('public.post.index', compact('posts'));
+        return view('Frontend.post.index', compact('posts'));
     }
     public function tag(tag $tag)
     {
         $posts = $tag->posts();
-        return view('public.post.index', compact('posts'));
+        return view('Frontend.post.index', compact('posts'));
     }
 
     public function category(category $category)
     {
         $posts = $category->posts();
-        return view('public.post.index', compact('posts'));
+        return view('Frontend.post.index', compact('posts'));
     }
 
 
