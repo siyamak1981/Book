@@ -51,7 +51,7 @@
                 <li>
                     <a href="{{ route('role.index') }}" class="waves-effect bg-inverse text-white"><i class="fa fa-certificate text-pink"></i> <span> نقشها </span> </a>
                 </li>
-                @can('posts.category',Auth::user())
+             @can('posts.category',Auth::user())
                 <li>
                     <a href="{{ route('category.index') }}" class="waves-effect bg-inverse text-white"><i class="zmdi zmdi-format-underlined text-warning"></i> <span> دسته بندیها </span> </a>
                 </li>
@@ -69,16 +69,25 @@
                 </li>
 
                 <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect bg-inverse text-white"><i class="zmdi zmdi-collection-item text-warning"></i><span> برگه ها </span> <span class="menu-arrow"></span></a>
+                    <a href="javascript:void(0);" class="waves-effect bg-inverse text-white"><i class="zmdi zmdi-collection-item text-warning"></i><span> دسته بندی ها </span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled">
-                        <li><a href="page-starter.html">برگه خالی</a></li>
-                        <li><a href="page-login.html">ورود</a></li>
-                        <li><a href="page-register.html">ثبت نام</a></li>
-                        <li><a href="page-recoverpw.html">فراموشی رمز</a></li>
-                        <li><a href="page-lock-screen.html">قفل صفحه</a></li>
-                        <li><a href="page-confirm-mail.html">تنظیمات ایمیل</a></li>
-                        <li><a href="page-404.html">خطای 404</a></li>
-                        <li><a href="page-500.html">خطای 500</a></li>
+                
+                <li>
+                    <a href="{{ route('category.index') }}" class="waves-effect bg-inverse text-white"><span> دسته بندیها </span> </a>
+                </li>
+                <li>
+                    <a href="{{ route('subcategory.index') }}" class="waves-effect bg-inverse text-white"><span> زیر مجموعه  </span> </a>
+                </li>
+                    </ul>
+                </li>
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect bg-inverse text-white"><i class="fa fa-camera text-warning"></i><span>کوپن </span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled">
+                
+                <li>
+                    <a href="{{ route('coupon.index') }}" class="waves-effect bg-inverse text-white"><span>کوپن تخفیف</span> </a>
+                </li>
+
                     </ul>
                 </li>
 

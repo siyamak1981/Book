@@ -1,148 +1,104 @@
-@extends('admin.layouts.app')
-@section('title', 'Coupon')
-@section('headSection')
-<link rel="stylesheet" href="{{ asset('admin/plugins/datatables/dataTables.bootstrap.css') }}">
-@endsection
+@extends('Backend.Partials.layouts.app')
+@section('title', 'posts')
 
 @section('main-content')
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <h1>
-      Blank page
-      <small>it all starts here</small>
-    </h1>
-    <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="#">Examples</a></li>
-      <li class="active">Blank page</li>
-    </ol>
-  </section>
+<div class="content-page">
+  <!-- Start content -->
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        @include('includes.messages')
+        <div class="col-sm-12">
+          <div class="panel">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="m-b-30">
+                    <a href="{{ route('coupon.create') }}" id="addToTable" class="btn btn-primary waves-effect waves-light">افزودن <i class="fa fa-plus"></i></a>
+                  </div>
+                </div>
+              </div>
 
-  <!-- Main content -->
-  <section class="content">
-
-    <!-- Default box -->
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Coupon</h3>
-        {{-- @can('coupon.create', Auth::user()) --}}
-        <a class='col-lg-offset-5 btn btn-shalishow' href="{{ route('coupon.create') }}">Add New</a>
-      {{-- @endcan --}}
-        <br>
-      @include('includes.messages')
-        <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-            <i class="fa fa-minus"></i></button>
-          <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-            <i class="fa fa-times"></i></button>
-        </div>
-      </div>
-      <div class="box-body">
-        <div class="box">
-                    <div class="box-header">
-                      <h3 class="box-title">Data Table With Full Features</h3>
+              <div class="editable-responsive">
+                <div id="datatable-editable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="dataTables_length" id="datatable-editable_length"><label>Show <select name="datatable-editable_length" aria-controls="datatable-editable" class="form-control input-sm">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                          </select> entries</label></div>
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body" style = "overflow: auto;">
-                      <table id="#" class="table table-bordered table-striped">
+                    <div class="col-sm-6">
+                      <div id="datatable-editable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable-editable"></label></div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <table class="table table-striped dataTable no-footer" id="datatable-editable" role="grid" aria-describedby="datatable-editable_info">
                         <thead>
-                        <tr>
-                            <th>S.No</th>
-                            <th>coupon_code</th>
-                            <th>status</th>
-                            <th>amount</th>
-                            <th>amount_type</th>
-                            <th>expiry_date</th>
-                            <th>Creatd At</th>
-                          {{-- @can('posts.update',Auth::user()) --}}
-                          <th>Edit</th>
-                          {{-- @endcan --}}
-                           {{-- @can('posts.delete', Auth::user()) --}}
-                          <th>Delete</th>
-                          {{-- @endcan --}}
-                        </tr>
+                          <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="موتور جستجو: activate to sort column descending" style="width: 157px;">شماره</th>
+                            <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-label="مرورگر: activate to sort column ascending" style="width: 305px;">کد کوپن</th>
+                            <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-label="سیستن عامل: activate to sort column ascending" style="width: 194px;">درصد تخفیف </th>
+                            <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="فعالیت" style="width: 88px;">فعالیت</th>
+                          </tr>
                         </thead>
                         <tbody>
-                        @foreach ($coupons as $coupon)
-                          <tr>
-                            <td>{{ $coupon->id  }}</td>
-                            <td>{{ $coupon->coupon_code }}</td>
-                            <td>{{ $coupon->status== '1'?'Publish' : 'Draft' }}</td>
-                            <td>
-                                {{ $coupon->amount }}
-                                @if($coupon->amount_type == "Percentage") % @else PKR @endif
-                            </td>
-                            <td>{{ $coupon->amount_type }}</td>
-                            <td>{{ date("d F Y",strtotime($coupon->expiry_date))}}</td>
-                            <td>{{ date("d F Y",strtotime($coupon->created_at))}}</td>
+                          @foreach($coupons as $key=>$row)
+                          <tr class="gradeX odd" role="row">
+                          <td class="sorting_1">{{ $key +1 }}</td>
+                            <td>{{ $row->coupon }}</td>
+                            <td>{{ $row->discount }} %</td>
+                            <td class="actions">
 
-
-
-                            {{-- @can('coupon.update',Auth::user()) --}}
-                              <td><a href="{{ route('coupon.edit',$coupon->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
-                            {{-- @endcan --}}
-
-                            {{-- @can('posts.delete', Auth::user()) --}}
-                            <td>
-                              <form id="delete-form-{{ $coupon->id }}" method="post" action="{{ route('coupon.destroy',$coupon->id) }}" style="display: none">
+                              <a href="{{ route('coupon.edit',$row->id) }}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                              <form id="delete-form-{{ $row->id }}" method="post" action="{{ route('coupon.destroy',$row->id) }}" style="display: none">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                               </form>
-                              <a href="" onclick="
-                              if(confirm('Are you sure, You Want to delete this?'))
-                                  {
-                                    event.preventDefault();
-                                    document.getElementById('delete-form-{{ $coupon->id }}').submit();
-                                  }
-                                  else{
-                                    event.preventDefault();
-                                  }" ><span class="glyphicon glyphicon-trash"></span></a>
-                            </td>
-                          {{-- @endcan --}}
+                              <a href="#" class="on-default remove-row" onclick="
+                                                            if(confirm('Are you sure, You Want to delete this?'))
+                                                                {
+                                                                    event.preventDefault();
+                                                                    document.getElementById('delete-form-{{ $row->id }}').submit();
+                                                                }
+                                                                else{
+                                                                    event.preventDefault();
+                                                                }"><i class="fa fa-trash-o"></i></a>
                           </tr>
-                        @endforeach
+                          @endforeach
                         </tbody>
-                        <tfoot>
-                        <tr>
-                          <th>S.No</th>
-                          <th>coupon_code</th>
-                          <th>status</th>
-                          <th>amount</th>
-                          <th>amount_type</th>
-                          <th>expiry_date</th>
-
-                          <th>Creatd At</th>
-                          {{-- @can('posts.update',Auth::user()) --}}
-                          <th>Edit</th>
-                          {{-- @endcan --}}
-                           {{-- @can('posts.delete', Auth::user()) --}}
-                          <th>Delete</th>
-                          {{-- @endcan --}}
-                        </tr>
-                        </tfoot>
                       </table>
-                {{-- {{$coupon->links()}} --}}
                     </div>
-                    <!-- /.box-body -->
                   </div>
-      </div>
-      <!-- /.box-body -->
-      <div class="box-footer">
-        Footer
-      </div>
-      <!-- /.box-footer-->
-    </div>
-    <!-- /.box -->
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="dataTables_info" id="datatable-editable_info" role="status" aria-live="polite">Showing 1 to 10 of 80 entries</div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="dataTables_paginate paging_simple_numbers" id="datatable-editable_paginate">
+                        <ul class="pagination">
+                          <li class="paginate_button previous disabled" aria-controls="datatable-editable" tabindex="0" id="datatable-editable_previous"><a href="#">Previous</a></li>
+                          <li class="paginate_button active" aria-controls="datatable-editable" tabindex="0"><a href="#">1</a></li>
+                          <li class="paginate_button " aria-controls="datatable-editable" tabindex="0"><a href="#">2</a></li>
+                          <li class="paginate_button disabled" aria-controls="datatable-editable" tabindex="0" id="datatable-editable_ellipsis"><a href="#">…</a></li>
+                          <li class="paginate_button " aria-controls="datatable-editable" tabindex="0"><a href="#">8</a></li>
+                          <li class="paginate_button next" aria-controls="datatable-editable" tabindex="0" id="datatable-editable_next"><a href="#">Next</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end: panel body -->
 
-  </section>
-  <!-- /.content -->
+          </div> <!-- end panel -->
+        </div> <!-- end col-->
+      </div>
+    </div> <!-- end panel -->
+  </div> <!-- end col-->
 </div>
-<!-- /.content-wrapper -->
-@endsection
-@section('footerSection')
-<script src="{{ asset('admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('admin/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
-
 @endsection
