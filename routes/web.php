@@ -28,16 +28,16 @@ Route::group(['namespace' => 'Frontend'], function () {
     // Route::post('insert/into/cart/', 'CartController@insertCart')->name('insert.into.cart');
     // Route::get('user/checkout/', 'CartController@Checkout')->name('user.checkout');
     // Route::get('user/wishlist/', 'CartController@wishlist')->name('user.wishlist');
-    Route::post('user/apply/coupon/', 'CartController@Coupon')->name('apply.coupon');
-    Route::get('coupon/remove/', 'CartController@CouponRemove')->name('coupon.remove');
+    // Route::post('user/apply/coupon/', 'CartController@Coupon')->name('apply.coupon');
+    // Route::get('coupon/remove/', 'CartController@CouponRemove')->name('coupon.remove');
     // Route::get('check', 'CartController@check');
     // // Add to Product Route 
     // Route::get('product/details/{id}/{product_name}', 'ProductController@ProductView');
     // Route::post('/cart/product/add/{id}', 'ProductController@AddCart');
-    // Route::post('store/newslater', 'NewslaterController@StoreNewslater')
-    //     ->name('store.newslater');
+    Route::post('store/newslater', 'NewsLater\NewslaterController@StoreNewslater')
+        ->name('store.newslater');
     // // Order Tracking Route
-    // Route::post('order/traking', 'NewslaterController@OrderTraking')->name('order.tracking');
+    Route::post('order/traking', 'NewsLater\NewslaterController@OrderTraking')->name('order.tracking');
     // // ADD Wishlist
     // Route::get('add/wishlist/{id}', 'WishlistController@addWishlist');
 
@@ -81,6 +81,13 @@ Route::group(['namespace' => 'Backend'], function () {
     // Category Routes
     Route::resource('admin/category', 'CategoryController');
     Route::resource('admin/subcategory', 'SubCategoryController');
+    Route::resource('admin/newslater', 'NewslaterController', [
+        'except' => ['edit', 'update', 'show', 'store', 'create']
+      ]);
+    //product
+    Route::resource('admin/product', 'ProductController', [
+        'except' => ['update']
+      ]);
 
     Route::resource('admin/about', 'AboutController');
     Route::resource('admin/coupon', 'CouponController');

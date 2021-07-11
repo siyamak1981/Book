@@ -90,6 +90,26 @@
 
                     </ul>
                 </li>
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect bg-inverse text-white"><i class="fa fa-camera text-warning"></i><span>دیگر </span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled">
+                
+                <li>
+                    <a href="{{ route('newslater.index') }}" class="waves-effect bg-inverse text-white"><span>خبر نامه ها </span> </a>
+                </li>
+
+                    </ul>
+                </li>
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect bg-inverse text-white"><i class="fa fa-comment text-pink"></i><span>محصولات </span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled">
+                
+                <li>
+                    <a href="{{ route('product.index') }}" class="waves-effect bg-inverse text-white"><span>محصول </span> </a>
+                </li>
+
+                    </ul>
+                </li>
 
             </ul>
             <div class="clearfix"></div>
