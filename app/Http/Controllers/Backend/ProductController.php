@@ -55,6 +55,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+    
         $this->validate($request, []);
 
         $product = new Product();
@@ -107,7 +108,7 @@ class ProductController extends Controller
             $product->image_three = $image_url;
 
             $product->save();
-            return Redirect()->back()->with('message', ' محصول با موفقیت اضافه گردید');
+            return redirect(route('product.index'))->with('message', ' محصول با موفقیت اضافه گردید');
         }
     }
     /**
@@ -190,10 +191,9 @@ class ProductController extends Controller
         $data['discount_price'] = $request->discount_price;
         $data['selling_price'] = $request->selling_price;
         $data['product_publisher'] = $request->product_publisher;
-        $data['produxct_level'] = $request->produxct_level;
+        $data['product_level'] = $request->produxct_level;
         $data['product_kind'] = $request->product_kind;
         $data['product_matter'] = $request->product_matter;
-        $data['best_rated'] = $request->best_rated;
         $data['product_countpage'] = $request->product_countpage;
         $data['leaves_one'] = $request->leaves_one;
         $data['leaves_two'] = $request->leaves_two;

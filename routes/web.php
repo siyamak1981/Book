@@ -88,6 +88,11 @@ Route::group(['namespace' => 'Backend'], function () {
     Route::resource('admin/product', 'ProductController', [
         'except' => ['update']
       ]);
+      Route::get('get/subcategory/{category_id}', 'ProductController@GetSubcat'); // For Show Sub category with ajax
+      Route::get('inactive/product/{id}', 'ProductController@inactive');
+      Route::get('active/product/{id}', 'ProductController@active');
+      Route::post('update/product/withoutphoto/{id}', 'ProductController@UpdateProductWithoutPhoto');
+      Route::post('update/product/photo/{id}', 'ProductController@UpdateProductPhoto');
 
     Route::resource('admin/about', 'AboutController');
     Route::resource('admin/coupon', 'CouponController');

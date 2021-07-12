@@ -1,8 +1,5 @@
 @extends('Backend.Partials.layouts.app')
 @section('title', 'products')
-@section('headSection')
-
-@endsection
 
 @section('main-content')
 <div class="content-page">
@@ -17,9 +14,7 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="m-b-30">
-                 
                     <a href="{{ route('product.create') }}" id="addToTable" class="btn btn-primary waves-effect waves-light">افزودن <i class="fa fa-plus"></i></a>
-               
                   </div>
                 </div>
               </div>
@@ -58,27 +53,33 @@
                           <tr class="gradeX odd" role="row">
                             <td class="sorting_1">{{ $loop->index + 1 }}</td>
 
-                            <td>{{ $product->title}}
+                            <td>{{ $product->product_title}}
                             </td>
 
-                            <td>{{ $product->body}} </td>
-                            <td><img src="{{Storage::disk('local')->url('products/'.$product->image)}}" width=50></td>
+                            <td>{{ $product->product_summary}} </td>
+                            <td> <img src="{{ URL::to($product->image_one) }}" height="50px;" width="50px;"> </td>
                             <td>@if($product->status) فعال @else غیر فعال @endif</td>
-                            <td>{{ date("d F Y",strtotime($product->created_at))}}</td>
-
-
+                            <td>{{ \Carbon\Carbon::parse($product->created_at)->diffForhumans()  }}</td>
 
                             <td class="actions">
-                              <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                              <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                              
-                            @can('products.update',Auth::user())
+
                               <a href="{{ route('product.edit',$product->id) }}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                            @endcan
-                            @can('products.delete', Auth::user())
-                              <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                              @endcan
-                            </td>
+                              <form id="delete-form-{{ $product->id }}" method="post" action="{{ route('product.destroy',$product->id) }}" style="display: none">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                              </form>
+                              <a href="#" class="on-default remove-row" onclick="
+                              if(confirm('Are you sure, You Want to delete this?'))
+                                  {
+                                      event.preventDefault();
+                                      document.getElementById('delete-form-{{ $product->id }}').submit();
+                                  }
+                                  else{
+                                      event.preventDefault();
+                                  }"><i class="fa fa-trash-o"></i></a>
+                          </tr>
+
+                          </td>
                           </tr>
                           @endforeach
                         </tbody>
