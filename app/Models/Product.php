@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Access;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,8 +17,5 @@ class Product extends Model
 
         return $this->belongsToMany(SubCategory::class);
     }
-    public function brand(){
-
-        return $this->belongsToMany(Brand::class);
-    }
+ 
 }
