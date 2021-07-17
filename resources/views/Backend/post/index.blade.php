@@ -1,8 +1,4 @@
 @extends('Backend.Partials.layouts.app')
-@section('title', 'posts')
-@section('headSection')
-
-@endsection
 
 @section('main-content')
 <div class="content-page">

@@ -58,7 +58,7 @@
 
                             <td>{{ $product->product_summary}} </td>
                             <td> <img src="{{ URL::to($product->image_one) }}" height="50px;" width="50px;"> </td>
-                            <td>@if($product->status) فعال @else غیر فعال @endif</td>
+                            <td>@if($product->status == 1) فعال @else غیر فعال @endif</td>
                             <td>{{ \Carbon\Carbon::parse($product->created_at)->diffForhumans()  }}</td>
 
                             <td class="actions">

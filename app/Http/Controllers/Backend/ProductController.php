@@ -185,7 +185,6 @@ class ProductController extends Controller
         $data['product_summary'] = $request->product_summary;
         $data['category_id'] = $request->category_id;
         $data['subcategory_id'] = $request->subcategory_id;
-        $data['brand_id'] = $request->brand_id;
         $data['product_translator'] = $request->product_translator;
         $data['product_writer'] = $request->product_writer;
         $data['discount_price'] = $request->discount_price;
@@ -198,6 +197,7 @@ class ProductController extends Controller
         $data['leaves_one'] = $request->leaves_one;
         $data['leaves_two'] = $request->leaves_two;
         $data['leaves_three'] = $request->leaves_three;
+        $data['status'] = $request->status;
 
         $update = DB::table('products')->where('id', $id)->update($data);
         if ($update) {

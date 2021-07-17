@@ -8,7 +8,7 @@
 <div class="content-page">
   <!-- Start content -->
   <div class="content">
-    <div class="container">
+ 
 
       <div class="row">
         @include('includes.messages')
@@ -176,7 +176,7 @@
       </div>
     </div><!-- end row -->
   </div>
-</div><!-- end col -->
+
 
 
 @endsection

@@ -17,8 +17,8 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('post/category/{category}', 'Post\HomeController@category')->name('post.category');
 
     // contact_us
-    // Route::get('contact', 'Contact\ContactController@show')->name("contact.show");
-    // Route::post('contact/send', 'Contact\ContactController@send')->name("contact.send");
+    Route::get('contact-us', 'Contact\ContactController@getContact');
+    Route::post('contact-us', 'Contact\ContactController@saveContact');
 
     // Route::get('add/to/cart/{id}', 'CartController@AddCart');
     // Route::get('product/cart', 'CartController@ShowCart')->name('show.cart');
@@ -99,4 +99,7 @@ Route::group(['namespace' => 'Backend'], function () {
     
     Route::get('admin-login', 'Auth\LoginController@showLoginForm')->name('admin.login');
     Route::post('admin-login', 'Auth\LoginController@login');
+    //contact
+    Route::get('admin/contact-us','ContactController');
+    Route::get('admin/contact-us/{contact}','ContactController@destroy')->name('contact.destroy');
 });

@@ -4,188 +4,202 @@
 <link href="{{ asset('Backend/plugins/fileuploads/css/dropify.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @php
-  $category = DB::table('categories')->get();
-  $subcategory = DB::table('sub_categories')->get();
+$category = DB::table('categories')->get();
+$subcategory = DB::table('sub_categories')->get();
 
- @endphp
+@endphp
 @section('main-content')
 <div class="content-page">
-  <!-- Start content -->
   <div class="content">
-    <div class="container">
-
-      <div class="row">
-        @include('includes.messages')
-
-        <form role="form" action="{{ route('product.store') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
-          {{ csrf_field() }}
+    <div class="row">
+      @include('includes.messages')
+      <form method="post" action="{{ url('update/product/photo/'.$product->id) }} " enctype="multipart/form-data">
+        @csrf
+        <div class="col-sm-12">
           <div class="card-box">
-            <div class="col-sm-12">
-              <div class="col-md-4">
-                <h4 class="header-title m-t-0 m-b-30">نمونه اول</h4>
-                <input type="file" class="dropify" name="image_one" data-default-file="{{asset('Backend/images/gallery/1.jpg') }}"/>
-              </div><!-- end col -->
+            <div class="col-md-4">
+              <h4 class="header-title m-t-0 m-b-30">نمونه اول</h4>
+              <input type="file" class="dropify" name="image_one" data-default-file="{{asset('Backend/images/gallery/1.jpg') }}" onchange="readURL(this);" />
+              <input type="hidden" name="old_one" value="{{ $product->image_one }}">
+              <img src=" {{ URL::to($product->image_one) }} " style="width: 70px; height:70px;">
+            </div><!-- end col -->
+            <div class="col-md-4">
+              <h4 class="header-title m-t-0 m-b-30">نمونه دوم</h4>
+              <input type="file" class="dropify" name="image_two" data-default-file="{{ asset('Backend/images/gallery/1.jpg') }}" onchange="readURL2(this);" />
+              <input type="hidden" name="old_two" value="{{ $product->image_two }}">
+              <img src=" {{ URL::to($product->image_two) }} " style="width:70px; height:70px;">
+            </div><!-- end col -->
+            <div class="col-md-4">
+              <h4 class="header-title m-t-0 m-b-30">نمونه سوم</h4>
+              <input type="file" class="dropify" name="image_three" data-default-file="{{ asset('Backend/images/gallery/1.jpg') }}" onchange="readURL3(this);" />
+              <input type="hidden" name="old_three" value="{{ $product->image_three }}">
+              <img src=" {{ URL::to($product->image_three) }} " style="width:70px; height: 70px;">
+            </div><!-- end col -->
+            <div class="form-group text-right m-r-5">
+              <button class="btn btn-info waves-effect waves-light" type="submit">
+                ویرایش عکسها
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
 
-              <div class="col-md-4">
-                <h4 class="header-title m-t-0 m-b-30">نمونه دوم</h4>
-                <input type="file" class="dropify" name="image_two" data-default-file="{{ asset('Backend/images/gallery/1.jpg') }}" />
-              </div><!-- end col -->
-
-              <div class="col-md-4">
-                <h4 class="header-title m-t-0 m-b-30">نمونه سوم</h4>
-                <input type="file" class="dropify" name="image_three" data-default-file="{{ asset('Backend/images/gallery/1.jpg') }}" />
-              </div><!-- end col -->
-
-              <div class="col-lg-6 m-t-30">
-                <div class="form-group">
-                  <label class="col-md-2 control-label"> نام محصول</label>
-                  <div class="col-md-10">
-                    <input type="text" name="product_title" class="form-control"  value="{{ $product->product_title }}" placeholder="یک متن نومنه">
-                  </div>
-                </div>
 
 
-                <div class="form-group">
-                  <label class="col-md-2 control-label">خلاصه </label>
-                  <div class="col-md-10">
-                    <input type="text" name="product_summary" class="form-control"  value="{{ $product->product_summary }}" placeholder="متن درون نوشته">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-md-2 control-label">برگه 1 </label>
-                  <div class="col-md-10">
-                    <input type="text" name="leaves_one" class="form-control" value="{{ $product->leaves_one }}"  placeholder="متن درون نوشته">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-md-2 control-label">برگه 2 </label>
-                  <div class="col-md-10">
-                    <input type="text" name="leaves_two" class="form-control" value="{{ $product->leaves_two }}"  placeholder="متن درون نوشته">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-md-2 control-label">برگه 3 </label>
-                  <div class="col-md-10">
-                    <input type="text" name="leaves_three" class="form-control" value="{{ $product->leaves_three }}"  placeholder="متن درون نوشته">
-                  </div>
-                </div>
+    <div class="row">
+    <form method="post" action="{{ url('update/product/withoutphoto/'.$product->id) }} " enctype="multipart/form-data">
+        {{ csrf_field() }}
 
-                <div class="form-group">
-                  <label class="col-sm-2 control-label"> نویسنده</label>
-                  <div class="col-sm-10">
-                    <input type="text" name="product_writer" class="form-control" value="{{ $product->product_writer }}"  placeholder="Helping text">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label"> مترجم</label>
-                  <div class="col-sm-10">
-                    <input type="text" name="product_translator" class="form-control" value="{{ $product->product_translator }}"   placeholder="Helping text">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label"> تعداد صفحه</label>
-                  <div class="col-sm-10">
-                    <input type="text" name="product_countpage" class="form-control" value="{{ $product->product_countpage }}"  placeholder="Helping text">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label"> ناشر </label>
-                  <div class="col-sm-10">
-                    <input type="text" name="product_publisher" class="form-control" value="{{ $product->product_publisher }}"  placeholder="Helping text">
-                  </div>
-                </div>
-              </div><!-- end col -->
+        <div class="col-lg-12">
+          <div class="card-box">
 
-              <div class="col-lg-6 m-t-30">
-                <div class="form-group">
-                  <label class="col-sm-2 control-label"> قیمت </label>
-                  <div class="col-sm-10">
-                    <input type="text" name="selling_price" class="form-control" value="{{ $product->selling_price }}"  placeholder="Helping text">
-                  </div>
+            <div class="col-lg-6 m-t-30">
+              <div class="form-group">
+                <label class="col-md-2 control-label"> نام محصول</label>
+                <div class="col-md-10">
+                  <input type="text" name="product_title" class="form-control" value="{{ $product->product_title }}" placeholder="یک متن نومنه">
                 </div>
-
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">تخفیف </label>
-                  <div class="col-sm-10">
-                    <input type="text" name="discount_price" class="form-control" value="{{ $product->discount_price }}"  placeholder="Helping text">
-                  </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label">خلاصه </label>
+                <div class="col-md-10">
+                  <input type="text" name="product_summary" class="form-control" value="{{ $product->product_summary }}" placeholder="متن درون نوشته">
                 </div>
-
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">سطح </label>
-                  <div class="col-sm-10">
-                    <input type="text" name="product_level" class="form-control" value="{{ $product->product_level }}"  placeholder="Helping text">
-                  </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label">برگه 1 </label>
+                <div class="col-md-10">
+                  <input type="text" name="leaves_one" class="form-control" value="{{ $product->leaves_one }}" placeholder="متن درون نوشته">
                 </div>
-
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">موضوع </label>
-                  <div class="col-sm-10">
-                    <input type="text" name="product_matter" class="form-control" value="{{ $product->product_matter }}"  placeholder="Helping text">
-                  </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label">برگه 2 </label>
+                <div class="col-md-10">
+                  <input type="text" name="leaves_two" class="form-control" value="{{ $product->leaves_two }}" placeholder="متن درون نوشته">
                 </div>
-
-                <div class="form-group">
-                  <label class="col-sm-2 control-label"> نوع </label>
-                  <div class="col-sm-10">
-                    <input type="text" name="product_kind" class="form-control" value="{{ $product->product_kind }}"  placeholder="Helping text">
-                  </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label">برگه 3 </label>
+                <div class="col-md-10">
+                  <input type="text" name="leaves_three" class="form-control" value="{{ $product->leaves_three }}" placeholder="متن درون نوشته">
                 </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label"> نویسنده</label>
+                <div class="col-sm-10">
+                  <input type="text" name="product_writer" class="form-control" value="{{ $product->product_writer }}" placeholder="Helping text">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label"> مترجم</label>
+                <div class="col-sm-10">
+                  <input type="text" name="product_translator" class="form-control" value="{{ $product->product_translator }}" placeholder="Helping text">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label"> تعداد صفحه</label>
+                <div class="col-sm-10">
+                  <input type="text" name="product_countpage" class="form-control" value="{{ $product->product_countpage }}" placeholder="Helping text">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label"> ناشر </label>
+                <div class="col-sm-10">
+                  <input type="text" name="product_publisher" class="form-control" value="{{ $product->product_publisher }}" placeholder="Helping text">
+                </div>
+              </div>
+            </div>
 
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">دسته بندی</label>
-                  <div class="col-sm-10">
-                    <select class="form-control select2" name="category_id">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="col-sm-2 control-label"> قیمت </label>
+                <div class="col-sm-10">
+                  <input type="text" name="selling_price" class="form-control" value="{{ $product->selling_price }}" placeholder="Helping text">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">تخفیف </label>
+                <div class="col-sm-10">
+                  <input type="text" name="discount_price" class="form-control" value="{{ $product->discount_price }}" placeholder="Helping text">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">سطح </label>
+                <div class="col-sm-10">
+                  <input type="text" name="product_level" class="form-control" value="{{ $product->product_level }}" placeholder="Helping text">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">موضوع </label>
+                <div class="col-sm-10">
+                  <input type="text" name="product_matter" class="form-control" value="{{ $product->product_matter }}" placeholder="Helping text">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label"> نوع </label>
+                <div class="col-sm-10">
+                  <input type="text" name="product_kind" class="form-control" value="{{ $product->product_kind }}" placeholder="Helping text">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">دسته بندی</label>
+                <div class="col-sm-10">
+                  <select class="form-control select2" name="category_id">
                     @foreach($category as $row)
                     <option value="{{ $row->id }}" <?php if ($row->id == $product->category_id) {
-                     echo "selected"; } ?> > {{ $row->name }}</option>
+                                                      echo "selected";
+                                                    } ?>> {{ $row->name }}</option>
                     @endforeach
-                 
-                    </select>
-                  </div>
-                </div>
 
-                <div class="form-group">
-                  <label class="col-sm-2 control-label"> زیر مجموعه</label>
-                  <div class="col-sm-10">
-                    <select class="form-control select2" name="subcategory_id">
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label"> زیر مجموعه</label>
+                <div class="col-sm-10">
+                  <select class="form-control select2" name="subcategory_id">
                     @foreach($subcategory as $row)
                     <option value="{{ $row->id }}" <?php if ($row->id == $product->subcategory_id) {
-                     echo "selected"; } ?> > {{ $row->subcategory_name }}</option>
+                                                      echo "selected";
+                                                    } ?>> {{ $row->subcategory_name }}</option>
                     @endforeach
-                    </select>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">وضعیت</label>
+                <div class="col-sm-10">
+                  <div class="checkbox checkbox-pink">
+                    <input id="checkbox1" type="checkbox" name="status" value="1" <?php
+                                                                                  if ($product->status == 1) {
+                                                                                    echo "checked";
+                                                                                  }
+                                                                                  ?> data-parsley-multiple="groups" data-parsley-mincheck="2" data-parsley-id="69">
+                    <label for="checkbox1"> انتشار </label>
                   </div>
                 </div>
+              </div>
+            </div>
 
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">وضعیت</label>
-                  <div class="col-sm-6">
-                    <div class="checkbox checkbox-pink">
-                      <input id="checkbox1" type="checkbox" name="status" value="1" data-parsley-multiple="groups" data-parsley-mincheck="2" data-parsley-id="69">
-                      <label for="checkbox1"> انتشار </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- end col -->
             <div class="col-lg-12">
-              <div class="card-box">
-                <textarea id="elm1" name="product_details">  {{ $product->product_details }}</textarea>
-              </div>
+              <textarea id="elm1" name="product_details"> {{ $product->product_details }}</textarea>
             </div>
-            <div class="form-group text-right m-r-5">
-              <button class="btn btn-primary waves-effect waves-light" type="submit">
-                ورود
-              </button>
-              <a type="submit" href="{{ route('product.index') }}" class="btn btn-default waves-effect waves-light m-l-5">
-                برگشت
-              </a>
-            </div>
-        </form>
-      </div>
-    </div><!-- end row -->
+              <div class="form-group text-right m-t-5">
+                <button class="btn btn-primary waves-effect waves-light" type="submit">
+                  ویرایش
+                </button>
+                <a type="submit" href="{{ route('product.index') }}" class="btn btn-default waves-effect waves-light m-l-5">
+                  برگشت
+                </a>
+              </div>        
+          </div>
+        </div>
+      </form>
+
+    </div>
   </div>
-</div><!-- end col -->
+</div>
 
 
 @endsection
