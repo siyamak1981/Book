@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Frontend\Contact;
 
 use App\Http\Controllers\Controller;
-use App\Model\User\Message;
-use Mail;
-use Auth;
+use App\Models\Contact;
+use Mail; 
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -17,45 +16,50 @@ class ContactController extends Controller
     */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
-    public function show()
+
+    public function getContact()
     {
-        return view("public.contact.index");
+        return view("Frontend.contact.index");
     }
-    public function send(Request $request)
+    public function saveContact(Request $request)
     {
-        $this->validate(
-            $request,
-            [
-            'name' => 'required|string|max:60',
-            'email' => 'required|string',
-            'message' => 'required|string'
-        ],
-            [
-                'name.required'=>"نامتان را وارد کنید",
-                'email.required'=>"ایمیلتان را وارد کنید",
-                'message.required'=>"پیامتان را وارد کنید",
-            ]
-        );
+     
+        $this->validate($request, [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'phone_number' => 'required',
+            'message' => 'required'
+        ]);
 
+        $contact = new Contact;
 
-        Message::create($request->all());
-        $email = Mail::send(
-            'public.contact.mail',
-            array(
-                'name' => $request->name,
-                'email' => $request->email,
-                'messages' => $request->message
-            ),
-            function ($message) use ($request) {
-                $user =$request->email;
-                $message->from($user);
-                $message->to('siyamak1981@gmail.com')->subject('Contact message');
-            },
-        );
-        return back()->with('message', 'پیامتان با موفقیت ارسال شد متشکریم!');
-        if (!$user) {
+        $contact->first_name = $request->first_name;
+        $contact->last_name = $request->first_name;
+        $contact->email = $request->email;
+        $contact->subject = $request->subject;
+        $contact->phone_number = $request->phone_number;
+        $contact->message = $request->message;
+
+        $contact->save();
+        \Mail::send('Frontend.contact.contact_email',
+             array(
+                 'first_name' => $request->get('first_name'),
+                 'last_name' => $request->get('last_name'),
+                 'email' => $request->get('email'),
+                 'subject' => $request->get('subject'),
+                 'phone_number' => $request->get('phone_number'),
+                 'user_message' => $request->get('message'),
+             ), function($message) use ($request)
+               {
+                  $message->from($request->email);
+                  $message->to('siyamak1981@gmail.com');
+               });
+        
+        return back()->with('message', 'از اینکه با ما تماس گرفتید متشکریم');
+        if (!$request->email) {
             return redirect(route('register'));
         }
     }
