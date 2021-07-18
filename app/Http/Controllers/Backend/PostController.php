@@ -71,12 +71,14 @@ class PostController extends Controller
         } else {
             return 'No';
         }
+        
         $post = new post;
         $post->image = $filename;
         $post->title = $request->title;
         $post->subtitle = $request->subtitle;
         $post->slug = $request->slug;
         $post->body = $request->body;
+        $post->posted_by = $request->posted_by;
         $post->status = $request->status;
         $post->save();
         $post->tags()->sync($request->tags);

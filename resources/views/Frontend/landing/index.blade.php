@@ -1,256 +1,7 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('Frontend.public.app')
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <!-- <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style> -->
-        @include('Frontend.Partials._head')
-    </head>
-    <body>
-        <!-- <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-          
-        </div> -->
-            <!-- Start Preloader Area -->
-    <div class="preloader-area">
-        <div class="lds-hourglass"></div>
-    </div>
-    <!-- End Preloader Area -->
-    <!-- Start Navbar Area -->
-    <header id="header">
-        <div class="crake-mobile-nav">
-            <div class="logo">
-                <img src="{{ asset('Frontend/img/logo.png') }}" alt="">
-            </div>
-        </div>
-
-        <div class="crake-nav">
-            <div class="container">
-                <nav class="navbar navbar-expand-md navbar-light">
-                    <a class="navbar-brand" href="index-6.html"><img src="{{ asset('Frontend/img/logo/logo-head.png') }}" alt="logo"></a>
-
-                    <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-                        <ul class="navbar-nav nav ml-auto">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link active">صفحه اصلی</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">مسابقات</a>
-                                <ul class="dropdown_menu">
-                                    <li><a href="Competitions.html">مسابقات در حال برگذاری</a></li>
-                                    <li><a href="#">مسابقات برگذار شده</a></li>
-                                    <li><a href="#">برندگان مسابقات</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="Shiite-child.html" class="nav-link">جشنواره من بچه شیعه هستم</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">کتابخانه</a>
-                                <ul class="dropdown_menu">
-                                    <li><a href="Category-1.html">موضوعات</a></li>
-                                    <li><a href="search-Advanced.html">جستجو پیشرفته</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">صفحات</a>
-                                <ul class="dropdown_menu">
-                                    <li><a href="about.html">درباره ما</a></li>
-                                    <li><a href="blog.html">اخبار</a></li>
-                                    <li><a href="cart.html">سبد خرید</a></li>
-                                    <li><a href="Category-1.html">دسته بندی یک</a></li>
-                                    <li><a href="Category-2.html">دسته بندی دو</a></li>
-                                    <li><a href="Category-3.html">دسته بندی سه</a></li>
-                                    <li><a href="checkout.html">بررسی</a></li>
-                                    <li><a href="contact-us.html">تماس با ما</a></li>
-                                    <li><a href="fag.html">سوالات متداول</a></li>
-                                    <li><a href="signip.html">ثبت نام</a></li>
-                                    <li><a href="login.html">ورود</a></li>
-                                    <li><a href="work-us.html">همکاری با ما</a></li>
-
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">صفحات دو</a>
-                                <ul class="dropdown_menu">
-                                    <li><a href="single-book.html">جزئیات کتاب</a></li>
-                                    <li><a href="single-blog.html">جزئیات اخبار</a></li>
-                                    <li><a href="tourist-book.html">کتاب جهانگرد</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="mr-auto others-option">
-                        <ul class="navbar-nav">
-                            <li class="nav-item cart-wrapper">
-                                <a href="#">
-                                    <i class="icofont-shopping-cart cart-icon"></i>
-
-                                    <span>0</span>
-                                </a>
-                            </li>
-                            <li class="header-search-box">
-                                <a href="#header-search" title="Search">
-                                    <i class="icofont-search-2"></i>
-                                </a>
-                            </li>
-                            <li data-toggle="modal" data-target="#myModal2">
-                                <div class="side-menu">
-                                    <span class="bar-1"></span>
-                                    <span class="bar-2"></span>
-                                    <span class="bar-3"></span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </header>
-    <!-- End Navbar Area -->
-    <!-- Start Sidebar Modal -->
-    <div class="sidebar-modal">
-        <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="icofont-close"></i></span></button>
-
-                        <h2 class="modal-title" id="myModalLabel2"><a href="index.html"><img src="{{ asset('Frontend/img/logo.png') }}" alt="logo"></a></h2>
-                    </div>
-
-                    <div class="modal-body">
-                        <div class="sidebar-modal-widget">
-                            <h3 class="title">لینک های اضافی</h3>
-
-                            <ul>
-                                <li><a href="index.html">صفحه اصلی</a></li>
-                                <li><a href="login.html">ورود</a></li>
-                                <li><a href="signup.html">ثبت نام</a></li>
-                                <li><a href="fag.html">سوالات متداول</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="sidebar-modal-widget">
-                            <h3 class="title">اطلاعات تماس</h3>
-
-                            <ul class="contact-info">
-                                <li>
-                                    <i class="icofont-google-map"></i>
-                                    آدرس
-                                    <span>تهران/ ساختمان علارور</span>
-                                </li>
-                                <li>
-                                    <i class="icofont-email"></i>
-                                    ایمیل
-                                    <span>admin@php-code.ir.com</span>
-                                </li>
-                                <li>
-                                    <i class="icofont-phone"></i>
-                                    تلفن
-                                    <span>0918-8603016</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="sidebar-modal-widget">
-                            <h3 class="title">ارتباط با ما</h3>
-
-                            <ul class="social-list">
-                                <li><a href="#"><img src="{{ asset('Frontend/img/social/header/aparat-40.png') }}" /></a></li>
-                                <li><a href="#"><img src="{{ asset('Frontend/img/social/header/instagram-40.png') }}" /></a></li>
-                                <li><a href="#"><img src="{{ asset('Frontend/img/social/header/telegram-40.png') }}" /></a></li>
-                                <li><a href="#"><img src="{{ asset('Frontend/img/social/header/youtube-40.png') }}" /></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- modal-content -->
-            </div><!-- modal-dialog -->
-        </div><!-- modal -->
-    </div>
-    <!-- End Sidebar Modal -->
-    <!-- Start Search Box -->
-    <div id="header-search" class="header-search">
-        <button type="button" class="close">×</button>
-        <form class="header-search-form">
-            <input type="search" value="" placeholder="همینجا تایپ کنید........" />
-            <button type="submit" class="btn btn-primary">جستجو</button>
-        </form>
-    </div>
-    <!-- End Search Box -->
-    <!-- Start Startup Main Banner -->
+@section('main-content')
+  
     <div class="home-slides startup-home">
         <div class="main-banner startup-bg1">
             <div class="d-table">
@@ -268,7 +19,7 @@
                             </div>
 
                             <div class="col-lg-6 col-md-12">
-                                <img src="{{ asset('Frontend/img/home/10.png') }}" />
+                                <img src="{{ asset('Frontend/assets/img/home/10.png') }}" />
 
                             </div>
                         </div>
@@ -277,12 +28,12 @@
             </div>
 
             <div class="bg-gray shape-1"></div>
-            <div class="shape1"><img src="{{ asset('Frontend/img/shape1.png') }}" alt="img"></div>
-            <div class="shape2"><img src="{{ asset('Frontend/img/shape2.png') }}" alt="img"></div>
-            <div class="shape3"><img src="{{ asset('Frontend/img/shape3.png') }}" alt="img"></div>
-            <div class="shape6"><img src="{{ asset('Frontend/img/shape6.png') }}" alt="img"></div>
-            <div class="shape8 rotateme"><img src="{{ asset('Frontend/img/shape8.svg') }}" alt="shape"></div>
-            <div class="shape9"><img src="{{ asset('Frontend/img/shape9.svg') }}" alt="shape"></div>
+            <div class="shape1"><img src="{{ asset('Frontend/assets/img/shape1.png') }}" alt="img"></div>
+            <div class="shape2"><img src="{{ asset('Frontend/assets/img/shape2.png') }}" alt="img"></div>
+            <div class="shape3"><img src="{{ asset('Frontend/assets/img/shape3.png') }}" alt="img"></div>
+            <div class="shape6"><img src="{{ asset('Frontend/assets/img/shape6.png') }}" alt="img"></div>
+            <div class="shape8 rotateme"><img src="{{ asset('Frontend/assets/img/shape8.svg') }}" alt="shape"></div>
+            <div class="shape9"><img src="{{ asset('Frontend/assets/img/shape9.svg') }}" alt="shape"></div>
         </div>
 
         <div class="main-banner startup-bg2">
@@ -301,7 +52,7 @@
                             </div>
 
                             <div class="col-lg-6 col-md-12">
-                                <img src="{{ asset('Frontend/img/home/10.png') }}" />
+                                <img src="{{ asset('Frontend/assets/img/home/10.png') }}" />
 
                             </div>
                         </div>
@@ -310,12 +61,12 @@
             </div>
 
             <div class="bg-gray shape-1"></div>
-            <div class="shape1"><img src="{{ asset('Frontend/img/shape1.png') }}" alt="img"></div>
-            <div class="shape2"><img src="{{ asset('Frontend/img/shape2.png') }}" alt="img"></div>
-            <div class="shape3"><img src="{{ asset('Frontend/img/shape3.png') }}" alt="img"></div>
-            <div class="shape6"><img src="{{ asset('Frontend/img/shape6.png') }}" alt="img"></div>
-            <div class="shape8 rotateme"><img src="{{ asset('Frontend/img/shape8.svg') }}" alt="shape"></div>
-            <div class="shape9"><img src="{{ asset('Frontend/img/shape9.svg') }}" alt="shape"></div>
+            <div class="shape1"><img src="{{ asset('Frontend/assets/img/shape1.png') }}" alt="img"></div>
+            <div class="shape2"><img src="{{ asset('Frontend/assets/img/shape2.png') }}" alt="img"></div>
+            <div class="shape3"><img src="{{ asset('Frontend/assets/img/shape3.png') }}" alt="img"></div>
+            <div class="shape6"><img src="{{ asset('Frontend/assets/img/shape6.png') }}" alt="img"></div>
+            <div class="shape8 rotateme"><img src="{{ asset('Frontend/assets/img/shape8.svg') }}" alt="shape"></div>
+            <div class="shape9"><img src="{{ asset('Frontend/assets/img/shape9.svg') }}" alt="shape"></div>
         </div>
 
         <div class="main-banner startup-bg3">
@@ -359,7 +110,7 @@
                     <div class="col-lg-12">
                         <div class="item">
                             <a href="#">
-                                <img src="{{ asset('Frontend/img/Competition books/banooy-beheshtgif') }}" />
+                                <img src="{{ asset('Frontend/assets/img/Competition books/banooy-beheshtgif') }}" />
                             </a>
 
                         </div>
@@ -368,7 +119,7 @@
                     <div class="col-lg-12">
                         <div class="item">
                             <a href="#">
-                                <img src="{{ asset('Frontend/img/Competition books/image-yas-dar-atashgif') }}" />
+                                <img src="{{ asset('Frontend/assets/img/Competition books/image-yas-dar-atashgif') }}" />
                             </a>
                         </div>
                     </div>
@@ -376,7 +127,7 @@
                     <div class="col-lg-12">
                         <div class="item">
                             <a href="#">
-                                <img src="{{ asset('Frontend/img/Competition books/jeld-banoye-man-zahra1431.jpg') }}" />
+                                <img src="{{ asset('Frontend/assets/img/Competition books/jeld-banoye-man-zahra1431.jpg') }}" />
                             </a>
                         </div>
                     </div>
@@ -384,7 +135,7 @@
                     <div class="col-lg-12">
                         <div class="item">
                             <a href="#">
-                                <img src="{{ asset('Frontend/img/Competition books/jeld-hamrah-jamadigif') }}" />
+                                <img src="{{ asset('Frontend/assets/img/Competition books/jeld-hamrah-jamadigif') }}" />
                             </a>
                         </div>
                     </div>
@@ -392,7 +143,7 @@
                     <div class="col-lg-12">
                         <div class="item">
                             <a href="#">
-                                <img src="{{ asset('Frontend/img/Competition books/jeld-jala-o-oyoongif') }}" />
+                                <img src="{{ asset('Frontend/assets/img/Competition books/jeld-jala-o-oyoongif') }}" />
                             </a>
                         </div>
                     </div>
@@ -400,7 +151,7 @@
                     <div class="col-lg-12">
                         <div class="item">
                             <a href="#">
-                                <img src="{{ asset('Frontend/img/Competition books/jeld-nedaye-fatemi.jpg') }}" />
+                                <img src="{{ asset('Frontend/assets/img/Competition books/jeld-nedaye-fatemi.jpg') }}" />
                             </a>
                         </div>
                     </div>
@@ -408,42 +159,42 @@
                     <div class="col-lg-12">
                         <div class="item">
                             <a href="#">
-                                <img src="{{ asset('Frontend/img/Competition books/jeld-rehlatgif') }}" />
+                                <img src="{{ asset('Frontend/assets/img/Competition books/jeld-rehlatgif') }}" />
                             </a>
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="item">
                             <a href="#">
-                                <img src="{{ asset('Frontend/img/Competition books/jeld-soog-hosein.jpg') }}" />
+                                <img src="{{ asset('Frontend/assets/img/Competition books/jeld-soog-hosein.jpg') }}" />
                             </a>
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="item">
                             <a href="#">
-                                <img src="{{ asset('Frontend/img/Competition books/jeld-ta-abad-andoh1431.jpg') }}" />
+                                <img src="{{ asset('Frontend/assets/img/Competition books/jeld-ta-abad-andoh1431.jpg') }}" />
                             </a>
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="item">
                             <a href="#">
-                                <img src="{{ asset('Frontend/img/Competition books/keshti_p2.jpg') }}" />
+                                <img src="{{ asset('Frontend/assets/img/Competition books/keshti_p2.jpg') }}" />
                             </a>
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="item">
                             <a href="#">
-                                <img src="{{ asset('Frontend/img/Competition books/Picturebv-004gif') }}" />
+                                <img src="{{ asset('Frontend/assets/img/Competition books/Picturebv-004gif') }}" />
                             </a>
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="item">
                             <a href="#">
-                                <img src="{{ asset('Frontend/img/Competition books/roozshomargif') }}" />
+                                <img src="{{ asset('Frontend/assets/img/Competition books/roozshomargif') }}" />
                             </a>
                         </div>
                     </div>
@@ -887,96 +638,6 @@
             </div>
         </div>
     </div>
-    <!-- End Partner Area -->
-    <!-- Start Footer Area -->
-    <footer class="footer-area ptb-100 pb-0 bg-image">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-footer-widget">
-                        <a href="#" class="logo">
-                            <img src="{{ asset('Frontend/img/logo/logo_foot.png') }}" alt="logo2">
-                        </a>
-                        <p>با شرکت در مسابقات کتابخوانی امتیاز کسب کنید و برنده جوایز نفیس ما شوید.</p>
+   
 
-                        <ul class="social-list">
-                            <li><a href="#"><img src="{{ asset('Frontend/img/social/footer/aparat-32.png') }}" /></a></li>
-                            <li><a href="#"><img src="{{ asset('Frontend/img/social/footer/instagram-32.png') }}" /></a></li>
-                            <li><a href="#"><img src="{{ asset('Frontend/img/social/footer/telegram-32.png') }}" /></a></li>
-                            <li><a href="#"><img src="{{ asset('Frontend/img/social/footer/youtube-32.png') }}" /></a></li>
-
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-footer-widget pl-5">
-                        <h3>صفحات</h3>
-
-                        <ul class="list">
-                            <li><a href="about.html">درباره</a></li>
-                            <li><a href="contact-us.html">تماس با ما</a></li>
-                            <li><a href="Work-us.html">همکاری با ما</a></li>
-                            <li><a href="#">حمایت کنندگان</a></li>
-                            <li><a href="fag.html">سوالات متداول</a></li>
-                            <li><a href="tourist-book.html">کتاب جهانگرد</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-footer-widget">
-                        <h3>مسابقات</h3>
-
-                        <ul class="list">
-                            <li><a href="search-Advanced.html">جستجویی پیشرفته</a></li>
-                            <li><a href="Competitions.html">مسابقه</a></li>
-                            <li><a href="blog.html">اخبار</a></li>
-                            <li><a href="Contest-winners.html">برندگان</a></li>
-                            <li><a href="singnup.html">ثبت نام</a></li>
-                            <li><a href="login.html">ورود</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-footer-widget">
-                        <h3>ترین های کتاب</h3>
-
-                        <ul class="list">
-                            <li><a href="most.html">تازه ترین</a></li>
-                            <li><a href="most.html">محبوب ترین</a></li>
-                            <li><a href="most.html">جدیدترین</a></li>
-                            <li><a href="most.html">پربازدیدترین</a></li>
-                            <li><a href="most.html">برگزیده ترین</a></li>
-                            <li><a href="most.html">بهترین</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="copyright-area">
-            <div class="container">
-                <div class="row h-100 justify-content-center align-items-center">
-                    <div class="col-lg-6 col-md-6">
-                        <p>تمامی حقوق سایت متعلق به سایت مسابقات کتابخوانی می باشد.@2020</p>
-                    </div>
-
-                    <div class="col-lg-6 col-md-6">
-                        <ul>
-                            <li><a href="mailto:mohsenkishani69@gmail.com" target="_top">ایمیل پشتیبانی</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- End Footer Area -->
-    <!-- Back Top top -->
-    <div class="back-to-top">بالا</div>
-    <!-- End Back Top top -->
-    <!-- Jquery Min JS -->
-    @include('Frontend.Partials._footer')
-    </body>
-</html>
+@endsection

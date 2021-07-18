@@ -97,6 +97,9 @@
                 <li>
                     <a href="{{ route('newslater.index') }}" class="waves-effect bg-inverse text-white"><span>خبر نامه ها </span> </a>
                 </li>
+                <li>
+                    <a href="{{ URL::to('admin/contact-us') }}" class="waves-effect bg-inverse text-white"><span>تماس با ما </span> </a>
+                </li>
 
                     </ul>
                 </li>

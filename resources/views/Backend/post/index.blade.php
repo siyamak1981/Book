@@ -57,7 +57,7 @@
                             <td>{{ $post->title}}
                             </td>
 
-                            <td>{{ $post->body}} </td>
+                            <td>{!! htmlspecialchars_decode($post->body) !!}</td>
                             <td><img src="{{Storage::disk('local')->url('posts/'.$post->image)}}" width=50></td>
                             <td>@if($post->status) فعال @else غیر فعال @endif</td>
                             <td>{{ date("d F Y",strtotime($post->created_at))}}</td>
