@@ -12,6 +12,7 @@ class HomeController extends Controller
 {
     public function index()
     {
+  
         $posts = post::where('status', 1)->orderBy('created_at', 'DESC')->paginate(8);
         return view('Frontend.post.index', compact('posts'));
     }

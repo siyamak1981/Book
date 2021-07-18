@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/cart';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -52,13 +52,12 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            // 'email' => ['required', 'string', 'max:255', 'unique:users'],
-            'phone' => ['required', 'string', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ], [
             'first_name.required'=>"نامتان را وارد کنید",
             'last_name.required'=>"نام خانوادگی را وارد کنید",
-            'phone.required'=>"ایمیل یا شمارتونو را وارد کنید",
+            'email.required'=>"ایمیل یا شمارتونو را وارد کنید",
             'password.required'=>"پسوردتان را وارد کنید",
         ]);
     }
@@ -75,7 +74,6 @@ class RegisterController extends Controller
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
-            'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
         ]);
     }

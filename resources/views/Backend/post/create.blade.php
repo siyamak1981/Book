@@ -43,73 +43,77 @@
                   </div>
                 </div>
 
-
-
                 <div class="form-group">
                   <label class="col-md-2 control-label">متن درون نوشته</label>
                   <div class="col-md-10">
                     <input type="text" name="subtitle" class="form-control" placeholder="متن درون نوشته">
                   </div>
                 </div>
-
+                <div class="form-group">
+                  <label class="col-md-2 control-label">نویسنده</label>
+                  <div class="col-md-10">
+                    <input type="text" name="posted_by" class="form-control" placeholder="نویسنده">
+                  </div>
+                </div>
               </div><!-- end col -->
 
-              <div class="col-lg-6 m-t-30">
 
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">متن کمکی</label>
-                  <div class="col-sm-10">
-                    <input type="text" name="slug" class="form-control" placeholder="Helping text">
+
+            <div class="col-lg-6 m-t-30">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">متن کمکی</label>
+                <div class="col-sm-10">
+                  <input type="text" name="slug" class="form-control" placeholder="Helping text">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label"> افزودن تگ</label>
+                <div class="col-md-10">
+                  <div class="m-b-0">
+                    <select multiple data-role="tagsinput" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
+                      @foreach($tags as $tag)
+                      <option value="{{ $tag->name }}">{{ $tag->name}}</option>
+                      @endforeach
+                    </select>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label class="col-md-2 control-label"> افزودن تگ</label>
-                  <div class="col-md-10">
-                    <div class="m-b-0">
-                      <select multiple data-role="tagsinput" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
-                        @foreach($tags as $tag)
-                        <option value="{{ $tag->name }}">{{ $tag->name}}</option>
-                        @endforeach
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-md-2 control-label"> افزودن دسته بندی</label>
-                  <div class="col-md-10">
-                    <div class="m-b-0">
-                      <select multiple data-role="tagsinput" name="categories[]">
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label"> افزودن دسته بندی</label>
+                <div class="col-md-10">
+                  <div class="m-b-0">
+                    <select multiple data-role="tagsinput" name="categories[]">
                       @foreach($categories as $category)
-                        <option value="{{ $category->name }}">{{ $category->name }}</option>
-                        @endforeach
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">وضعیت</label>
-                  <div class="col-sm-6">
-                    <div class="checkbox checkbox-pink">
-                      <input id="checkbox1" type="checkbox" name="status" value="1" data-parsley-multiple="groups" data-parsley-mincheck="2" data-parsley-id="69">
-                      <label for="checkbox1"> انتشار </label>
-                    </div>
+                      <option value="{{ $category->name }}">{{ $category->name }}</option>
+                      @endforeach
+                    </select>
                   </div>
                 </div>
               </div>
-            </div><!-- end col -->
-            <div class="col-lg-12">
-              <div class="card-box">
-                <textarea id="elm1" name="body"></textarea>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">وضعیت</label>
+                <div class="col-sm-6">
+                  <div class="checkbox checkbox-pink">
+                    <input id="checkbox1" type="checkbox" name="status" value="1" data-parsley-multiple="groups" data-parsley-mincheck="2" data-parsley-id="69">
+                    <label for="checkbox1"> انتشار </label>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="form-group text-right m-r-5">
-              <button class="btn btn-primary waves-effect waves-light" type="submit">
-                ورود
-              </button>
-              <a type="submit" href="{{ route('post.index') }}" class="btn btn-default waves-effect waves-light m-l-5">
-                برگشت
-              </a>
+
+          <div class="col-lg-12">
+            <div class="card-box">
+              <textarea id="elm1" name="body"></textarea>
             </div>
+          </div>
+          <div class="form-group text-right m-r-5">
+            <button class="btn btn-primary waves-effect waves-light" type="submit">
+              ورود
+            </button>
+            <a type="submit" href="{{ route('post.index') }}" class="btn btn-default waves-effect waves-light m-l-5">
+              برگشت
+            </a>
+          </div>
         </form>
       </div>
     </div><!-- end row -->

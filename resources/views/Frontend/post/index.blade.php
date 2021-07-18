@@ -1,69 +1,6 @@
 @extends('Frontend.public.app')
 
 @section('main-content')
-    <!-- End Navbar Area -->
-    <!-- Start Sidebar Modal -->
-    <div class="sidebar-modal">
-        <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="icofont-close"></i></span></button>
-
-                        <h2 class="modal-title" id="myModalLabel2"><a href="index.html"><img src="{{ asset('Frontend/assets/img/logo.png') }}" alt="logo"></a></h2>
-                    </div>
-
-                    <div class="modal-body">
-                        <div class="sidebar-modal-widget">
-                            <h3 class="title">لینک های اضافی</h3>
-
-                            <ul>
-                                <li><a href="index.html">صفحه اصلی</a></li>
-                                <li><a href="login.html">ورود</a></li>
-                                <li><a href="signup.html">ثبت نام</a></li>
-                                <li><a href="fag.html">سوالات متداول</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="sidebar-modal-widget">
-                            <h3 class="title">اطلاعات تماس</h3>
-
-                            <ul class="contact-info">
-                                <li>
-                                    <i class="icofont-google-map"></i>
-                                    آدرس
-                                    <span>تهران/ ساختمان علارور</span>
-                                </li>
-                                <li>
-                                    <i class="icofont-email"></i>
-                                    ایمیل
-                                    <span>admin@php-code.ir.com</span>
-                                </li>
-                                <li>
-                                    <i class="icofont-phone"></i>
-                                    تلفن
-                                    <span>0918-8603016</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="sidebar-modal-widget">
-                            <h3 class="title">ارتباط با ما</h3>
-
-                            <ul class="social-list">
-                                <li><a href="#"><img src="img/social/header/aparat-40.png') }}" /></a></li>
-                                <li><a href="#"><img src="img/social/header/instagram-40.png') }}" /></a></li>
-                                <li><a href="#"><img src="img/social/header/telegram-40.png') }}" /></a></li>
-                                <li><a href="#"><img src="img/social/header/youtube-40.png') }}" /></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- modal-content -->
-            </div><!-- modal-dialog -->
-        </div><!-- modal -->
-    </div>
-    <!-- End Sidebar Modal -->
-
     <!-- Start Search Box -->
     <div id="header-search" class="header-search">
         <button type="button" class="close">×</button>
@@ -79,7 +16,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>اخبار ما</h2>
+                    <h2>نوشته ها</h2>
                 </div>
             </div>
         </div>
@@ -117,161 +54,23 @@
             <div class="row">
                 <div class="col-lg-8 col-md-12">
                     <div class="row">
+                        @foreach($posts as $post)
                         <div class="col-lg-6 col-md-6">
                             <div class="single-blog-post">
-                                <a href="single-blog.html" class="post-image"><img src="{{ asset('Frontend/img/blog-img1.jpg') }}" alt="blog-image"></a>
+                                <a href="single-blog.html" class="post-image"><img src="{{Storage::disk('local')->url('posts/'.$post->image)}}" alt="blog-image"></a>
 
                                 <div class="blog-post-content">
-                                    <ul>
-                                        <li><i class="icofont-user-male"></i> <a href="#">ادمین</a></li>
-                                        <li><i class="icofont-wall-clock"></i> اسفند 1397</li>
+                                    <ul>        
+                                        <li><i class="icofont-user-male"></i> <a href="#">{{$post->posted_by}}</a></li>
+                                        <li><i class="icofont-wall-clock"></i></li><small>{{$post->created_at}}</small>
                                     </ul>
-                                    <h3><a href="single-blog.html">قرعه کشی مسابقات محرم و صفر 1442</a></h3>
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                    <a href="single-blog.html" class="read-more-btn">ادامه مطلب <i class="icofont-rounded-double-right"></i></a>
+                                    <h3><a href="single-blog.html">{{$post->title}}</a></h3>
+                                    <p>{!! htmlspecialchars_decode($post->body) !!}</p>
+                                    <a href="{{ route('post', $post->slug) }}" class="read-more-btn">ادامه مطلب <i class="icofont-rounded-double-right"></i></a>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-blog-post">
-                                <a href="single-blog.html" class="post-image"><img src="{{ asset('Frontend/img/blog-img2.jpg') }}" alt="blog-image"></a>
-
-                                <div class="blog-post-content">
-                                    <ul>
-                                        <li><i class="icofont-user-male"></i> <a href="#">ادمین</a></li>
-                                        <li><i class="icofont-wall-clock"></i> اسفند 1397</li>
-                                    </ul>
-                                    <h3><a href="single-blog.html">قرعه کشی مسابقات نیمه شعبان 1441</a></h3>
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                    <a href="single-blog.html" class="read-more-btn">ادامه مطلب <i class="icofont-rounded-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-blog-post">
-                                <a href="single-blog.html" class="post-image"><img src="{{ asset('Frontend/img/blog-img3.jpg') }}" alt="blog-image"></a>
-
-                                <div class="blog-post-content">
-                                    <ul>
-                                        <li><i class="icofont-user-male"></i> <a href="#">ادمین</a></li>
-                                        <li><i class="icofont-wall-clock"></i> اسفند 1397</li>
-                                    </ul>
-                                    <h3><a href="single-blog.html">قرعه کشی مسابقات بهار 99</a></h3>
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                    <a href="single-blog.html" class="read-more-btn">ادامه مطلب <i class="icofont-rounded-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-blog-post">
-                                <a href="single-blog.html" class="post-image"><img src="{{ asset('Frontend/img/blog-img4.jpg') }}" alt="blog-image"></a>
-
-                                <div class="blog-post-content">
-                                    <ul>
-                                        <li><i class="icofont-user-male"></i> <a href="#">ادمین</a></li>
-                                        <li><i class="icofont-wall-clock"></i> اسفند 1397</li>
-                                    </ul>
-                                    <h3><a href="single-blog.html">قرعه کشی مسابقات بهار 99</a></h3>
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                    <a href="single-blog.html" class="read-more-btn">ادامه مطلب <i class="icofont-rounded-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-blog-post">
-                                <a href="single-blog.html" class="post-image"><img src="{{ asset('Frontend/img/blog-img4.jpg') }}" alt="blog-image"></a>
-
-                                <div class="blog-post-content">
-                                    <ul>
-                                        <li><i class="icofont-user-male"></i> <a href="#">ادمین</a></li>
-                                        <li><i class="icofont-wall-clock"></i> اسفند 1397</li>
-                                    </ul>
-                                    <h3><a href="single-blog.html">قرعه کشی مسابقات بهار 99</a></h3>
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                    <a href="single-blog.html" class="read-more-btn">ادامه مطلب <i class="icofont-rounded-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-blog-post">
-                                <a href="single-blog.html" class="post-image"><img src="{{ asset('Frontend/img/blog-img4.jpg') }}" alt="blog-image"></a>
-
-                                <div class="blog-post-content">
-                                    <ul>
-                                        <li><i class="icofont-user-male"></i> <a href="#">ادمین</a></li>
-                                        <li><i class="icofont-wall-clock"></i> اسفند 1397</li>
-                                    </ul>
-                                    <h3><a href="single-blog.html">قرعه کشی مسابقات بهار 99</a></h3>
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                    <a href="single-blog.html" class="read-more-btn">ادامه مطلب <i class="icofont-rounded-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-blog-post">
-                                <a href="single-blog.html" class="post-image"><img src="{{ asset('Frontend/img/blog-img4.jpg') }}" alt="blog-image"></a>
-
-                                <div class="blog-post-content">
-                                    <ul>
-                                        <li><i class="icofont-user-male"></i> <a href="#">ادمین</a></li>
-                                        <li><i class="icofont-wall-clock"></i> اسفند 1397</li>
-                                    </ul>
-                                    <h3><a href="single-blog.html">قرعه کشی مسابقات بهار 99</a></h3>
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                    <a href="single-blog.html" class="read-more-btn">ادامه مطلب <i class="icofont-rounded-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-blog-post">
-                                <a href="single-blog.html" class="post-image"><img src="{{ asset('Frontend/img/blog-img4.jpg') }}" alt="blog-image"></a>
-
-                                <div class="blog-post-content">
-                                    <ul>
-                                        <li><i class="icofont-user-male"></i> <a href="#">ادمین</a></li>
-                                        <li><i class="icofont-wall-clock"></i> اسفند 1397</li>
-                                    </ul>
-                                    <h3><a href="single-blog.html">قرعه کشی مسابقات بهار 99</a></h3>
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                    <a href="single-blog.html" class="read-more-btn">ادامه مطلب <i class="icofont-rounded-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-blog-post">
-                                <a href="single-blog.html" class="post-image"><img src="{{ asset('Frontend/img/blog-img4.jpg') }}" alt="blog-image"></a>
-
-                                <div class="blog-post-content">
-                                    <ul>
-                                        <li><i class="icofont-user-male"></i> <a href="#">ادمین</a></li>
-                                        <li><i class="icofont-wall-clock"></i> اسفند 1397</li>
-                                    </ul>
-                                    <h3><a href="single-blog.html">قرعه کشی مسابقات بهار 99</a></h3>
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                    <a href="single-blog.html" class="read-more-btn">ادامه مطلب <i class="icofont-rounded-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-blog-post">
-                                <a href="single-blog.html" class="post-image"><img src="{{ asset('Frontend/img/blog-img4.jpg') }}" alt="blog-image"></a>
-
-                                <div class="blog-post-content">
-                                    <ul>
-                                        <li><i class="icofont-user-male"></i> <a href="#">ادمین</a></li>
-                                        <li><i class="icofont-wall-clock"></i> اسفند 1397</li>
-                                    </ul>
-                                    <h3><a href="single-blog.html">قرعه کشی مسابقات بهار 99</a></h3>
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                    <a href="single-blog.html" class="read-more-btn">ادامه مطلب <i class="icofont-rounded-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
 
                         <div class="col-lg-12 col-md-12">
                             <div class="pagination-area">

@@ -3,13 +3,13 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
 Route::group(['namespace' => 'Frontend'], function () {
     Auth::routes();
+    Route::get('/', function () {
+        return view('Frontend.landing.index');
+    });
     //post page
     Route::get('post/', 'Post\HomeController@index');
     Route::get('post/{post}', 'Post\PostController@post')->name('post');
