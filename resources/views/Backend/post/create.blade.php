@@ -3,7 +3,7 @@
 @section('headSection')
 <link href="{{ asset('Backend/plugins/fileuploads/css/dropify.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{asset('Backend/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}" rel="stylesheet" />
-
+<link rel="stylesheet" href="{{ asset('admin/plugins/select2/select2.min.css') }}">
 @endsection
 
 @section('main-content')
@@ -70,11 +70,11 @@
                 <label class="col-md-2 control-label"> افزودن تگ</label>
                 <div class="col-md-10">
                   <div class="m-b-0">
-                    <select multiple data-role="tagsinput" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
-                      @foreach($tags as $tag)
-                      <option value="{{ $tag->name }}">{{ $tag->name}}</option>
-                      @endforeach
-                    </select>
+                  <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
+                               @foreach($tags as $tag)
+                                  <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                @endforeach
+                                </select>
                   </div>
                 </div>
               </div>
@@ -82,10 +82,10 @@
                 <label class="col-md-2 control-label"> افزودن دسته بندی</label>
                 <div class="col-md-10">
                   <div class="m-b-0">
-                    <select multiple data-role="tagsinput" name="categories[]">
-                      @foreach($categories as $category)
-                      <option value="{{ $category->name }}">{{ $category->name }}</option>
-                      @endforeach
+                  <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="categories[]">
+                                @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
                     </select>
                   </div>
                 </div>
@@ -125,6 +125,7 @@
 </div>
 @endsection
 @section('footerSection')
+<script src="{{ asset('admin/plugins/select2/select2.full.min.js') }}"></script>
 <script src="{{ asset('Backend/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
 <script>
   var resizefunc = [];
@@ -203,7 +204,9 @@
     }
   });
 </script>
-
-@endsection
-@section('footerSection')
+<script>
+  $(document).ready(function() {
+    $(".select2").select2();
+  });
+</script>
 @endsection

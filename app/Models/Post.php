@@ -11,10 +11,12 @@ class Post extends Model
     {
         return $this->belongsToMany('App\Models\Tag', 'post_tags')->withTimestamps();
     }
+    
     public function categories()
     {
         return $this->belongsToMany('App\Models\Category', 'category_posts')->withTimestamps();
     }
+
     public function getRouteKeyName()
     {
         return 'slug';
