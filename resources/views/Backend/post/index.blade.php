@@ -13,9 +13,9 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="m-b-30">
-                  @can('posts.create', Auth::user())
+                    @can('posts.create', Auth::user())
                     <a href="{{ route('post.create') }}" id="addToTable" class="btn btn-primary waves-effect waves-light">افزودن <i class="fa fa-plus"></i></a>
-                @endcan
+                    @endcan
                   </div>
                 </div>
               </div>
@@ -67,12 +67,24 @@
                             <td class="actions">
                               <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                               <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                              
-                            @can('posts.update',Auth::user())
+
+                              @can('posts.update',Auth::user())
                               <a href="{{ route('post.edit',$post->id) }}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                            @endcan
-                            @can('posts.delete', Auth::user())
-                              <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                              @endcan
+                              @can('posts.delete', Auth::user())
+                              <form id="delete-form-{{ $post->id }}" method="post" action="{{ route('post.destroy',$post->id) }}" style="display: none">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                              </form>
+                              <a href="#" class="on-default remove-row" onclick="
+                                                            if(confirm('Are you sure, You Want to delete this?'))
+                                                                {
+                                                                    event.preventDefault();
+                                                                    document.getElementById('delete-form-{{ $post->id }}').submit();
+                                                                }
+                                                                else{
+                                                                    event.preventDefault();
+                                                                }"><i class="fa fa-trash-o"></i></a>
                               @endcan
                             </td>
                           </tr>

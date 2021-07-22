@@ -43,11 +43,11 @@
                     <a href="{{ route('admin.home')}}" class="waves-effect active bg-inverse text-white"><i class="zmdi zmdi-view-dashboard text-success"></i> <span> داشبورد </span> </a>
                 </li>
 
-                @can('posts.tag',Auth::user())
+ 
                 <li>
                     <a href="{{ route('tag.index') }}" class="waves-effect bg-inverse text-white"><i class="fa fa-comment-o text-info"></i> <span> تگها </span> </a>
                 </li>
-                @endcan
+           
                 <li>
                     <a href="{{ route('role.index') }}" class="waves-effect bg-inverse text-white"><i class="fa fa-certificate text-pink"></i> <span> نقشها </span> </a>
                 </li>

@@ -17,7 +17,6 @@
 
         <form role="form" action="{{ route('post.store') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
           {{ csrf_field() }}
-
           <div class="col-sm-12">
             <div class="card-box">
               <div class="dropdown pull-right">
@@ -57,63 +56,64 @@
                 </div>
               </div><!-- end col -->
 
-
-
-            <div class="col-lg-6 m-t-30">
-              <div class="form-group">
-                <label class="col-sm-2 control-label">متن کمکی</label>
-                <div class="col-sm-10">
-                  <input type="text" name="slug" class="form-control" placeholder="Helping text">
+              <div class="col-lg-6 m-t-30">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">متن کمکی</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="slug" class="form-control" placeholder="Helping text">
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-2 control-label"> افزودن تگ</label>
-                <div class="col-md-10">
-                  <div class="m-b-0">
-                  <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
-                               @foreach($tags as $tag)
-                                  <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                                @endforeach
-                                </select>
+
+                <div class="form-group">
+                  <label class="col-md-2 control-label"> افزودن تگ</label>
+                  <div class="col-md-10">
+                    <div class="m-b-0">
+                      <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
+                        @foreach($tags as $tag)
+                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-md-2 control-label"> افزودن دسته بندی</label>
+                  <div class="col-md-10">
+                    <div class="m-b-0">
+                      <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="categories[]">
+                        @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">وضعیت</label>
+                  <div class="col-sm-6">
+                    <div class="checkbox checkbox-pink">
+                      <input id="checkbox1" type="checkbox" name="status" value="1" data-parsley-multiple="groups" data-parsley-mincheck="2" data-parsley-id="69">
+                      <label for="checkbox1"> انتشار </label>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="form-group">
-                <label class="col-md-2 control-label"> افزودن دسته بندی</label>
-                <div class="col-md-10">
-                  <div class="m-b-0">
-                  <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="categories[]">
-                                @foreach($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-3 control-label">وضعیت</label>
-                <div class="col-sm-6">
-                  <div class="checkbox checkbox-pink">
-                    <input id="checkbox1" type="checkbox" name="status" value="1" data-parsley-multiple="groups" data-parsley-mincheck="2" data-parsley-id="69">
-                    <label for="checkbox1"> انتشار </label>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-          <div class="col-lg-12">
-            <div class="card-box">
-              <textarea id="elm1" name="body"></textarea>
-            </div>
-          </div>
-          <div class="form-group text-right m-r-5">
-            <button class="btn btn-primary waves-effect waves-light" type="submit">
-              ورود
-            </button>
-            <a type="submit" href="{{ route('post.index') }}" class="btn btn-default waves-effect waves-light m-l-5">
-              برگشت
-            </a>
-          </div>
+              <div class="col-lg-12">
+                <div class="card-box">
+                  <textarea id="elm1" name="body"></textarea>
+                </div>
+              </div>
+              <div class="form-group text-right m-r-5">
+                <button class="btn btn-primary waves-effect waves-light" type="submit">
+                  ورود
+                </button>
+                <a type="submit" href="{{ route('post.index') }}" class="btn btn-default waves-effect waves-light m-l-5">
+                  برگشت
+                </a>
+              </div>
         </form>
       </div>
     </div><!-- end row -->

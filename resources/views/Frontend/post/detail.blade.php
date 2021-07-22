@@ -2,6 +2,11 @@
 
 @section('main-content')
 
+@php
+$lastPost =  App\Models\post::where('status', 1)->orderBy('created_at', 'DESC')->paginate(5);
+$newPost =  App\Models\post::where('status', 1)->orderBy('created_at', 'ASC')->paginate(5);
+
+@endphp
 <div id="header-search" class="header-search">
     <button type="button" class="close">×</button>
     <form class="header-search-form">
@@ -55,33 +60,25 @@
             <div class="col-lg-8">
                 <div class="blog-details">
                     <div class="article-img">
-                        <img src="assets/img/blog-details.jpg" alt="blog-details">
-                        <div class="date">20 <br> اسفند</div>
+                        <img src="{{Storage::disk('local')->url('posts/'.$post->image)}}" alt="blog-details">
+                        <div class="date">{{$post->created_at}} <br></div>
                     </div>
 
                     <div class="article-content">
                         <ul class="category">
-                            <li><a href="#">مسابقه</a></li>
-                            <li><a href="#">کتابخوانی</a></li>
-                            <li><a href="#">جوایز</a></li>
-                            <li><a href="#">نیمه شعبان</a></li>
-                            <li><a href="#">عید غدیر </a></li>
+                            @foreach($post->tags as $tag)
+                            <li>
+                                <a href="{{route('post.tag', $tag->slug)}}">{{$tag->name}}</a>
+                            </li>
+                            @endforeach
+
                         </ul>
 
-                        <h3>قرعه کشی مسابقات بهار 99</h3>
+                        <h3>{{$post->title}}</h3>
 
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
-
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
-
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
-
+                        <p>{{ $post->subtitle }}</p>
                         <blockquote class="blockquote">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
-                        </blockquote>
-
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
-
+                            <p>{!! htmlspecialchars_decode($post->body) !!}</p>
                     </div>
                 </div>
 
@@ -100,41 +97,7 @@
                         </div>
                     </div>
 
-                    <div class="single-comment left-m">
-                        <div class="comment-img">
-                            <img src="assets/img/client2.jpg" alt="client">
-                        </div>
-                        <div class="comment-content">
-                            <h4>محسن فراهانی</h4>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم ا</p>
-                            <span>اسفند 1397</span>
 
-                        </div>
-                    </div>
-
-                    <div class="single-comment">
-                        <div class="comment-img">
-                            <img src="assets/img/client3.jpg" alt="client">
-                        </div>
-                        <div class="comment-content">
-                            <h4>محسن فراهانی</h4>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم ا</p>
-                            <span>اسفند 1397</span>
-
-                        </div>
-                    </div>
-
-                    <div class="single-comment">
-                        <div class="comment-img">
-                            <img src="assets/img/client4.jpg" alt="client">
-                        </div>
-                        <div class="comment-content">
-                            <h4>محسن فراهانی</h4>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم ا</p>
-                            <span>اسفند 1397</span>
-
-                        </div>
-                    </div>
                 </div>
 
                 <div class="leave-a-reply">
@@ -179,23 +142,12 @@
                         <div class="bar"></div>
 
                         <ul>
-                            <li><a href="#"><i class="icofont-bubble-right"></i> نیمه شعبان</a></li>
-                            <li><a href="#"><i class="icofont-bubble-right"></i>فاطمیه </a></li>
-                            <li><a href="#"><i class="icofont-bubble-right"></i> عید غدیر</a></li>
-                            <li><a href="#"><i class="icofont-bubble-right"></i> امام باقر علیه السلام</a></li>
-                            <li><a href="#"><i class="icofont-bubble-right"></i> امام علی علیه السلام</a></li>
-                            <li><a href="#"><i class="icofont-bubble-right"></i> محرم و صفر</a></li>
-                            <li><a href="#"><i class="icofont-bubble-right"></i> امام موسی کاظم علیه السلام </a></li>
-                            <li><a href="#"><i class="icofont-bubble-right"></i> امامت </a></li>
-                            <li><a href="#"><i class="icofont-bubble-right"></i> اخلاق امور تربیتی </a></li>
-                            <li><a href="#"><i class="icofont-bubble-right"></i> امام جواد علیه السلام </a></li>
-                            <li><a href="#"><i class="icofont-bubble-right"></i> شب های قدر </a></li>
-                            <li><a href="#"><i class="icofont-bubble-right"></i> ماه مبارک رمضان </a></li>
-                            <li><a href="#"><i class="icofont-bubble-right"></i> امام هادی علیه السلام</a></li>
-                            <li><a href="#"><i class="icofont-bubble-right"></i> امام حسین علیه السلام </a></li>
-                            <li><a href="#"><i class="icofont-bubble-right"></i> امام صادق علیه السلام </a></li>
-                            <li><a href="#"><i class="icofont-bubble-right"></i> پیامبر اکرم صلی الله علیه و آله </a></li>
-                            <li><a href="#"><i class="icofont-bubble-right"></i> امام رضا علیه السلام</a></li>
+                            @foreach($post->categories as $category)
+                            <li>
+                                <a href="{{route('post.category', $category->slug)}}">{{$category->name}}</a>
+                            </li>
+                            @endforeach
+
                         </ul>
                     </div>
 
@@ -204,15 +156,16 @@
                         <div class="bar"></div>
 
                         <ul>
+                            @foreach($lastPost as $lpost)
                             <li>
                                 <div class="recent-products-thumb">
                                     <a href="#">
-                                        <img src="assets/img/shop-item1.jpg" alt="blog-image">
+                                        <img src="{{Storage::disk('local')->url('posts/'.$lpost->image)}}" alt="blog-image">
                                     </a>
                                 </div>
 
                                 <div class="recent-products-content">
-                                    <h3><a href="#">بانوی من زهرا</a></h3>
+                                    <h3><a href="#">{{$lpost->title}}</a></h3>
                                     <ul>
                                         <li><i class="icofont-star"></i></li>
                                         <li><i class="icofont-star"></i></li>
@@ -220,69 +173,11 @@
                                         <li><i class="icofont-star"></i></li>
                                         <li><i class="icofont-star"></i></li>
                                     </ul>
-                                    <span class="date">تومان 18.00</span>
+                                    <span class="date">{{$lpost->subtitle}} </span>
                                 </div>
                             </li>
+                            @endforeach
 
-                            <li>
-                                <div class="recent-products-thumb">
-                                    <a href="#">
-                                        <img src="assets/img/shop-item2.jpg" alt="blog-image">
-                                    </a>
-                                </div>
-
-                                <div class="recent-products-content">
-                                    <h3><a href="#">بانوی من زهرا</a></h3>
-                                    <ul>
-                                        <li><i class="icofont-star"></i></li>
-                                        <li><i class="icofont-star"></i></li>
-                                        <li><i class="icofont-star"></i></li>
-                                        <li><i class="icofont-star"></i></li>
-                                        <li><i class="icofont-star"></i></li>
-                                    </ul>
-                                    <span class="date">تومان 18.00</span>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="recent-products-thumb">
-                                    <a href="#">
-                                        <img src="assets/img/shop-item3.jpg" alt="blog-image">
-                                    </a>
-                                </div>
-
-                                <div class="recent-products-content">
-                                    <h3><a href="#">بانوی من زهرا</a></h3>
-                                    <ul>
-                                        <li><i class="icofont-star"></i></li>
-                                        <li><i class="icofont-star"></i></li>
-                                        <li><i class="icofont-star"></i></li>
-                                        <li><i class="icofont-star"></i></li>
-                                        <li><i class="icofont-star"></i></li>
-                                    </ul>
-                                    <span class="date">تومان 18.00</span>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="recent-products-thumb">
-                                    <a href="#">
-                                        <img src="assets/img/shop-item4.jpg" alt="blog-image">
-                                    </a>
-                                </div>
-
-                                <div class="recent-products-content">
-                                    <h3><a href="#">بانوی من زهرا</a></h3>
-                                    <ul>
-                                        <li><i class="icofont-star"></i></li>
-                                        <li><i class="icofont-star"></i></li>
-                                        <li><i class="icofont-star"></i></li>
-                                        <li><i class="icofont-star"></i></li>
-                                        <li><i class="icofont-star"></i></li>
-                                    </ul>
-                                    <span class="date">تومان 18.00</span>
-                                </div>
-                            </li>
                         </ul>
                     </div>
 
@@ -291,13 +186,9 @@
                         <div class="bar"></div>
 
                         <div class="tagcloud">
-                            <a href="#">بانوی من زهرا</a>
-                            <a href="#">کتاب غدیرخم</a>
-                            <a href="#">روزشمار فاطمیه</a>
-                            <a href="#">کوثر معجزه پیغمبر</a>
-                            <a href="#">کشتی پهلو گرفته</a>
-                            <a href="#">تا ابد اندوه</a>
-                            <a href="#">فاطمه زهرا سلام الله علیها بانوی بهشت</a>
+                        @foreach($newPost as $npost)
+                            <a href="#">{{$npost->title}}</a>
+                            @endforeach   
                         </div>
                     </div>
                     <div class="widget widget_tag_cloud">

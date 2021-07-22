@@ -10,7 +10,7 @@ class Category extends Model
 
     public function posts()
     {
-        return $this->belongsToMany('App\Models\post', 'post_tags')->orderBy('created_at', 'DESC')->paginate(5);
+        return $this->belongsToMany('App\Models\post', 'category_posts')->orderBy('created_at', 'DESC')->paginate(5);
     }
 
    

@@ -11,20 +11,24 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index()
+
     {
-  
-        $posts = post::where('status', 1)->orderBy('created_at', 'DESC')->paginate(8);
+        
+        $posts = post::where('status', 1)->with('categories', 'tags')->orderBy('created_at', 'DESC')->paginate(8);
         return view('Frontend.post.index', compact('posts'));
     }
+
     public function tag(tag $tag)
+
     {
         $posts = $tag->posts();
         return view('Frontend.post.index', compact('posts'));
     }
 
     public function category(category $category)
+
     {
-        $posts = $category->posts();
+        $posts = $category->posts()->unique();
         return view('Frontend.post.index', compact('posts'));
     }
 
