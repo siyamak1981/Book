@@ -1,75 +1,75 @@
-@extends('admin.layouts.app')
+@extends('Backend.Partials.layouts.app')
+@section('title', 'Post Create')
 @section('headSection')
+<link href="{{ asset('Backend/plugins/fileuploads/css/dropify.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{asset('Backend/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}" rel="stylesheet" />
 <link rel="stylesheet" href="{{ asset('admin/plugins/select2/select2.min.css') }}">
 @endsection
-@section('main-content')
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <h1>
-      Text Editors
-      <small>Advanced form element</small>
-    </h1>
-    <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="#">Forms</a></li>
-      <li class="active">Editors</li>
-    </ol>
-  </section>
 
-  <!-- Main content -->
-  <section class="content">
-    <div class="row">
-      <div class="col-md-12">
-        <!-- general form elements -->
-        <div class="box box-primary">
-          <div class="box-header with-border">
-            <h3 class="box-title">Titles</h3>
-          </div>
-          @include('includes.messages')
-          <!-- /.box-header -->
-          <!-- form start -->
-          <form role="form" action="{{ route('post.update',$post->id) }}" method="post" enctype="multipart/form-data">
+@section('main-content')
+<div class="content-page">
+  <!-- Start content -->
+  <div class="content">
+    <div class="container">
+
+      <div class="row">
+        @include('includes.messages')
+
+        <form role="form" action="{{ route('post.update',$post->id) }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
-            <div class="box-body">
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <label for="title">Post Title</label>
-                  <input type="text" class="form-control" id="title" name="title" placeholder="Title" value="{{ $post->title }}">
-                </div>
-
-                <div class="form-group">
-                  <label for="subtitle">Post Sub Title</label>
-                  <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Sub Title" value="{{ $post->subtitle }}">
-                </div>
-
-                <div class="form-group">
-                  <label for="slug">Post Slug</label>
-                  <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug" value="{{ $post->slug }}">
-                </div>
-
+          <div class="col-sm-12">
+            <div class="card-box">
+              <div class="dropdown pull-right">
+                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
+                  <i class="zmdi zmdi-more-vert"></i>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">فعال</a></li>
+                  <li><a href="#">متن اول</a></li>
+                  <li><a href="#">متن دوم</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">متن پاورقی</a></li>
+                </ul>
               </div>
-              <div class="col-lg-6">
-                <br>
+              <h4 class="header-title m-t-0 m-b-30">پیشفرض</h4>
+              <img src="{{Storage::disk('local')->url('posts/'.$post->image)}}" style="width: 70px; height:70px;margin-bottom:50px">
+              <input type="file" name="image" class="dropify" data-height="300" />
+             
+              <div class="col-lg-6 m-t-30">
                 <div class="form-group">
-                  <div class="pull-right">
-                    <label for="image">File input</label>
-                    <input type="file" name="image" id="image">
-                  </div>
-                  <div class="checkbox pull-left">
-                    <label>
-                      <input type="checkbox" name="status" value="1" @if ($post->status == 1)
-                        {{'checked'}}
-                      @endif> Publish
-                    </label>
+                  <label class="col-md-2 control-label">متن</label>
+                  <div class="col-md-10">
+                    <input type="text" name="title" class="form-control" value="{{ $post->title }}">
                   </div>
                 </div>
-                <br>
-                <div class="form-group" style="margin-top:18px;">
-                  <label>Select Tags</label>
-                  <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
+
+                <div class="form-group">
+                  <label class="col-md-2 control-label">متن درون نوشته</label>
+                  <div class="col-md-10 m-t-10">
+                    <input type="text" class="form-control" placeholder="متن درون نوشته" name="subtitle"  value="{{ $post->subtitle }}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-2 control-label m-t-10">نویسنده</label>
+                  <div class="col-md-10 m-t-10">
+                    <input type="text" name="posted_by" class="form-control" placeholder="نویسنده" name="slug"  value="{{ $post->posted_by }}">
+                  </div>
+                </div>
+              </div><!-- end col -->
+
+              <div class="col-lg-6 m-t-30">
+                <div class="form-group">
+                  <label class="col-sm-2 m-t-10 control-label">متن کمکی</label>
+                  <div class="col-sm-10 m-t-10">
+                    <input type="text" class="form-control" name="slug" placeholder="Slug" value="{{ $post->slug }}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-2 m-t-10 control-label"> افزودن تگ</label>
+                  <div class="col-md-10">
+                    <div class="m-b-0">
+                    <select class="form-control select2 select2-hidden-accessible m-t-10" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
                     @foreach ($tags as $tag)
                     <option value="{{ $tag->id }}"
                       @foreach ($post->tags as $postTag)
@@ -77,14 +77,18 @@
                           selected
                         @endif
                       @endforeach
-                    >{{ $tag->name }}</option>
+                    >{{ $tag->name }}
+                </option>
                     @endforeach
                   </select>
+                    </div>
+                  </div>
                 </div>
-
-                <div class="form-group" style="margin-top:18px;">
-                  <label>Select Category</label>
-                  <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="categories[]">
+                <div class="form-group">
+                  <label class="col-md-2 control-label m-t-10"> افزودن دسته بندی</label>
+                  <div class="col-md-10 m-t-10">
+                    <div class="m-b-0">
+                    <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="categories[]">
                     @foreach ($categories as $category)
                     <option value="{{ $category->id }}"
                     @foreach ($post->categories as $postCategory)
@@ -95,59 +99,125 @@
                     >{{ $category->name }}</option>
                     @endforeach
                   </select>
+                    </div>
+                  </div>
                 </div>
-
+                <div class="form-group">
+                  <label class="col-sm-3 m-t-30 control-label">وضعیت</label>
+                  <div class="col-sm-6">
+                    <div class="checkbox checkbox-pink m-t-30">
+                      <input id="checkbox1" type="checkbox" name="status" data-parsley-multiple="groups" data-parsley-mincheck="2" 
+                      data-parsley-id="69" value="1" @if ($post->status == 1)
+                        {{'checked'}}
+                      @endif>
+                      <label for="checkbox1"> انتشار </label>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <!-- /.box-body -->
 
-            <div class="box">
-             <div class="box-header">
-               <h3 class="box-title">Write Post Body Here
-                 <small>Simple and fast</small>
-               </h3>
-               <!-- tools box -->
-               <div class="pull-right box-tools">
-                 <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                   <i class="fa fa-minus"></i></button>
-                 </div>
-                 <!-- /. tools -->
-               </div>
-               <!-- /.box-header -->
-               <div class="box-body pad">
-                <textarea name="body" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1">{{ $post->body }}</textarea>
+              <div class="col-lg-12">
+                <div class="card-box">
+                  <textarea id="elm1" name="body"></textarea>
+                </div>
               </div>
-             </div>
-
-             <div class="box-footer">
-              <input type="submit" class="btn btn-shalishow">
-              <a href='{{ route('post.index') }}' class="btn btn-warning">Back</a>
-            </div>
-          </form>
-        </div>
-        <!-- /.box -->
-
-
+              <div class="form-group text-right m-r-5">
+                <button class="btn btn-primary waves-effect waves-light" type="submit">
+                  ورود
+                </button>
+                <a type="submit" href="{{ route('post.index') }}" class="btn btn-default waves-effect waves-light m-l-5">
+                  برگشت
+                </a>
+              </div>
+        </form>
       </div>
-      <!-- /.col-->
-    </div>
-    <!-- ./row -->
-  </section>
-  <!-- /.content -->
+    </div><!-- end row -->
+  </div>
+</div><!-- end col -->
 </div>
-<!-- /.content-wrapper -->
+</div>
+</div><!-- end col -->
+</div>
 @endsection
 @section('footerSection')
 <script src="{{ asset('admin/plugins/select2/select2.full.min.js') }}"></script>
-<script src="{{  asset('admin/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('Backend/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
 <script>
-    $(function () {
-      // Replace the <textarea id="editor1"> with a CKEditor
-      // instance, using default configuration.
-      CKEDITOR.replace('editor1');
-      //bootstrap WYSIHTML5 - text editor
-      $(".textarea").wysihtml5();
-    });
+  var resizefunc = [];
+</script>
+<script src="{{ asset('Backend/plugins/fileuploads/js/dropify.min.js') }}"></script>
+
+
+<script type="text/javascript">
+  $('.dropify').dropify({
+    messages: {
+      'default': 'فایل را به اینجا بکشید یا کلیک کنید',
+      'replace': 'برای جایگزینی فایل را به اینجا بکشید یا کلیک کنید',
+      'remove': 'پاک کردن',
+      'error': 'با پوزش فراوان، خطایی رخ داده'
+    },
+    error: {
+      'fileSize': 'حجم فایل بیشتر از حد مجاز است (1M).'
+    }
+  });
+</script>
+
+<script src="{{ asset('Backend/plugins/tinymce/tinymce.min.js') }}"></script>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    if ($("#elm1").length > 0) {
+      tinymce.init({
+        selector: "textarea#elm1",
+        theme: "modern",
+        height: 300,
+        plugins: [
+          "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+          "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+          "save table contextmenu directionality emoticons template paste textcolor"
+        ],
+        toolbar: "rtl insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+        style_formats: [{
+            title: 'Bold text',
+            inline: 'b'
+          },
+          {
+            title: 'Red text',
+            inline: 'span',
+            styles: {
+              color: '#ff0000'
+            }
+          },
+          {
+            title: 'Red header',
+            block: 'h1',
+            styles: {
+              color: '#ff0000'
+            }
+          },
+          {
+            title: 'Example 1',
+            inline: 'span',
+            classes: 'example1'
+          },
+          {
+            title: 'Example 2',
+            inline: 'span',
+            classes: 'example2'
+          },
+          {
+            title: 'Table styles'
+          },
+          {
+            title: 'Table row 1',
+            selector: 'tr',
+            classes: 'tablerow1'
+          }
+        ]
+      });
+    }
+  });
 </script>
 <script>
   $(document).ready(function() {
@@ -155,4 +225,3 @@
   });
 </script>
 @endsection
-

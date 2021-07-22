@@ -57,7 +57,6 @@ class PostController extends Controller
     public function store(Request $request)
     {
        
-      
         $this->validate($request, [
             'title'=>'required',
             'subtitle' => 'required',
@@ -84,8 +83,7 @@ class PostController extends Controller
         $post->save();
         $post->tags()->sync($request->tags);
         $post->categories()->sync($request->categories);
-
-        return redirect(route('post.index'))->with('message', 'Post Created successfully');
+        return redirect(route('post.index'))->with('message', 'پست با موفقیت انجام شد');
     }
 
     /**
@@ -149,8 +147,7 @@ class PostController extends Controller
         $post->save();
         $post->tags()->sync($request->tags);
         $post->categories()->sync($request->categories);
-
-        return redirect(route('post.index'))->with('message', 'Post Updated successfully');
+        return redirect(route('post.index'))->with('message', 'پست با موفقیت ویرایش شد');
     }
 
     /**
@@ -164,6 +161,6 @@ class PostController extends Controller
         $postsImage = Post::find($id);
         Storage::disk('local')->delete('posts/'.$postsImage['image']);
         $postsImage->delete();
-        return back()->with('message', "Image was deleted Successfully .");
+        return back()->with('message', "پست با موفقیت پاک شد .");
     }
 }

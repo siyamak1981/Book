@@ -75,7 +75,7 @@ Route::group(['namespace' => 'Backend'], function () {
     Route::resource('admin/permission', 'PermissionController');
     // Post Routes
     Route::resource('admin/post', 'PostController');
-    // Route::post('getPosts', 'PostController@getAllPosts');
+    Route::post('getPosts', 'PostController@getAllPosts');
     // Tag Routes
     Route::resource('admin/tag', 'TagController');
     // Category Routes

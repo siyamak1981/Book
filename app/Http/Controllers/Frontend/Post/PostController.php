@@ -12,8 +12,8 @@ class PostController extends Controller
     {
         $post = Post::where('slug', $slug)->first();
         $posts=Post::where('status', 1)->orderBy('created_at', 'DESC')->paginate(5);
-        $products =Product::where('status', 1)->orderBy('created_at', 'DESC')->paginate(4);
-        return view('Frontend.post.detail', compact('post', 'products', 'posts'));
+     
+        return view('Frontend.post.detail', compact('post', 'posts'));
     }
     public function getAllPosts()
     {
