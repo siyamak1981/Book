@@ -11,9 +11,10 @@ class PostController extends Controller
     public function post($slug)
     {
         $post = Post::where('slug', $slug)->first();
+        $products =Product::where('status', 1)->orderBy('created_at', 'DESC')->paginate(4);
         $posts=Post::where('status', 1)->orderBy('created_at', 'DESC')->paginate(5);
      
-        return view('Frontend.post.detail', compact('post', 'posts'));
+        return view('Frontend.post.detail', compact('post', 'posts', 'products'));
     }
     public function getAllPosts()
     {

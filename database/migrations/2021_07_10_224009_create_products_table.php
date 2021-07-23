@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             ->references('id')->on('sub_categories')
             ->onDelete('cascade');
             $table->string('product_title');
+            $table->string('product_slug')->nullable();
             $table->text('product_details');
             $table->text('product_summary');
             $table->string('product_writer')->nullable();

@@ -19,7 +19,10 @@ Route::group(['namespace' => 'Frontend'], function () {
     // contact_us
     Route::get('contact-us', 'Contact\ContactController@getContact');
     Route::post('contact-us', 'Contact\ContactController@saveContact');
+    //comment
+    Route::post('/comment/store', 'Comment\CommentController@store')->name('comments.store');
 
+    
     // Route::get('add/to/cart/{id}', 'CartController@AddCart');
     // Route::get('product/cart', 'CartController@ShowCart')->name('show.cart');
     // Route::get('remove/cart/{rowId}', 'CartController@removeCart');
