@@ -3,8 +3,8 @@
 @section('main-content')
 
 @php
-$lastPost =  App\Models\post::where('status', 1)->orderBy('created_at', 'DESC')->paginate(5);
-$newPost =  App\Models\post::where('status', 1)->orderBy('created_at', 'ASC')->paginate(5);
+
+$newPost = App\Models\post::where('status', 1)->orderBy('created_at', 'ASC')->paginate(5);
 
 @endphp
 <div id="header-search" class="header-search">
@@ -82,49 +82,43 @@ $newPost =  App\Models\post::where('status', 1)->orderBy('created_at', 'ASC')->p
                     </div>
                 </div>
 
-
+          
                 <div class="post-comments">
                     <h3>نظرات</h3>
+                  
+                    @foreach($post->comments as $comment)
                     <div class="single-comment">
                         <div class="comment-img">
-                            <img src="assets/img/client1.jpg" alt="client">
+                            <img src="{{ asset('Frontend/img/client1.jpg') }}" alt="client">
                         </div>
                         <div class="comment-content">
-                            <h4>محسن فراهانی</h4>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم ا</p>
-                            <span>اسفند 1397</span>
-
+                            <h6>{{ $comment->user->first_name }} - {{ $comment->user->last_name }}</h6>
+                            <p>{{ $comment->body }}</p>
+                            <span>{{ \Carbon\Carbon::parse($comment->created_at)->diffForhumans()  }} </span>
                         </div>
+                        <br>
+                     
                     </div>
-
-
+                    @endforeach
+                   <hr>
                 </div>
-
+                @include('includes.messages')
                 <div class="leave-a-reply">
                     <h3>نظر بدهید</h3>
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="نام کامل">
+                    <form action="{{ route('comments.store') }}" method="post">
+                        @csrf
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                    <textarea name="body" cols="30" rows="5" class="form-control" placeholder="نظر شما"></textarea>
+                                    <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12">
+                                <button type="submit" class="btn btn-primary">ارسال</button>
                             </div>
                         </div>
-
-                        <div class="col-lg-6 col-md-6">
-                            <div class="form-group">
-                                <input type="email" class="form-control" placeholder="ایمیل">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12 col-md-12">
-                            <div class="form-group">
-                                <textarea name="comment" cols="30" rows="5" class="form-control" placeholder="نظر شما"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12 col-md-12">
-                            <button type="submit" class="btn btn-primary">ارسال</button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
 
@@ -156,16 +150,16 @@ $newPost =  App\Models\post::where('status', 1)->orderBy('created_at', 'ASC')->p
                         <div class="bar"></div>
 
                         <ul>
-                            @foreach($lastPost as $lpost)
+                            @foreach($products as $product)
                             <li>
                                 <div class="recent-products-thumb">
                                     <a href="#">
-                                        <img src="{{Storage::disk('local')->url('posts/'.$lpost->image)}}" alt="blog-image">
+                                        <img src="{{ URL::to($product->image_one) }}" alt="blog-image">
                                     </a>
                                 </div>
 
                                 <div class="recent-products-content">
-                                    <h3><a href="#">{{$lpost->title}}</a></h3>
+                                    <h3><a href="#">{{$product->product_title}}</a></h3>
                                     <ul>
                                         <li><i class="icofont-star"></i></li>
                                         <li><i class="icofont-star"></i></li>
@@ -173,7 +167,7 @@ $newPost =  App\Models\post::where('status', 1)->orderBy('created_at', 'ASC')->p
                                         <li><i class="icofont-star"></i></li>
                                         <li><i class="icofont-star"></i></li>
                                     </ul>
-                                    <span class="date">{{$lpost->subtitle}} </span>
+                                    <span class="date">{{$product->selling_price}} تومان</span>
                                 </div>
                             </li>
                             @endforeach
@@ -186,9 +180,9 @@ $newPost =  App\Models\post::where('status', 1)->orderBy('created_at', 'ASC')->p
                         <div class="bar"></div>
 
                         <div class="tagcloud">
-                        @foreach($newPost as $npost)
+                            @foreach($newPost as $npost)
                             <a href="#">{{$npost->title}}</a>
-                            @endforeach   
+                            @endforeach
                         </div>
                     </div>
                     <div class="widget widget_tag_cloud">

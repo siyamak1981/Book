@@ -11,7 +11,7 @@ class Post extends Model
     {
         return $this->belongsToMany('App\Models\Tag', 'post_tags')->withTimestamps();
     }
-    
+
     public function categories()
     {
         return $this->belongsToMany('App\Models\Category', 'category_posts')->withTimestamps();
@@ -20,6 +20,11 @@ class Post extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
     }
 
     public function getCreatedAtAttribute($value)
