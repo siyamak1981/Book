@@ -100,6 +100,9 @@
                 <li>
                     <a href="{{ URL::to('admin/contact-us') }}" class="waves-effect bg-inverse text-white"><span>تماس با ما </span> </a>
                 </li>
+                <li>
+                    <a href="{{ URL::to('admin/advertising') }}" class="waves-effect bg-inverse text-white"><span> تبلیغ  </span> </a>
+                </li>
 
                     </ul>
                 </li>

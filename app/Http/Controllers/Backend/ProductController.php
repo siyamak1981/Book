@@ -13,7 +13,7 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        // $this->middleware('auth:admin');
     }
     /**
      * Display a listing of the resource.
@@ -134,9 +134,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        $product = Product::where('id', $id)->first();
+        $product = Product::where('id', $product->id)->first();
 
         return view('Backend.product.edit', compact('product'));
     }
@@ -148,17 +148,17 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
 
-        $data = Product::where('id', $id)->first();
+        $data = Product::where('id', $product->id)->first();
         $image = $data->image_one;
         $image2 = $data->image_two;
         $image3 = $data->image_three;
         unlink($image);
         unlink($image2);
         unlink($image3);
-        Product::where('id', $id)->delete();
+        Product::where('id', $product->id)->delete();
     
         return redirect()->back()->with('message', ' محصول با موفقیت حذف گردید');
     }

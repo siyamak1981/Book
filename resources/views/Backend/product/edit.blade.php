@@ -1,5 +1,5 @@
 @extends('Backend.Partials.layouts.app')
-@section('title', 'Post Create')
+
 @section('headSection')
 <link href="{{ asset('Backend/plugins/fileuploads/css/dropify.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection

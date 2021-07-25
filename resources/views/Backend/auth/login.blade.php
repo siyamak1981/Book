@@ -1,29 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @extends('Frontend.public.app')
 @section('main-content')
 <section class="page-title-banner">
@@ -78,8 +52,8 @@
                     <p>لطفا وارد حساب کاربری خود شوید.</p>
                     @include('includes.messages')
 
-<form action="{{ route('admin.login') }}" method="post">
-{{ csrf_field() }}
+                    <form action="{{ route('admin.login') }}" method="post">
+                        {{ csrf_field() }}
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
@@ -103,16 +77,16 @@
                                 </div>
                             </div>
 
-                        
+
                             <div class="col-lg-6">
-                            @if (Route::has('password.request'))
+                                @if (Route::has('password.request'))
                                 <p class="forgot-password"><a href="{{ route('password.request') }}">فراموشی رمز عبور؟</a></p>
-                            @endif
+                                @endif
                             </div>
 
                             <div class="col-lg-12">
                                 <button type="submit" class="btn btn-primary">هم اکنون وارد شوید!</button>
-                          
+
                             </div>
                         </div>
                     </form>
