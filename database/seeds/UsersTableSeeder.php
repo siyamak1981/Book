@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\User;
+
 
 class UsersTableSeeder extends Seeder
 {
@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
     {
         {
             \DB::table('users')->delete();
-            factory(User::class, 3)->create();
+            factory(App\Models\User::class, 3)->create();
         }
     }
 }

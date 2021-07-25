@@ -1,38 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Frontend\Post;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\category;
-use App\Models\Post;
-use App\Models\Product;
-use App\Models\tag;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class AdvertisingController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
-
     {
-        $products =Product::where('status', 1)->orderBy('created_at', 'DESC')->paginate(4);
-        $posts = post::where('status', 1)->with('categories', 'tags')->orderBy('created_at', 'DESC')->paginate(8);
-        return view('Frontend.post.index', compact('posts','products'));
+        //
     }
-
-    public function tag(tag $tag)
-
-    {
-        $posts = $tag->posts();
-        return view('Frontend.post.index', compact('posts'));
-    }
-
-    public function category(category $category)
-
-    {
-        $posts = $category->posts()->unique();
-        return view('Frontend.post.index', compact('posts'));
-    }
-
 
     /**
      * Show the form for creating a new resource.

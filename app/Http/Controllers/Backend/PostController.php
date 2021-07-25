@@ -19,7 +19,7 @@ class PostController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        // $this->middleware('auth:admin');
     }
     /**
      * Display a listing of the resource.
@@ -39,13 +39,13 @@ class PostController extends Controller
      */
     public function create()
     { 
-        if (Auth::user()->can('posts.create')) {
+        // if (Auth::user()->can('posts.create')) {
             $tags =Tag::all();
             $categories =Category::all();
             return view('Backend.post.create', compact('tags', 'categories'));
         }
-        return redirect(route('admin.home'));
-    }
+        // return redirect(route('admin.home'));
+    // }
 
 
     /**
@@ -105,14 +105,14 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        if (Auth::user()->can('posts.update')) {
+        // if (Auth::user()->can('posts.update')) {
             $post = post::with('tags', 'categories')->where('id', $id)->first();
             $tags =tag::all();
             $categories =category::all();
             return view('Backend.post.edit', compact('tags', 'categories', 'post'));
         }
-        return redirect(route('admin.home'));
-    }
+        // return redirect(route('admin.home'));
+    // }
 
     /**
      * Update the specified resource in storage.

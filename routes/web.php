@@ -99,6 +99,7 @@ Route::group(['namespace' => 'Backend'], function () {
 
     Route::resource('admin/about', 'AboutController');
     Route::resource('admin/coupon', 'CouponController');
+    Route::resource('admin/advertising', 'AdvertisingController');
     
     Route::get('admin-login', 'Auth\LoginController@showLoginForm')->name('admin.login');
     Route::post('admin-login', 'Auth\LoginController@login');
