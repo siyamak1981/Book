@@ -3,6 +3,7 @@
 @php
 
 $newPost = App\Models\post::where('status', 1)->orderBy('created_at', 'ASC')->paginate(5);
+$advs = App\Models\Advertising::paginate(6);
 
 @endphp
 <div class="col-lg-4 col-md-12">
@@ -114,43 +115,18 @@ $newPost = App\Models\post::where('status', 1)->orderBy('created_at', 'ASC')->pa
         <div class="widget widget_text">
             <h3 class="widget-title">تبلیغات</h3>
             <div class="bar"></div>
-
+           
             <ul>
+              
+                @foreach($advs as $adv)
                 <li>
                     <a href="#">
-                        <img src="assets/img/work-img1.jpg" alt="image">
+                        <img src="{{Storage::disk('local')->url('advertising/'.$adv->image)}}" alt="image">
                     </a>
                 </li>
+                @endforeach
 
-                <li>
-                    <a href="#">
-                        <img src="assets/img/work-img2.jpg" alt="image">
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <img src="assets/img/work-img3.jpg" alt="image">
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <img src="assets/img/work-img4.jpg" alt="image">
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <img src="assets/img/work-img5.jpg" alt="image">
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <img src="assets/img/work-img6.jpg" alt="image">
-                    </a>
-                </li>
+            
             </ul>
         </div>
     </div>

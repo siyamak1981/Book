@@ -14,7 +14,7 @@
                 <div class="col-sm-6">
                   <div class="m-b-30">
 
-                    <a href="{{ route('advertisings.create') }}" id="addToTable" class="btn btn-primary waves-effect waves-light">افزودن <i class="fa fa-plus"></i></a>
+                    <a href="{{ route('advertising.create') }}" id="addToTable" class="btn btn-primary waves-effect waves-light">افزودن <i class="fa fa-plus"></i></a>
 
                   </div>
                 </div>
@@ -53,17 +53,16 @@
                           <tr class="gradeX odd" role="row">
                             <td class="sorting_1">{{ $loop->index + 1 }}</td>
 
-                            <td>{{ $adv->title}}
+                            <td>{{ $adv->alt}}
                             </td>
-
-                            <td>{!! htmlspecialchars_decode($adv->body) !!}</td>
                             <td><img src="{{Storage::disk('local')->url('advertising/'.$adv->image)}}" width=50></td>
                             <td>@if($adv->status) فعال @else غیر فعال @endif</td>
-                            <td>{{ date("d F Y",strtotime($adv->created_at))}}</td>
+                            <td>{{ \Carbon\Carbon::parse($adv->created_at)->diffForhumans()  }}</td>
                             <td class="actions">
-                              <a href="{{ route('advertising.edit',$adv->id) }}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                              <a href="{{ route('advertising.edit',$adv->id) }}" class="on-default edit-row">
+                                <i class="fa fa-pencil"></i>
+                              </a>
 
-                              @can('posts.delete', Auth::user())
                               <form id="delete-form-{{ $adv->id }}" method="post" action="{{ route('advertising.destroy',$adv->id) }}" style="display: none">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
@@ -77,7 +76,7 @@
                                                                 else{
                                                                     event.preventDefault();
                                                                 }"><i class="fa fa-trash-o"></i></a>
-                              @endcan
+                    
                             </td>
                           </tr>
                           @endforeach

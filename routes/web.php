@@ -21,6 +21,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('contact-us', 'Contact\ContactController@saveContact');
     //comment
     Route::post('/comment/store', 'Comment\CommentController@store')->name('comments.store');
+   
 
     
     // Route::get('add/to/cart/{id}', 'CartController@AddCart');
