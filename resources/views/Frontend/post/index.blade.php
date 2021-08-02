@@ -58,14 +58,14 @@
                     @foreach($posts as $post)
                     <div class="col-lg-6 col-md-6">
                         <div class="single-blog-post">
-                            <a href="single-blog.html" class="post-image"><img src="{{Storage::disk('local')->url('posts/'.$post->image)}}" alt="blog-image"></a>
+                            <a href="{{ route('post', $post->slug) }}" class="post-image"><img src="{{Storage::disk('local')->url('posts/'.$post->image)}}" alt="blog-image"></a>
 
                             <div class="blog-post-content">
                                 <ul>
                                     <li><i class="icofont-user-male"></i> <a href="#">{{$post->posted_by}}</a></li>
-                                    <li><i class="icofont-wall-clock"></i></li><small>{{$post->created_at}}</small>
+                                    <li><i class="icofont-wall-clock"></i></li><small>{{ \Carbon\Carbon::parse($post->StartDate)->diffForhumans()  }}</small>
                                 </ul>
-                                <h3><a href="single-blog.html">{{$post->title}}</a></h3>
+                                <h3><a href="{{ route('post', $post->slug) }}">{{$post->title}}</a></h3>
                                 <p>{!! htmlspecialchars_decode($post->body) !!}</p>
                                 <a href="{{ route('post', $post->slug) }}" class="read-more-btn">ادامه مطلب <i class="icofont-rounded-double-right"></i></a>
                             </div>

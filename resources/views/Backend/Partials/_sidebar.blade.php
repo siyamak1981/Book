@@ -98,10 +98,22 @@
                     <a href="{{ route('newslater.index') }}" class="waves-effect bg-inverse text-white"><span>خبر نامه ها </span> </a>
                 </li>
                 <li>
+                    <a href="{{ route('torist_book.index') }}" class="waves-effect bg-inverse text-white"><span> کتاب توریستی </span> </a>
+                </li>
+                <li>
+                    <a href="{{ route('festival.index') }}" class="waves-effect bg-inverse text-white"><span> فستیوال  </span> </a>
+                </li>
+                <li>
+                    <a href="{{ route('supporter.index') }}" class="waves-effect bg-inverse text-white"><span> حمایت کنندگان  </span> </a>
+                </li>
+                <li>
                     <a href="{{ URL::to('admin/contact-us') }}" class="waves-effect bg-inverse text-white"><span>تماس با ما </span> </a>
                 </li>
                 <li>
                     <a href="{{ URL::to('admin/advertising') }}" class="waves-effect bg-inverse text-white"><span> تبلیغ  </span> </a>
+                </li>
+                <li>
+                    <a href="{{ URL::to('admin/slider') }}" class="waves-effect bg-inverse text-white"><span> اسلایدر  </span> </a>
                 </li>
 
                     </ul>

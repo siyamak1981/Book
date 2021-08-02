@@ -14,7 +14,7 @@
                 <div class="col-sm-6">
                   <div class="m-b-30">
 
-                    <a href="{{ route('post.create') }}" id="addToTable" class="btn btn-primary waves-effect waves-light">افزودن <i class="fa fa-plus"></i></a>
+                    <a href="{{ route('slider.create') }}" id="addToTable" class="btn btn-primary waves-effect waves-light">افزودن <i class="fa fa-plus"></i></a>
 
                   </div>
                 </div>
@@ -50,22 +50,17 @@
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach ($posts as $post)
+                          @foreach ($sliders as $slider)
                           <tr class="gradeX odd" role="row">
                             <td class="sorting_1">{{ $loop->index + 1 }}</td>
-
-                            <td>{{ $post->title}}
-                            </td>
-
-                            <td>{!! htmlspecialchars_decode($post->body) !!}</td>
-                            <td><img src="{{Storage::disk('local')->url('posts/'.$post->image)}}" width=50></td>
-                            <td>@if($post->status) فعال @else غیر فعال @endif</td>
-                            <td>{{ \Carbon\Carbon::parse($post->StartDate)->diffForhumans()  }}</td>
+                            <td>{{ $slider->subtitle}} </td>
+                            <td>{!! htmlspecialchars_decode($slider->body) !!}</td>
+                            <td><img src="{{ URL::to($slider->shape1) }}" width=50></td>
+                            <td>@if($slider->status) فعال @else غیر فعال @endif</td>
+                            <td>{{ \Carbon\Carbon::parse($slider->created_at)->diffForhumans() }}</td>
                             <td class="actions">
-                              <a href="{{ route('post.edit',$post->id) }}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-
-                              @can('posts.delete', Auth::user())
-                              <form id="delete-form-{{ $post->id }}" method="post" action="{{ route('post.destroy',$post->id) }}" style="display: none">
+                              <a href="{{ route('slider.edit',$slider->id) }}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                              <form id="delete-form-{{ $slider->id }}" method="post" action="{{ route('slider.destroy',$slider->id) }}" style="display: none">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                               </form>
@@ -73,12 +68,12 @@
                                                             if(confirm('Are you sure, You Want to delete this?'))
                                                                 {
                                                                     event.preventDefault();
-                                                                    document.getElementById('delete-form-{{ $post->id }}').submit();
+                                                                    document.getElementById('delete-form-{{ $slider->id }}').submit();
                                                                 }
                                                                 else{
                                                                     event.preventDefault();
                                                                 }"><i class="fa fa-trash-o"></i></a>
-                              @endcan
+
                             </td>
                           </tr>
                           @endforeach

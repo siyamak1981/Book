@@ -15,9 +15,8 @@
       <div class="row">
         @include('includes.messages')
 
-        <form role="form" action="{{ route('post.update',$post->id) }}" method="post" enctype="multipart/form-data">
-            {{ csrf_field() }}
-            {{ method_field('PATCH') }}
+        <form role="form" action="{{ route('supporter.store') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+          {{ csrf_field() }}
           <div class="col-sm-12">
             <div class="card-box">
               <div class="dropdown pull-right">
@@ -33,103 +32,48 @@
                 </ul>
               </div>
               <h4 class="header-title m-t-0 m-b-30">پیشفرض</h4>
-              <img src="{{Storage::disk('local')->url('posts/'.$post->image)}}" style="width: 70px; height:70px;margin-bottom:50px">
               <input type="file" name="image" class="dropify" data-height="300" />
-             
+
               <div class="col-lg-6 m-t-30">
                 <div class="form-group">
-                  <label class="col-md-2 control-label">متن</label>
+                  <label class="col-md-2 control-label">توضیح</label>
                   <div class="col-md-10">
-                    <input type="text" name="title" class="form-control" value="{{ $post->title }}">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-md-2 control-label">متن درون نوشته</label>
-                  <div class="col-md-10 m-t-10">
-                    <input type="text" class="form-control" placeholder="متن درون نوشته" name="subtitle"  value="{{ $post->subtitle }}">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-md-2 control-label m-t-10">نویسنده</label>
-                  <div class="col-md-10 m-t-10">
-                    <input type="text" name="posted_by" class="form-control" placeholder="نویسنده" name="slug"  value="{{ $post->posted_by }}">
+                    <input type="text" name="alt" class="form-control" placeholder="alt">
                   </div>
                 </div>
               </div><!-- end col -->
 
               <div class="col-lg-6 m-t-30">
                 <div class="form-group">
-                  <label class="col-sm-2 m-t-10 control-label">متن کمکی</label>
-                  <div class="col-sm-10 m-t-10">
-                    <input type="text" class="form-control" name="slug" placeholder="Slug" value="{{ $post->slug }}">
+                  <label class="col-sm-2 control-label">لینک</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="link" class="form-control" placeholder="link">
                   </div>
                 </div>
+
+
+
                 <div class="form-group">
-                  <label class="col-md-2 m-t-10 control-label"> افزودن تگ</label>
-                  <div class="col-md-10">
-                    <div class="m-b-0">
-                    <select class="form-control select2 select2-hidden-accessible m-t-10" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
-                    @foreach ($tags as $tag)
-                    <option value="{{ $tag->id }}"
-                      @foreach ($post->tags as $postTag)
-                        @if ($postTag->id == $tag->id)
-                          selected
-                        @endif
-                      @endforeach
-                    >{{ $tag->name }}
-                </option>
-                    @endforeach
-                  </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-md-2 control-label m-t-10"> افزودن دسته بندی</label>
-                  <div class="col-md-10 m-t-10">
-                    <div class="m-b-0">
-                    <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="categories[]">
-                    @foreach ($categories as $category)
-                    <option value="{{ $category->id }}"
-                    @foreach ($post->categories as $postCategory)
-                      @if ($postCategory->id == $category->id)
-                        selected
-                      @endif
-                    @endforeach
-                    >{{ $category->name }}</option>
-                    @endforeach
-                  </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-3 m-t-30 control-label">وضعیت</label>
+                  <label class="col-sm-3 control-label">وضعیت</label>
                   <div class="col-sm-6">
-                    <div class="checkbox checkbox-pink m-t-30">
-                      <input id="checkbox1" type="checkbox" name="status" 
-                      data-parsley-multiple="groups" data-parsley-mincheck="2" 
-                      data-parsley-id="69" value="1" @if ($post->status == 1)
-                        {{'checked'}}
-                      @endif>
+                    <div class="checkbox checkbox-pink">
+                      <input id="checkbox1" type="checkbox" name="status" value="1" data-parsley-multiple="groups" data-parsley-mincheck="2" data-parsley-id="69">
                       <label for="checkbox1"> انتشار </label>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div class="col-lg-12">
-                <div class="card-box">
-                  <textarea id="elm1" name="body"></textarea>
-                </div>
-              </div>
+
               <div class="form-group text-right m-r-5">
                 <button class="btn btn-primary waves-effect waves-light" type="submit">
                   ورود
                 </button>
-                <a type="submit" href="{{ route('post.index') }}" class="btn btn-default waves-effect waves-light m-l-5">
+                <a type="submit" href="{{ route('supporter.index') }}" class="btn btn-default waves-effect waves-light m-l-5">
                   برگشت
                 </a>
               </div>
+            </div>
         </form>
       </div>
     </div><!-- end row -->

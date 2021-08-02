@@ -14,7 +14,7 @@
                 <div class="col-sm-6">
                   <div class="m-b-30">
 
-                    <a href="{{ route('post.create') }}" id="addToTable" class="btn btn-primary waves-effect waves-light">افزودن <i class="fa fa-plus"></i></a>
+                    <a href="{{ route('supporter.create') }}" id="addToTable" class="btn btn-primary waves-effect waves-light">افزودن <i class="fa fa-plus"></i></a>
 
                   </div>
                 </div>
@@ -42,7 +42,7 @@
                           <tr role="row">
                             <th class="sorting_asc" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="موتور جستجو: activate to sort column descending" style="width: 157px;">موتور جستجو</th>
                             <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-label="مرورگر: activate to sort column ascending" style="width: 305px;">نوشته</th>
-                            <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-label="سیستن عامل: activate to sort column ascending" style="width: 194px;">متن</th>
+                            <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-label="سیستن عامل: activate to sort column ascending" style="width: 194px;">لینک</th>
                             <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-label="سیستن عامل: activate to sort column ascending" style="width: 194px;">تصویر</th>
                             <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-label="سیستن عامل: activate to sort column ascending" style="width: 194px;">وضعیت انتشار</th>
                             <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-label="سیستن عامل: activate to sort column ascending" style="width: 194px;">تاریخ انتشار</th>
@@ -50,22 +50,18 @@
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach ($posts as $post)
+                          @foreach ($supporters as $supporter)
                           <tr class="gradeX odd" role="row">
                             <td class="sorting_1">{{ $loop->index + 1 }}</td>
 
-                            <td>{{ $post->title}}
-                            </td>
-
-                            <td>{!! htmlspecialchars_decode($post->body) !!}</td>
-                            <td><img src="{{Storage::disk('local')->url('posts/'.$post->image)}}" width=50></td>
-                            <td>@if($post->status) فعال @else غیر فعال @endif</td>
-                            <td>{{ \Carbon\Carbon::parse($post->StartDate)->diffForhumans()  }}</td>
+                            <td>{{ $supporter->alt}} </td>
+                            <td>{{ $supporter->link}} </td>                     
+                            <td><img src="{{URL::to($supporter->image)}}" width=50></td>
+                            <td>@if($supporter->status) فعال @else غیر فعال @endif</td>
+                            <td>{{ \Carbon\Carbon::parse($supporter->StartDate)->diffForhumans()  }}</td>
                             <td class="actions">
-                              <a href="{{ route('post.edit',$post->id) }}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-
-                              @can('posts.delete', Auth::user())
-                              <form id="delete-form-{{ $post->id }}" method="post" action="{{ route('post.destroy',$post->id) }}" style="display: none">
+                              <a href="{{ route('supporter.edit',$supporter->id) }}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>              
+                              <form id="delete-form-{{ $supporter->id }}" method="post" action="{{ route('supporter.destroy',$supporter->id) }}" style="display: none">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                               </form>
@@ -73,12 +69,12 @@
                                                             if(confirm('Are you sure, You Want to delete this?'))
                                                                 {
                                                                     event.preventDefault();
-                                                                    document.getElementById('delete-form-{{ $post->id }}').submit();
+                                                                    document.getElementById('delete-form-{{ $supporter->id }}').submit();
                                                                 }
                                                                 else{
                                                                     event.preventDefault();
                                                                 }"><i class="fa fa-trash-o"></i></a>
-                              @endcan
+        
                             </td>
                           </tr>
                           @endforeach
@@ -96,9 +92,6 @@
                           <li class="paginate_button previous disabled" aria-controls="datatable-editable" tabindex="0" id="datatable-editable_previous"><a href="#">Previous</a></li>
                           <li class="paginate_button active" aria-controls="datatable-editable" tabindex="0"><a href="#">1</a></li>
                           <li class="paginate_button " aria-controls="datatable-editable" tabindex="0"><a href="#">2</a></li>
-                          <li class="paginate_button " aria-controls="datatable-editable" tabindex="0"><a href="#">3</a></li>
-                          <li class="paginate_button " aria-controls="datatable-editable" tabindex="0"><a href="#">4</a></li>
-                          <li class="paginate_button " aria-controls="datatable-editable" tabindex="0"><a href="#">5</a></li>
                           <li class="paginate_button disabled" aria-controls="datatable-editable" tabindex="0" id="datatable-editable_ellipsis"><a href="#">…</a></li>
                           <li class="paginate_button " aria-controls="datatable-editable" tabindex="0"><a href="#">8</a></li>
                           <li class="paginate_button next" aria-controls="datatable-editable" tabindex="0" id="datatable-editable_next"><a href="#">Next</a></li>
