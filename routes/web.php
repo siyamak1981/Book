@@ -15,6 +15,10 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('post/{post}', 'Post\PostController@post')->name('post');
     Route::get('post/tag/{tag}', 'Post\HomeController@tag')->name('post.tag');
     Route::get('post/category/{category}', 'Post\HomeController@category')->name('post.category');
+    //slider
+    Route::get('/', 'Slider\SliderController@index')->name('slider.index');
+   
+    
 
     // contact_us
     Route::get('contact-us', 'Contact\ContactController@getContact');
@@ -101,6 +105,10 @@ Route::group(['namespace' => 'Backend'], function () {
     Route::resource('admin/about', 'AboutController');
     Route::resource('admin/coupon', 'CouponController');
     Route::resource('admin/advertising', 'AdvertisingController');
+    Route::resource('admin/slider', 'SliderController');
+    Route::resource('admin/torist_book', 'ToristBookController');
+    Route::resource('admin/festival', 'FestivalController');
+    Route::resource('admin/supporter', 'SupporterController');
     
     Route::get('admin-login', 'Auth\LoginController@showLoginForm')->name('admin.login');
     Route::post('admin-login', 'Auth\LoginController@login');

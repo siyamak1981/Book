@@ -14,7 +14,7 @@
                 <div class="col-sm-6">
                   <div class="m-b-30">
 
-                    <a href="{{ route('post.create') }}" id="addToTable" class="btn btn-primary waves-effect waves-light">افزودن <i class="fa fa-plus"></i></a>
+                    <a href="{{ route('festival.create') }}" id="addToTable" class="btn btn-primary waves-effect waves-light">افزودن <i class="fa fa-plus"></i></a>
 
                   </div>
                 </div>
@@ -50,22 +50,22 @@
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach ($posts as $post)
+                          @foreach ($festivals as $festival)
                           <tr class="gradeX odd" role="row">
                             <td class="sorting_1">{{ $loop->index + 1 }}</td>
 
-                            <td>{{ $post->title}}
+                            <td>{{ $festival->title}}
                             </td>
 
-                            <td>{!! htmlspecialchars_decode($post->body) !!}</td>
-                            <td><img src="{{Storage::disk('local')->url('posts/'.$post->image)}}" width=50></td>
-                            <td>@if($post->status) فعال @else غیر فعال @endif</td>
-                            <td>{{ \Carbon\Carbon::parse($post->StartDate)->diffForhumans()  }}</td>
+                            <td>{!! htmlspecialchars_decode($festival->body) !!}</td>
+                            <td><img src="{{Storage::disk('local')->url('festival/'.$festival->image)}}" width=50></td>
+                            <td>@if($festival->status) فعال @else غیر فعال @endif</td>
+                            <td>{{ \Carbon\Carbon::parse($festival->StartDate)->diffForhumans()  }}</td>
                             <td class="actions">
-                              <a href="{{ route('post.edit',$post->id) }}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                              <a href="{{ route('festival.edit',$festival->id) }}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
 
-                              @can('posts.delete', Auth::user())
-                              <form id="delete-form-{{ $post->id }}" method="post" action="{{ route('post.destroy',$post->id) }}" style="display: none">
+               
+                              <form id="delete-form-{{ $festival->id }}" method="post" action="{{ route('festival.destroy',$festival->id) }}" style="display: none">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                               </form>
@@ -73,12 +73,12 @@
                                                             if(confirm('Are you sure, You Want to delete this?'))
                                                                 {
                                                                     event.preventDefault();
-                                                                    document.getElementById('delete-form-{{ $post->id }}').submit();
+                                                                    document.getElementById('delete-form-{{ $festival->id }}').submit();
                                                                 }
                                                                 else{
                                                                     event.preventDefault();
                                                                 }"><i class="fa fa-trash-o"></i></a>
-                              @endcan
+        
                             </td>
                           </tr>
                           @endforeach
@@ -96,9 +96,6 @@
                           <li class="paginate_button previous disabled" aria-controls="datatable-editable" tabindex="0" id="datatable-editable_previous"><a href="#">Previous</a></li>
                           <li class="paginate_button active" aria-controls="datatable-editable" tabindex="0"><a href="#">1</a></li>
                           <li class="paginate_button " aria-controls="datatable-editable" tabindex="0"><a href="#">2</a></li>
-                          <li class="paginate_button " aria-controls="datatable-editable" tabindex="0"><a href="#">3</a></li>
-                          <li class="paginate_button " aria-controls="datatable-editable" tabindex="0"><a href="#">4</a></li>
-                          <li class="paginate_button " aria-controls="datatable-editable" tabindex="0"><a href="#">5</a></li>
                           <li class="paginate_button disabled" aria-controls="datatable-editable" tabindex="0" id="datatable-editable_ellipsis"><a href="#">…</a></li>
                           <li class="paginate_button " aria-controls="datatable-editable" tabindex="0"><a href="#">8</a></li>
                           <li class="paginate_button next" aria-controls="datatable-editable" tabindex="0" id="datatable-editable_next"><a href="#">Next</a></li>
