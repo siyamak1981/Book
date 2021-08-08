@@ -2,107 +2,83 @@
 @section('title', 'Post Create')
 @section('headSection')
 <link href="{{ asset('Backend/plugins/fileuploads/css/dropify.min.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{asset('Backend/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}" rel="stylesheet" />
-<link rel="stylesheet" href="{{ asset('admin/plugins/select2/select2.min.css') }}">
 @endsection
 
 @section('main-content')
 <div class="content-page">
   <!-- Start content -->
   <div class="content">
-    <div class="container">
+ 
 
       <div class="row">
         @include('includes.messages')
 
-        <form role="form" action="{{ route('post.store') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+        <form role="form" action="{{ route('slider-competition.store') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
           {{ csrf_field() }}
-          <div class="col-sm-12">
-            <div class="card-box">
-              <div class="dropdown pull-right">
-                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                  <i class="zmdi zmdi-more-vert"></i>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">فعال</a></li>
-                  <li><a href="#">متن اول</a></li>
-                  <li><a href="#">متن دوم</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">متن پاورقی</a></li>
-                </ul>
-              </div>
-              <h4 class="header-title m-t-0 m-b-30">پیشفرض</h4>
+          <div class="card-box">
+            <div class="col-sm-12">
+            <h4 class="header-title m-t-0 m-b-30">پیشفرض</h4>
               <input type="file" name="image" class="dropify" data-height="300" />
-
+         
               <div class="col-lg-6 m-t-30">
                 <div class="form-group">
-                  <label class="col-md-2 control-label">متن</label>
+                  <label class="col-md-2 control-label"> خلاصه </label>
                   <div class="col-md-10">
                     <input type="text" name="title" class="form-control" placeholder="یک متن نومنه">
                   </div>
                 </div>
 
+
                 <div class="form-group">
-                  <label class="col-md-2 control-label">متن درون نوشته</label>
+                  <label class="col-md-2 control-label">اسلاگ </label>
                   <div class="col-md-10">
-                    <input type="text" name="subtitle" class="form-control" placeholder="متن درون نوشته">
+                    <input type="text" name="slug" class="form-control" placeholder="متن درون نوشته">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-md-2 control-label">نویسنده</label>
+                  <label class="col-md-2 control-label"> توضیح عکس </label>
                   <div class="col-md-10">
-                    <input type="text" name="posted_by" class="form-control" placeholder="نویسنده">
+                    <input type="text" name="alt" class="form-control" placeholder="یک توضیح">
                   </div>
                 </div>
+             
+
               </div><!-- end col -->
 
               <div class="col-lg-6 m-t-30">
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">متن کمکی</label>
-                  <div class="col-sm-10">
-                    <input type="text" name="slug" class="form-control" placeholder="Helping text">
-                  </div>
-                </div>
-
-               
-                
-                <div class="form-group">
                   <label class="col-sm-3 control-label">وضعیت</label>
                   <div class="col-sm-6">
                     <div class="checkbox checkbox-pink">
-                      <input id="checkbox1" type="checkbox" name="status" 
-                      value="1" data-parsley-multiple="groups" data-parsley-mincheck="2" data-parsley-id="69">
+                      <input id="checkbox1" type="checkbox" name="status" value="1" data-parsley-multiple="groups" data-parsley-mincheck="2" data-parsley-id="69">
                       <label for="checkbox1"> انتشار </label>
                     </div>
                   </div>
                 </div>
               </div>
-
-              <div class="col-lg-12">
-                <div class="card-box">
-                  <textarea id="elm1" name="body"></textarea>
-                </div>
+            </div><!-- end col -->
+            <div class="col-lg-12">
+              <div class="card-box">
+                <textarea id="elm1" name="body"></textarea>
               </div>
-              <div class="form-group text-right m-r-5">
-                <button class="btn btn-primary waves-effect waves-light" type="submit">
-                  ورود
-                </button>
-                <a type="submit" href="{{ route('post.index') }}" class="btn btn-default waves-effect waves-light m-l-5">
-                  برگشت
-                </a>
-              </div>
+            </div>
+            <div class="form-group text-right m-r-5">
+              <button class="btn btn-primary waves-effect waves-light" type="submit">
+                ورود
+              </button>
+              <a type="submit" href="{{ route('slider-competition.index') }}" class="btn btn-default waves-effect waves-light m-l-5">
+                برگشت
+              </a>
+            </div>
         </form>
       </div>
     </div><!-- end row -->
   </div>
-</div><!-- end col -->
-</div>
-</div>
-</div><!-- end col -->
-</div>
+
+
+
 @endsection
 @section('footerSection')
-<script src="{{ asset('admin/plugins/select2/select2.full.min.js') }}"></script>
 <script src="{{ asset('Backend/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
 <script>
   var resizefunc = [];
@@ -181,9 +157,5 @@
     }
   });
 </script>
-<script>
-  $(document).ready(function() {
-    $(".select2").select2();
-  });
-</script>
+
 @endsection

@@ -17,12 +17,17 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('post/category/{category}', 'Post\HomeController@category')->name('post.category');
     //slider
     Route::get('/', 'Slider\SliderController@index')->name('slider.index');
+    Route::get('competition/', 'SliderCompetition\SliderCompetitionController@index');
+    Route::get('competition/', 'Competition\CompetitionController@index');
    
     
 
     // contact_us
     Route::get('contact-us', 'Contact\ContactController@getContact');
     Route::post('contact-us', 'Contact\ContactController@saveContact');
+    //work-us
+   
+    Route::resource('work-us/', 'WorkUs\WorkUsController');
     //comment
     Route::post('/comment/store', 'Comment\CommentController@store')->name('comments.store');
    
@@ -106,9 +111,12 @@ Route::group(['namespace' => 'Backend'], function () {
     Route::resource('admin/coupon', 'CouponController');
     Route::resource('admin/advertising', 'AdvertisingController');
     Route::resource('admin/slider', 'SliderController');
+    Route::resource('admin/slider-competition', 'SliderCompetitionController');
     Route::resource('admin/torist_book', 'ToristBookController');
     Route::resource('admin/festival', 'FestivalController');
     Route::resource('admin/supporter', 'SupporterController');
+    Route::resource('admin/competition', 'CompetitionController');
+    Route::resource('admin/competition_page', 'CompetitionPageController');
     
     Route::get('admin-login', 'Auth\LoginController@showLoginForm')->name('admin.login');
     Route::post('admin-login', 'Auth\LoginController@login');

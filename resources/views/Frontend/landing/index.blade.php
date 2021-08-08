@@ -83,31 +83,10 @@ $products =App\Models\Product::where('status', 1)->orderBy('created_at', 'DESC')
     <section class="overview-section ptb-100 bg-gray">
         <div class="container">
 
-            <div class="overview-box">
-                <div class="row h-100 justify-content-center align-items-center">
-                    <div class="col-lg-6 col-md-6 overview-img">
-                        <img src="{{ asset('Frontend/img/home/2.png') }}" alt="image">
-                    </div>
-
-                    <div class="col-lg-6 col-md-6 overview-content">
-                        <div class="icon">
-                            <i class="icofont-power"></i>
-                        </div>
-                        <h3>مسابقات کتابخوانی</h3>
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
-
-                        <ul>
-                            <li>دریافت منابع از سایت</li>
-                            <li>کسب امتیاز از سایت</li>
-                            <li>دریافت جوایز نفیس</li>
-                        </ul>
-                        <a href="Competitions.html" class="btn btn-primary">ادامه مطلب</a>
-                    </div>
-                </div>
-            </div>
 
        
 
+           @include('Frontend.Partials._competition')
            @include('Frontend.Partials._festival')
            @include('Frontend.Partials._torist_book')
         </div>
