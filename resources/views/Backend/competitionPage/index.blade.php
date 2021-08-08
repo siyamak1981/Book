@@ -1,4 +1,5 @@
 @extends('Backend.Partials.layouts.app')
+@section('title', 'products')
 
 @section('main-content')
 <div class="content-page">
@@ -13,9 +14,7 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="m-b-30">
-
-                    <a href="{{ route('post.create') }}" id="addToTable" class="btn btn-primary waves-effect waves-light">افزودن <i class="fa fa-plus"></i></a>
-
+                    <a href="{{ route('competition_page.create') }}" id="addToTable" class="btn btn-primary waves-effect waves-light">افزودن <i class="fa fa-plus"></i></a>
                   </div>
                 </div>
               </div>
@@ -50,36 +49,35 @@
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach ($posts as $post)
+                          @foreach ($competitionpages as $competitionpage)
                           <tr class="gradeX odd" role="row">
                             <td class="sorting_1">{{ $loop->index + 1 }}</td>
 
-                            <td>{{ $post->title}}</td>
-                          
+                            <td>{{ $competitionpage->title1}}</td>
+                            <td>{{ $competitionpage->summary1}} </td>
+                            <td> <img src="{{ URL::to($competitionpage->image_one) }}" height="50px;" width="50px;"> </td>
+                            <td>@if($competitionpage->status == 1) فعال @else غیر فعال @endif</td>
+                            <td>{{ \Carbon\Carbon::parse($competitionpage->created_at)->diffForhumans()  }}</td>
 
-                            <td>{!! htmlspecialchars_decode($post->body) !!}</td>
-                            <td><img src="{{Storage::disk('local')->url('posts/'.$post->image)}}" width=50></td>
-                            <td>@if($post->status) فعال @else غیر فعال @endif</td>
-                            <td>{{ \Carbon\Carbon::parse($post->StartDate)->diffForhumans()  }}</td>
                             <td class="actions">
-                              <a href="{{ route('post.edit',$post->id) }}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
 
-                              @can('posts.delete', Auth::user())
-                              <form id="delete-form-{{ $post->id }}" method="post" action="{{ route('post.destroy',$post->id) }}" style="display: none">
+                              <a href="{{ route('competition_page.edit',$competitionpage->id) }}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                              <form id="delete-form-{{ $competitionpage->id }}" method="post" action="{{ route('competition_page.destroy',$competitionpage->id) }}" style="display: none">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                               </form>
                               <a href="#" class="on-default remove-row" onclick="
-                                                            if(confirm('Are you sure, You Want to delete this?'))
-                                                                {
-                                                                    event.preventDefault();
-                                                                    document.getElementById('delete-form-{{ $post->id }}').submit();
-                                                                }
-                                                                else{
-                                                                    event.preventDefault();
-                                                                }"><i class="fa fa-trash-o"></i></a>
-                              @endcan
-                            </td>
+                              if(confirm('Are you sure, You Want to delete this?'))
+                                  {
+                                      event.preventDefault();
+                                      document.getElementById('delete-form-{{ $competitionpage->id }}').submit();
+                                  }
+                                  else{
+                                      event.preventDefault();
+                                  }"><i class="fa fa-trash-o"></i></a>
+                          </tr>
+
+                          </td>
                           </tr>
                           @endforeach
                         </tbody>

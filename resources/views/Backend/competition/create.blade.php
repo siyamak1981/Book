@@ -15,7 +15,7 @@
       <div class="row">
         @include('includes.messages')
 
-        <form role="form" action="{{ route('post.store') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+        <form role="form" action="{{ route('competition.store') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
           {{ csrf_field() }}
           <div class="col-sm-12">
             <div class="card-box">
@@ -45,13 +45,7 @@
                 <div class="form-group">
                   <label class="col-md-2 control-label">متن درون نوشته</label>
                   <div class="col-md-10">
-                    <input type="text" name="subtitle" class="form-control" placeholder="متن درون نوشته">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-md-2 control-label">نویسنده</label>
-                  <div class="col-md-10">
-                    <input type="text" name="posted_by" class="form-control" placeholder="نویسنده">
+                    <input type="text" name="summary" class="form-control" placeholder="متن درون نوشته">
                   </div>
                 </div>
               </div><!-- end col -->
@@ -63,15 +57,20 @@
                     <input type="text" name="slug" class="form-control" placeholder="Helping text">
                   </div>
                 </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label"> Alt</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="alt" class="form-control" placeholder="Alt text">
+                  </div>
+                </div>
 
-               
-                
+
+
                 <div class="form-group">
                   <label class="col-sm-3 control-label">وضعیت</label>
                   <div class="col-sm-6">
                     <div class="checkbox checkbox-pink">
-                      <input id="checkbox1" type="checkbox" name="status" 
-                      value="1" data-parsley-multiple="groups" data-parsley-mincheck="2" data-parsley-id="69">
+                      <input id="checkbox1" type="checkbox" name="status" value="1" data-parsley-multiple="groups" data-parsley-mincheck="2" data-parsley-id="69">
                       <label for="checkbox1"> انتشار </label>
                     </div>
                   </div>
@@ -87,9 +86,10 @@
                 <button class="btn btn-primary waves-effect waves-light" type="submit">
                   ورود
                 </button>
-                <a type="submit" href="{{ route('post.index') }}" class="btn btn-default waves-effect waves-light m-l-5">
+                <a type="submit" href="{{ route('competition.index') }}" class="btn btn-default waves-effect waves-light m-l-5">
                   برگشت
                 </a>
+              </div>
               </div>
         </form>
       </div>

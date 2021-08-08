@@ -1,10 +1,11 @@
 @extends('Backend.Partials.layouts.app')
-@section('title', 'Post Create')
+
 @section('headSection')
 <link href="{{ asset('Backend/plugins/fileuploads/css/dropify.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{asset('Backend/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}" rel="stylesheet" />
 <link rel="stylesheet" href="{{ asset('admin/plugins/select2/select2.min.css') }}">
 @endsection
+
 
 @section('main-content')
 <div class="content-page">
@@ -15,8 +16,9 @@
       <div class="row">
         @include('includes.messages')
 
-        <form role="form" action="{{ route('post.store') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
-          {{ csrf_field() }}
+        <form role="form" action="{{ route('competition.update',$competition->id) }}" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            {{ method_field('PATCH') }}
           <div class="col-sm-12">
             <div class="card-box">
               <div class="dropdown pull-right">
@@ -32,46 +34,50 @@
                 </ul>
               </div>
               <h4 class="header-title m-t-0 m-b-30">پیشفرض</h4>
+              <img src="{{URL::to($competition->image)}}" style="width: 70px; height:70px;margin-bottom:50px">
               <input type="file" name="image" class="dropify" data-height="300" />
-
+             
               <div class="col-lg-6 m-t-30">
                 <div class="form-group">
                   <label class="col-md-2 control-label">متن</label>
                   <div class="col-md-10">
-                    <input type="text" name="title" class="form-control" placeholder="یک متن نومنه">
+                    <input type="text" name="title" class="form-control" value="{{ $competition->title }}">
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-md-2 control-label">متن درون نوشته</label>
-                  <div class="col-md-10">
-                    <input type="text" name="subtitle" class="form-control" placeholder="متن درون نوشته">
+                  <div class="col-md-10 m-t-10">
+                    <input type="text" class="form-control"  name="summary"  value="{{ $competition->summary }}">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label class="col-md-2 control-label">نویسنده</label>
-                  <div class="col-md-10">
-                    <input type="text" name="posted_by" class="form-control" placeholder="نویسنده">
-                  </div>
-                </div>
+           
               </div><!-- end col -->
 
               <div class="col-lg-6 m-t-30">
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">متن کمکی</label>
-                  <div class="col-sm-10">
-                    <input type="text" name="slug" class="form-control" placeholder="Helping text">
+                  <label class="col-sm-2 m-t-10 control-label">متن کمکی</label>
+                  <div class="col-sm-10 m-t-10">
+                    <input type="text" class="form-control" name="slug"  value="{{ $competition->slug }}">
                   </div>
                 </div>
 
-               
-                
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">وضعیت</label>
+                  <label class="col-sm-2 m-t-10 control-label">Alt </label>
+                  <div class="col-sm-10 m-t-10">
+                    <input type="text" class="form-control" name="alt"  value="{{ $competition->alt }}">
+                  </div>
+                </div>
+            
+                <div class="form-group">
+                  <label class="col-sm-3 m-t-30 control-label">وضعیت</label>
                   <div class="col-sm-6">
-                    <div class="checkbox checkbox-pink">
+                    <div class="checkbox checkbox-pink m-t-30">
                       <input id="checkbox1" type="checkbox" name="status" 
-                      value="1" data-parsley-multiple="groups" data-parsley-mincheck="2" data-parsley-id="69">
+                      data-parsley-multiple="groups" data-parsley-mincheck="2" 
+                      data-parsley-id="69" value="1" @if ($competition->status == 1)
+                        {{'checked'}}
+                      @endif>
                       <label for="checkbox1"> انتشار </label>
                     </div>
                   </div>
@@ -80,14 +86,14 @@
 
               <div class="col-lg-12">
                 <div class="card-box">
-                  <textarea id="elm1" name="body"></textarea>
+                  <textarea id="elm1" name="body" value="{{ $competition->body }}"></textarea>
                 </div>
               </div>
               <div class="form-group text-right m-r-5">
                 <button class="btn btn-primary waves-effect waves-light" type="submit">
                   ورود
                 </button>
-                <a type="submit" href="{{ route('post.index') }}" class="btn btn-default waves-effect waves-light m-l-5">
+                <a type="submit" href="{{ route('competition.index') }}" class="btn btn-default waves-effect waves-light m-l-5">
                   برگشت
                 </a>
               </div>

@@ -107,6 +107,12 @@
                     <a href="{{ route('supporter.index') }}" class="waves-effect bg-inverse text-white"><span> حمایت کنندگان  </span> </a>
                 </li>
                 <li>
+                    <a href="{{ route('competition.index') }}" class="waves-effect bg-inverse text-white"><span>رقابت کنندگان  </span> </a>
+                </li>
+                <li>
+                    <a href="{{ route('competition_page.index') }}" class="waves-effect bg-inverse text-white"><span>صفحه رقابت کنندگان</span> </a>
+                </li>
+                <li>
                     <a href="{{ URL::to('admin/contact-us') }}" class="waves-effect bg-inverse text-white"><span>تماس با ما </span> </a>
                 </li>
                 <li>
@@ -114,6 +120,9 @@
                 </li>
                 <li>
                     <a href="{{ URL::to('admin/slider') }}" class="waves-effect bg-inverse text-white"><span> اسلایدر  </span> </a>
+                </li>
+                <li>
+                    <a href="{{ URL::to('admin/slider-competition') }}" class="waves-effect bg-inverse text-white"><span>اسلایدر رقابت  </span> </a>
                 </li>
 
                     </ul>
