@@ -1,124 +1,263 @@
-@extends('admin.layouts.app')
-@section('title', 'Edit')
+
+
+
+
+@extends('Backend.Partials.layouts.app')
+@section('title', 'Post Create')
 @section('headSection')
-<link rel="stylesheet" href="{{ asset('admin/plugins/select2/select2.min.css') }}">
+<link href="{{ asset('Backend/plugins/fileuploads/css/dropify.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
+
 @section('main-content')
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <h1>
-      Text Editors
-      <small>Advanced form element</small>
-    </h1>
-    <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="#">Forms</a></li>
-      <li class="active">Editors</li>
-    </ol>
-  </section>
+<div class="content-page">
+  <!-- Start content -->
+  <div class="content">
+ 
 
-  <!-- Main content -->
-  <section class="content">
-    <div class="row">
-      <div class="col-md-12">
-        <!-- general form elements -->
-        <div class="box box-primary">
-          <div class="box-header with-border">
-            <h3 class="box-title">Titles</h3>
-          </div>
-          @include('includes.messages')
-          <!-- /.box-header -->
-          <!-- form start -->
-          <form role="form" action="{{ route('about.update',$about->id) }}" method="post" enctype="multipart/form-data">
-            {{ csrf_field() }}
+      <div class="row">
+        @include('includes.messages')
+
+        <form role="form" action="{{ route('about.update', $about->id) }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+        {{ csrf_field() }}
             {{ method_field('PATCH') }}
-            <div class="box-body">
-              <div class="col-lg-6">
+          <div class="card-box">
+            <div class="col-sm-12">
+              <div class="col-md-3">
+                <h4 class="header-title m-t-0 m-b-30">نمونه اول</h4>
+                <input type="file" class="dropify" name="image_one" 
+                data-default-file="{{asset('Backend/images/gallery/1.jpg') }}"  value="{{ $about->image_one }}"/>
+              <img src=" {{ URL::to($about->image_one) }} " style="width: 70px; height:70px;">
+              </div><!-- end col -->
+
+              <div class="col-md-3">
+                <h4 class="header-title m-t-0 m-b-30">نمونه دوم</h4>
+                <input type="file" class="dropify" name="image_two" 
+                data-default-file="{{ asset('Backend/images/gallery/1.jpg') }}" value="{{ $about->image_one }}"/>
+              <img src=" {{ URL::to($about->image_two) }} " style="width: 70px; height:70px;">
+              </div><!-- end col -->
+
+              <div class="col-md-3">
+                <h4 class="header-title m-t-0 m-b-30">نمونه سوم</h4>
+                <input type="file" class="dropify" name="image_three" 
+                data-default-file="{{ asset('Backend/images/gallery/1.jpg') }}" value="{{ $about->image_three }}"/>
+              <img src=" {{ URL::to($about->image_three) }} " style="width: 70px; height:70px;">
+              </div><!-- end col -->
+              <div class="col-md-3">
+                <h4 class="header-title m-t-0 m-b-30">نمونه چهارم</h4>
+                <input type="file" class="dropify" name="image_four" 
+                data-default-file="{{ asset('Backend/images/gallery/1.jpg') }}" value="{{ $about->image_four }}"/>
+              <img src=" {{ URL::to($about->image_four) }} " style="width: 70px; height:70px;">
+              </div><!-- end col -->
+
+              <div class="col-lg-6 m-t-30">
                 <div class="form-group">
-                  <label for="title">about Title</label>
-                  <input type="text" class="form-control" id="title" name="title" placeholder="Title" value="{{ $about->title }}">
+                  <label class="col-md-2 control-label"> سر تیتر</label>
+                  <div class="col-md-10">
+                    <input type="text" name="title1" class="form-control" value="{{ $about->title1 }}"/>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label class="col-md-2 control-label">خلاصه </label>
+                  <div class="col-md-10">
+                    <input type="text" name="summary1" class="form-control" value="{{ $about->summary1 }}"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-2 control-label"> سر تیتر</label>
+                  <div class="col-md-10">
+                    <input type="text" name="title2" class="form-control" value="{{ $about->title2 }}"/>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label class="col-md-2 control-label">خلاصه </label>
+                  <div class="col-md-10">
+                    <input type="text" name="summary2" class="form-control" value="{{ $about->summary2 }}"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-2 control-label"> سر تیتر</label>
+                  <div class="col-md-10">
+                    <input type="text" name="title3" class="form-control" value="{{ $about->title3 }}"/>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label class="col-md-2 control-label">خلاصه </label>
+                  <div class="col-md-10">
+                    <input type="text" name="summary3" class="form-control" value="{{ $about->summary3 }}"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-2 control-label"> سر تیتر</label>
+                  <div class="col-md-10">
+                    <input type="text" name="title4" class="form-control" value="{{ $about->title4 }}"/>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label class="col-md-2 control-label">خلاصه </label>
+                  <div class="col-md-10">
+                    <input type="text" name="summary4" class="form-control" value="{{ $about->summary4 }}"/>
+                  </div>
+                </div>
+              
+              </div><!-- end col -->
+
+              <div class="col-lg-6 m-t-30">
+              <div class="form-group">
+                  <label class="col-md-2 control-label"> سر تیتر</label>
+                  <div class="col-md-10">
+                    <input type="text" name="title5" class="form-control" value="{{ $about->title5 }}"/>
+                  </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="subtitle">about Sub Title</label>
-                  <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Sub Title" value="{{ $about->subtitle }}">
-                </div>
-
-                <div class="form-group">
-                  <label for="slug">about Slug</label>
-                  <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug" value="{{ $about->slug }}">
-                </div>
-
-              </div>
-              <div class="col-lg-6">
-                <br>
-                <div class="form-group">
-                  <div class="checkbox pull-left">
-                    <label>
-                      <input type="checkbox" name="status" value="1" @if ($about->status == 1)
-                        {{'checked'}}
-                      @endif> Publish
-                    </label>
+                  <label class="col-sm-3 control-label">وضعیت</label>
+                  <div class="col-sm-6">
+                    <div class="checkbox checkbox-pink">
+                      <input id="checkbox1" type="checkbox" name="status" value="1" 
+                      data-parsley-multiple="groups" data-parsley-mincheck="2" data-parsley-id="69"
+                      <?php
+                                                                                  if ($about->status == 1) {
+                                                                                    echo "checked";
+                                                                                  }
+                                                                                  ?>
+                                                                                  />
+                      <label for="checkbox1"> انتشار </label>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <!-- /.box-body -->
-
-            <div class="box">
-             <div class="box-header">
-               <h3 class="box-title">Write about Body Here
-                 <small>Simple and fast</small>
-               </h3>
-               <!-- tools box -->
-               <div class="pull-right box-tools">
-                 <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                   <i class="fa fa-minus"></i></button>
-                 </div>
-                 <!-- /. tools -->
-               </div>
-               <!-- /.box-header -->
-               <div class="box-body pad">
-                <textarea name="body" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1">{{ $about->body }}</textarea>
+            </div><!-- end col -->
+            <div class="col-lg-12">
+              <div class="card-box">
+                <textarea id="elm1" name="body"></textarea>
               </div>
-             </div>
-
-             <div class="box-footer">
-              <input type="submit" class="btn btn-shalishow">
-              <a href='{{ route('about.index') }}' class="btn btn-warning">Back</a>
             </div>
-          </form>
-        </div>
-        <!-- /.box -->
-
-
+            <div class="form-group text-right m-r-5">
+              <button class="btn btn-primary waves-effect waves-light" type="submit">
+                ورود
+              </button>
+              <a type="submit" href="{{ route('about.index') }}" class="btn btn-default waves-effect waves-light m-l-5">
+                برگشت
+              </a>
+            </div>
+        </form>
       </div>
-      <!-- /.col-->
-    </div>
-    <!-- ./row -->
-  </section>
-  <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+    </div><!-- end row -->
+  </div>
+
+
+
 @endsection
 @section('footerSection')
-<script src="{{ asset('admin/plugins/select2/select2.full.min.js') }}"></script>
-<script src="{{  asset('admin/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('Backend/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
 <script>
-    $(function () {
-      // Replace the <textarea id="editor1"> with a CKEditor
-      // instance, using default configuration.
-      CKEDITOR.replace('editor1');
-      //bootstrap WYSIHTML5 - text editor
-      $(".textarea").wysihtml5();
-    });
+  var resizefunc = [];
 </script>
-<script>
+<script src="{{ asset('Backend/plugins/fileuploads/js/dropify.min.js') }}"></script>
+
+
+<script type="text/javascript">
+  $('.dropify').dropify({
+    messages: {
+      'default': 'فایل را به اینجا بکشید یا کلیک کنید',
+      'replace': 'برای جایگزینی فایل را به اینجا بکشید یا کلیک کنید',
+      'remove': 'پاک کردن',
+      'error': 'با پوزش فراوان، خطایی رخ داده'
+    },
+    error: {
+      'fileSize': 'حجم فایل بیشتر از حد مجاز است (1M).'
+    }
+  });
+</script>
+
+<script src="{{ asset('Backend/plugins/tinymce/tinymce.min.js') }}"></script>
+
+
+<script type="text/javascript">
   $(document).ready(function() {
-    $(".select2").select2();
+    if ($("#elm1").length > 0) {
+      tinymce.init({
+        selector: "textarea#elm1",
+        theme: "modern",
+        height: 300,
+        plugins: [
+          "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+          "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+          "save table contextmenu directionality emoticons template paste textcolor"
+        ],
+        toolbar: "rtl insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+        style_formats: [{
+            title: 'Bold text',
+            inline: 'b'
+          },
+          {
+            title: 'Red text',
+            inline: 'span',
+            styles: {
+              color: '#ff0000'
+            }
+          },
+          {
+            title: 'Red header',
+            block: 'h1',
+            styles: {
+              color: '#ff0000'
+            }
+          },
+          {
+            title: 'Example 1',
+            inline: 'span',
+            classes: 'example1'
+          },
+          {
+            title: 'Example 2',
+            inline: 'span',
+            classes: 'example2'
+          },
+          {
+            title: 'Table styles'
+          },
+          {
+            title: 'Table row 1',
+            selector: 'tr',
+            classes: 'tablerow1'
+          }
+        ]
+      });
+    }
+  });
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('select[name="category_id"]').on('change', function() {
+      var category_id = $(this).val();
+      if (category_id) {
+        $.ajax({
+          url: "{{ url('/get/subcategory/') }}/" + category_id,
+          type: "GET",
+          dataType: "json",
+          success: function(data) {
+            var d = $('select[name="subcategory_id"]').empty();
+            $.each(data, function(key, value) {
+              $('select[name="subcategory_id"]').append('<option value="' + value.id + '">' + value.subcategory_name + '</option>');
+
+            });
+          },
+        });
+
+      } else {
+        alert('danger');
+      }
+
+    });
   });
 </script>
 @endsection
-

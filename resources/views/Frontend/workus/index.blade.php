@@ -53,7 +53,7 @@
                 {{ csrf_field() }}
                     <div class="faq-contact">
                         <div class="form-check">
-                            <input type="checkbox" name="status[]" class="form-check-input p-bground">
+                            <input type="checkbox" name="status[]"  value="من می توانم طرح های جذاب برای گسترش مسابقه های کتابخوانی در اختیار شما بگذارم، ذهن من پر از ایده های جدید است." class="form-check-input p-bground">
                             <p>من می توانم طرح های جذاب برای گسترش مسابقه های کتابخوانی در اختیار شما بگذارم، ذهن من پر از ایده های جدید است.</p>
                         </div>
                     </div>

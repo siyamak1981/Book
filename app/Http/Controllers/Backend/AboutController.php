@@ -18,17 +18,15 @@ class AboutController extends Controller
     {
         $this->middleware('auth:admin');
     }
-    /**
+   /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // $users = Admin::latest()->paginate(5);
-
         $abouts = About::all();
-        return view('admin.about.index', compact('abouts'));
+        return view('Backend.about.index', compact('abouts'));
     }
 
     /**
@@ -38,7 +36,7 @@ class AboutController extends Controller
      */
     public function create()
     {
-        return view('admin.about.create');
+        return view('Backend.about.create');
     }
 
     /**
@@ -49,30 +47,70 @@ class AboutController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $this->validate($request, [
-        'title'=>'required|max:50',
-        'subtitle'=>'required|max:150',
-        'slug'=>'required',
-        'body'=>'required',
-        'image'=>'required',
+          
+
         ]);
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $filename = time().$image->getClientOriginalName();
-            Storage::disk('local')->putFileAs('about/', $image, $filename);
+
+        $image_one = $request->image_one;
+        $image_two = $request->image_two;
+        $image_three = $request->image_three;
+        $image_four = $request->image_four;
+        $about = new about();
+        if ($image_one && $image_two && $image_three) {
+
+            $image_full_name = hexdec(uniqid()) . '.' . $image_one->getClientOriginalExtension();
+            $upload_path = 'public/media/about/';
+            $image_url = $upload_path . $image_full_name;
+            $success = $request->file('image_one')->move($upload_path, $image_full_name);
+            $about->image_one = $image_url;
+
+
+
+            $image_full_name = hexdec(uniqid()) . '.' . $image_two->getClientOriginalExtension();
+            $upload_path = 'public/media/about/';
+            $image_url = $upload_path . $image_full_name;
+            $success = $request->file('image_two')->move($upload_path, $image_full_name);
+            $about->image_two = $image_url;
+            
+            
+            
+            $image_full_name = hexdec(uniqid()) . '.' . $image_three->getClientOriginalExtension();
+            $upload_path = 'public/media/about/';
+            $image_url = $upload_path . $image_full_name;
+            $success = $request->file('image_three')->move($upload_path, $image_full_name);
+            $about->image_three = $image_url;
+
+            $image_full_name = hexdec(uniqid()) . '.' . $image_four->getClientOriginalExtension();
+            $upload_path = 'public/media/about/';
+            $image_url = $upload_path . $image_full_name;
+            $success = $request->file('image_four')->move($upload_path, $image_full_name);
+            $about->image_four = $image_url;
+    
+            $about->title1 = $request->title1;
+            $about->summary1 = $request->summary1;
+
+            $about->title2 = $request->title2;
+            $about->summary2 = $request->summary2;
+
+            $about->title3 = $request->title3;
+            $about->summary3 = $request->summary3;
+
+            $about->title4 = $request->title4;
+            $about->summary4 = $request->summary4;
+            
+            $about->title5 = $request->title5;
+            $about->body = $request->body;
+
+
+
+            $about->status = $request->status;
+            $about->save();
+
+            return redirect(route('about.index'))->with('message', 'پست با موفقیت انجام شد');
         }
-        $about = new About;
-        // dd($about);
-        $about->title = $request->title;
-        $about->subtitle = $request->subtitle;
-        $about->slug = $request->slug;
-        $about->body = $request->body;
-        $about->image = $filename;
-        $about->save();
-
-        return redirect(route('about.index'))->with('message', 'Information was Created Successfully');
     }
-
     /**
      * Display the specified resource.
      *
@@ -92,8 +130,9 @@ class AboutController extends Controller
      */
     public function edit($id)
     {
-        $about = About::where('id', $id)->first();
-        return view('admin.about.edit', compact('about'));
+        $about = about::where('id', $id)->first();
+
+        return view('Backend.about.edit', compact('about'));
     }
 
     /**
@@ -105,28 +144,67 @@ class AboutController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $this->validate($request, [
-            'title'=>'required|max:50',
-            'subtitle'=>'required|max:150',
-            'slug'=>'required|max:30',
-            'body'=>'required',
-            'image'=>'required',
-            ]);
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $filename = time().$image->getClientOriginalName();
-            Storage::disk('local')->putFileAs('about/', $image, $filename);
-        }
-        $about = About::find($id);
-        $about->title = $request->title;
-        $about->subtitle = $request->subtitle;
-        $about->slug = $request->slug;
-        $about->body = $request->body;
-        $about->status = $request->status;
-        $about->image = $filename;
-        $about->save();
+           
 
-        return redirect(route('about.index'))->with('message', 'Information was Created Successfully');
+        ]);
+        $image_one = $request->image_one;
+        $image_two = $request->image_two;
+        $image_three = $request->image_three;
+        $image_four = $request->image_four;
+        $about =About::find($id);
+        if ($image_one && $image_two && $image_three) {
+
+            $image_full_name = hexdec(uniqid()) . '.' . $image_one->getClientOriginalExtension();
+            $upload_path = 'public/media/about/';
+            $image_url = $upload_path . $image_full_name;
+            $success = $request->file('image_one')->move($upload_path, $image_full_name);
+            $about->image_one = $image_url;
+
+
+
+            $image_full_name = hexdec(uniqid()) . '.' . $image_two->getClientOriginalExtension();
+            $upload_path = 'public/media/about/';
+            $image_url = $upload_path . $image_full_name;
+            $success = $request->file('image_two')->move($upload_path, $image_full_name);
+            $about->image_two = $image_url;
+            
+            
+            
+            $image_full_name = hexdec(uniqid()) . '.' . $image_three->getClientOriginalExtension();
+            $upload_path = 'public/media/about/';
+            $image_url = $upload_path . $image_full_name;
+            $success = $request->file('image_three')->move($upload_path, $image_full_name);
+            $about->image_three = $image_url;
+
+            $image_full_name = hexdec(uniqid()) . '.' . $image_four->getClientOriginalExtension();
+            $upload_path = 'public/media/about/';
+            $image_url = $upload_path . $image_full_name;
+            $success = $request->file('image_four')->move($upload_path, $image_full_name);
+            $about->image_four = $image_url;
+  
+            $about->title1 = $request->title1;
+      
+            $about->summary1 = $request->summary1;
+
+            $about->title2 = $request->title2;
+            $about->summary2 = $request->summary2;
+
+            $about->title3 = $request->title3;
+            $about->summary3 = $request->summary3;
+
+            $about->title4 = $request->title4;
+            $about->summary4 = $request->summary4;
+            
+            $about->title5 = $request->title5;
+            $about->body = $request->body;
+
+            $about->status = $request->status;
+            $about->save();
+
+            return redirect(route('about.index'))->with('message', 'پست با موفقیت انجام شد');
+        }
     }
 
     /**
@@ -135,9 +213,20 @@ class AboutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(about $competition_page)
     {
-        About::find($id)->delete();
-        return back()->with('message', 'Information was Deleted Successfully');
+        $data = about::where('id', $competition_page->id)->first();
+    
+        $image_one = $data->image_one;
+        $image_two = $data->image_two;
+        $image_three = $data->image_three;
+        $image_four = $data->image_four;
+        unlink($image_one);
+        unlink($image_two);
+        unlink($image_three);
+        unlink($image_four);
+        about::where('id', $competition_page->id)->delete();
+        return back()->with('message', "پست با موفقیت پاک شد .");
+      
     }
 }

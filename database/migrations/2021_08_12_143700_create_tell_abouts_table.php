@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWorkUsTable extends Migration
+class CreateTellAboutsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateWorkUsTable extends Migration
      */
     public function up()
     {
-        Schema::create('work_us', function (Blueprint $table) {
+        Schema::create('tell_abouts', function (Blueprint $table) {
             $table->id();
-            $table->string('subject');
+            $table->string('role')->nullable();
+            $table->string('image')->nullable();
+            $table->string('name')->nullable();
             $table->text('body')->nullable();
             $table->integer('status')->nullable();
             $table->timestamps();
@@ -29,6 +31,6 @@ class CreateWorkUsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('work_us');
+        Schema::dropIfExists('tell_abouts');
     }
 }

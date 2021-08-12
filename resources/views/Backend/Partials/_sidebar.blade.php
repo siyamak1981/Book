@@ -115,6 +115,7 @@
                 <li>
                     <a href="{{ URL::to('admin/contact-us') }}" class="waves-effect bg-inverse text-white"><span>تماس با ما </span> </a>
                 </li>
+ 
                 <li>
                     <a href="{{ URL::to('admin/advertising') }}" class="waves-effect bg-inverse text-white"><span> تبلیغ  </span> </a>
                 </li>
@@ -133,6 +134,22 @@
                 
                 <li>
                     <a href="{{ route('product.index') }}" class="waves-effect bg-inverse text-white"><span>محصول </span> </a>
+                </li>
+
+                    </ul>
+                </li>
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect bg-inverse text-white"><i class="fa fa-comment text-info"></i><span>درباره ما </span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled">
+                
+                <li>
+                    <a href="{{ route('about.index') }}" class="waves-effect bg-inverse text-white"><span>درباره ما </span> </a>
+                </li>
+                <li>
+                    <a href="{{ URL::to('admin/team') }}" class="waves-effect bg-inverse text-white"><span>تیم ما </span> </a>
+                </li>
+                <li>
+                    <a href="{{ URL::to('admin/tellabout') }}" class="waves-effect bg-inverse text-white"><span> درباره ما میگویند </span> </a>
                 </li>
 
                     </ul>

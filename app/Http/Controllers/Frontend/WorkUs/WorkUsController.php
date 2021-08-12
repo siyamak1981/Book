@@ -36,19 +36,30 @@ class WorkUsController extends Controller
      */
     public function store(Request $request)
     {
-       
+        $statusmac= implode(",", $request->get('status'));
+    //   dd($request->all());
         $this->validate($request, [
             'subject'=>'required',
             'body'=>'required',
         ]);
-        $work = new WorkUs;
-        $work->subject = $request->subject;
-        $work->body = $request->body;
-        $work->status = $request->status;
-        $work->save();
+        // $work = new WorkUs;
+        // $work->subject = $request->subject;
+        // $work->body = $request->body;
+        // $work->status[] = $request->status;
+        // $work->save();
+        // return back()->with('message', 'پیام شما با موفقیت ثبت گردید');
+        // $statuses = $request->input('status');
+        // foreach($statuses as $status){
+        //     $statusArray[] = $status;
+            
+        // }
+        $request->merge([ 
+            'status' => implode(',', (array) $request->get('status'))
+        ]);
+    
+        $input = $request->all();
+        WorkUs::create($input);
         return back()->with('message', 'پیام شما با موفقیت ثبت گردید');
-
-
     }
 
     /**

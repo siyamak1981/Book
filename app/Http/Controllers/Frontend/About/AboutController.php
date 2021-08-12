@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Front\About;
+namespace App\Http\Controllers\Frontend\About;
 
 use App\Http\Controllers\Controller;
-use App\Model\User\About;
-use App\Model\Admin\Admin;
-use Illuminate\Http\Request;
+use App\Models\About;
+use App\Models\Team;
+use App\Models\TellAbout;
+use App\Models\Access\Admin;
+
 
 class AboutController extends Controller
 {
@@ -16,8 +18,11 @@ class AboutController extends Controller
      */
     public function index()
     {
+
         $users = Admin::latest()->paginate(5);
         $abouts = About::where('status', 1)->get();
-        return view('public.about.about', compact('abouts', 'users'));
+        $teams = Team::where('status', 1)->get();
+        $tellabouts = TellAbout::where('status', 1)->get();
+        return view('Frontend.about.index', compact('abouts', 'users', 'teams', 'tellabouts'));
     }
 }
