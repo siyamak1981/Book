@@ -19,20 +19,22 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', 'Slider\SliderController@index')->name('slider.index');
     Route::get('competition/', 'SliderCompetition\SliderCompetitionController@index');
     Route::get('competition/', 'Competition\CompetitionController@index');
-   
-    
 
+
+    //about
+    Route::get('about', 'About\AboutController@index');
     // contact_us
     Route::get('contact-us', 'Contact\ContactController@getContact');
     Route::post('contact-us', 'Contact\ContactController@saveContact');
     //work-us
-   
-    Route::resource('work-us/', 'WorkUs\WorkUsController');
+
+    Route::get('/work-us', 'WorkUs\WorkUsController@create');
+    Route::post('/work-us/store', 'WorkUs\WorkUsController@store')->name('work-us.store');
     //comment
     Route::post('/comment/store', 'Comment\CommentController@store')->name('comments.store');
-   
 
-    
+
+
     // Route::get('add/to/cart/{id}', 'CartController@AddCart');
     // Route::get('product/cart', 'CartController@ShowCart')->name('show.cart');
     // Route::get('remove/cart/{rowId}', 'CartController@removeCart');
@@ -96,18 +98,19 @@ Route::group(['namespace' => 'Backend'], function () {
     Route::resource('admin/subcategory', 'SubCategoryController');
     Route::resource('admin/newslater', 'NewslaterController', [
         'except' => ['edit', 'update', 'show', 'store', 'create']
-      ]);
+    ]);
     //product
     Route::resource('admin/product', 'ProductController', [
         'except' => ['update']
-      ]);
-      Route::get('get/subcategory/{category_id}', 'ProductController@GetSubcat'); // For Show Sub category with ajax
-      Route::get('inactive/product/{id}', 'ProductController@inactive');
-      Route::get('active/product/{id}', 'ProductController@active');
-      Route::post('update/product/withoutphoto/{id}', 'ProductController@UpdateProductWithoutPhoto');
-      Route::post('update/product/photo/{id}', 'ProductController@UpdateProductPhoto');
+    ]);
+    Route::get('get/subcategory/{category_id}', 'ProductController@GetSubcat'); // For Show Sub category with ajax
+    Route::get('inactive/product/{id}', 'ProductController@inactive');
+    Route::get('active/product/{id}', 'ProductController@active');
+    Route::post('update/product/withoutphoto/{id}', 'ProductController@UpdateProductWithoutPhoto');
+    Route::post('update/product/photo/{id}', 'ProductController@UpdateProductPhoto');
 
     Route::resource('admin/about', 'AboutController');
+    Route::resource('admin/tellabout', 'TellAboutController');
     Route::resource('admin/coupon', 'CouponController');
     Route::resource('admin/advertising', 'AdvertisingController');
     Route::resource('admin/slider', 'SliderController');
@@ -117,10 +120,11 @@ Route::group(['namespace' => 'Backend'], function () {
     Route::resource('admin/supporter', 'SupporterController');
     Route::resource('admin/competition', 'CompetitionController');
     Route::resource('admin/competition_page', 'CompetitionPageController');
-    
+    Route::resource('admin/team', 'TeamController');
+
     Route::get('admin-login', 'Auth\LoginController@showLoginForm')->name('admin.login');
     Route::post('admin-login', 'Auth\LoginController@login');
     //contact
-    Route::get('admin/contact-us','ContactController');
-    Route::get('admin/contact-us/{contact}','ContactController@destroy')->name('contact.destroy');
+    Route::get('admin/contact-us', 'ContactController');
+    Route::get('admin/contact-us/{contact}', 'ContactController@destroy')->name('contact.destroy');
 });
